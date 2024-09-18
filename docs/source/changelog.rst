@@ -6,6 +6,10 @@
   Latest
 ==========
 
+======================
+  0.1.8 (2024-09-18)
+======================
+
 New Features
 ------------
 
@@ -14,7 +18,7 @@ New Features
 Other Changes
 -------------
 
-* None.
+* Minor updates to documentation.
 
 Bugfixes
 --------
