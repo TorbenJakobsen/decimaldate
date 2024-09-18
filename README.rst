@@ -24,6 +24,8 @@
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 
+.. image:: https://static.pepy.tech/badge/decimaldate
+   :target: https://pepy.tech/project/decimaldate
 
 ================
   Introduction
@@ -151,6 +153,8 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
       See https://pypi.org/help/#description-content-type for more information.
    
    You most likely have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
+
+   See the rst checker https://github.com/rstcheck/rstcheck 
 
 Comments
 --------
