@@ -1,45 +1,37 @@
-#######################
-  Project Description
-#######################
+A Python class to handle decimal dates.
 
-A Python class to handle decimal dates - integers on the form ``yyyymmdd``.
-
-===========
-  License
-===========
+=======
+License
+=======
 
 BSD 3-Clause
 
-=================
-  Main Features
-=================
+=============
+Main Features
+=============
 
-Simplifies handling of decimal dates - integers on the form ``yyyymmdd``.
+Simplifies handling of decimal dates.
 
-See documentation hosted on `readthedocs <https://decimaldate.readthedocs.io/en/latest/>`_.
+See documentation hosted on readthedocs https://decimaldate.readthedocs.io/en/latest/
 
-===================
-  Where to get it
-===================
+===============
+Where to get it
+===============
 
-The source code is hosted on GitHub at:
-https://github.com/TorbenJakobsen/decimaldate
+The source code is hosted on GitHub at https://github.com/TorbenJakobsen/decimaldate
 
 An installer for the latest released version is available at PyPI.
 
-.. code:: 
-  python3 -m pip install decimaldate
-
-================
-  Dependencies
-================
+============
+Dependencies
+============
 
 Python >=3.11
 
 There are no other dependencies.
 
-=================
-  Documentation
-=================
+=============
+Documentation
+=============
 
-Documentation is hosted on `readthedocs <https://decimaldate.readthedocs.io/en/latest/>`_.
+Documentation is hosted on readthedocs https://decimaldate.readthedocs.io/en/latest/

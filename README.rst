@@ -56,7 +56,7 @@ This documentation will assume the use of a virtual environment and ``venv``.
    
    You can use other virtualization tools as you prefer.
 
-Activate the virtual environment (remember the ``.``).
+Activate (source) the virtual environment (remember the ``.``).
 
 .. code:: bash
 
@@ -117,21 +117,21 @@ Make coverage report as HTML:
 
 To see the HTML report, open the default location: ``htmlcov\index.html`` in a browser and/or light-weight http server.
 
-
 Upload to PyPI
 
 Make sure you have ``build`` so the latest (and only the latest) version is in the ``dist`` directory.
 
 .. code:: bash
+
    python3 -m twine upload --verbose --repository pypi dist/*
 
 .. note:: 
-   You will need ``twine`` installed; which is part of the reqirements file.
+   You will need ``twine`` installed; which is part of the requirements file.
 
 See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_ for more information.
 
 .. note::
-   If you see:
+   If you see
       400 The description failed to render for 'text/x-rst'.
       See https://pypi.org/help/#description-content-type for more information.
    You most likely have put in Sphinx_ into the reStructuredText that PyPI_ likes.
@@ -141,7 +141,7 @@ Comments
 
 .. note::
    
-   These commands are available as ``make`` targets in the included ``Makefile``
+   These commands are available as ``make`` targets in the included ``Makefile``.
 
 =================
   Documentation
@@ -160,4 +160,4 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 readthedocs
 -----------
 
-See readthedocs_.
+See readthedocs_ .
