@@ -128,13 +128,21 @@ Make sure you have ``build`` so the latest (and only the latest) version is in t
 .. note:: 
    You will need ``twine`` installed; which is part of the requirements file.
 
+You will be asked for your API token:
+
+.. image:: docs/source/_static/twine_upload.png
+   :width: 500
+
 See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_ for more information.
 
 .. note::
-   If you see
+
+   If you see:
+
       400 The description failed to render for 'text/x-rst'.
       See https://pypi.org/help/#description-content-type for more information.
-   You most likely have put in Sphinx_ into the reStructuredText that PyPI_ likes.
+   
+   You most likely have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
 
 Comments
 --------
