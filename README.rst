@@ -79,6 +79,9 @@ Install requirements and their dependencies for development (which are not deplo
 Build and Test
 --------------
 
+Build
+~~~~~
+
 Build (where the ``pyproject.toml`` file is located):
 
 .. code:: bash
@@ -90,6 +93,9 @@ Install updated project with editing (remember the :code:`.`):
 .. code:: bash
 
    python3 -m pip install --upgrade -e .
+
+Test
+~~~~
 
 Test:
 
@@ -103,13 +109,13 @@ Coverage:
 
    coverage run -m pytest tests
 
-Make coverage report:
+Make run coverage into report:
 
 .. code:: bash
 
    coverage report -m
 
-Make coverage report as HTML:
+Make run coverage into report as HTML:
 
 .. code:: bash
 
@@ -118,15 +124,17 @@ Make coverage report as HTML:
 To see the HTML report, open the default location: ``htmlcov\index.html`` in a browser and/or light-weight http server.
 
 Upload to PyPI
+~~~~~~~~~~~~~~
 
 Make sure you have ``build`` so the latest (and only the latest) version is in the ``dist`` directory.
+
+.. note:: 
+   
+   You will need ``twine`` installed; which is part of the requirements file.
 
 .. code:: bash
 
    python3 -m twine upload --verbose --repository pypi dist/*
-
-.. note:: 
-   You will need ``twine`` installed; which is part of the requirements file.
 
 You will be asked for your API token:
 
@@ -168,4 +176,4 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 readthedocs
 -----------
 
-See readthedocs_ .
+See `readthedocs <https://about.readthedocs.com/>`_.
