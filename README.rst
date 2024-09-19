@@ -38,7 +38,7 @@ The source for this ``decimaldate`` project is available on `GitHub <https://git
    This project and the development of the module ``datetime`` is documented here, in *this* ``README.rst`` file.
 
    The Python module itself, and its use, is documented in the ``docs/source`` as reStructuredText to be processed with Sphinx_
-   and made available on `readthedocs <https://decimaldate.readthedocs.io/>`_.
+   and made available on readthedocs as `decimaldate <https://decimaldate.readthedocs.io/>`_.
 
 =========================
   Setup for Development
@@ -176,8 +176,14 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 .. image:: docs/source/_static/sphinx_make_default.png
    :width: 800
 
+When ready update documentation on readthedocs_.
 
-readthedocs
------------
+=========
+  Tools 
+=========
 
-See `readthedocs <https://about.readthedocs.com/>`_.
+``rstcheck`` 
+
+   .. image:: docs/source/_static/rstcheck_run.png
+      :width: 480
+
