@@ -1,6 +1,7 @@
 .. _readthedocs: https://readthedocs.org/
 .. _Sphinx: https://www.sphinx-doc.org/ 
 .. _PyPI: https://pypi.org/
+.. _Alabaster: https://sphinx-themes.readthedocs.io/en/latest/sample-sites/default-alabaster/
 
 ###############
   decimaldate
@@ -172,7 +173,7 @@ Make sure you have ``build`` so the latest (and only the latest) version is in t
 You will be asked for your API token:
 
 .. image:: docs/source/_static/twine_upload.png
-   :width: 500
+   :width: 540
 
 See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_ for more information.
 
@@ -239,7 +240,9 @@ and ``rstcheck`` to validate and lint you markup.
 ``sphinx`` 
    To generate local copy of documentation meant for readthedocs_.
 
-   The theme chosen is readthedocs (the default is Alebaster).
+   The `theme <https://sphinx-themes.readthedocs.io/en/latest/>`_ chosen
+   is `Read The Docs <https://sphinx-themes.readthedocs.io/en/latest/sample-sites/sphinx-rtd-theme/>`_ 
+   (the default is Alabaster_).
 
 ``readthedocs``
    A site hosting documentation.
@@ -248,5 +251,5 @@ and ``rstcheck`` to validate and lint you markup.
    Lints your reStructuredText markdown files.
 
    .. image:: docs/source/_static/rstcheck_run.png
-      :width: 480
+      :width: 600
 
