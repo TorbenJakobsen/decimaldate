@@ -19,7 +19,7 @@ First install package using ``pip``:
 .. note::
 
    The ``decimaldate`` objects used internally and being exposed by method calls
-   ignores time (hous, minutes, and seconds) and are *not* timezone aware.
+   ignores time (hours, minutes, and seconds) and are *not* timezone aware.
 
 ``DecimalDate`` has utility and convenience methods,
 but for more advanced use,
@@ -142,12 +142,25 @@ As other types
     >>> DecimalDate(2024_09_11).as_int()
     20240911
 
+    Similar to ``ìnt()``
+
+    >>> int(DecimalDate(2023_01_17))
+    20230117
+
 ``as_str()``
     >>> DecimalDate(2024_09_11).as_str()
     '20240911'
 
+    Similar to ``str()``
+
+    >>> str(DecimalDate(2023_01_17))
+    '20230117'
+
+    There is an optional separator.
+
 ``as_datetime()``
     >>> DecimalDate(2024_09_11).as_datetime()
+    datetime.datetime(2024, 9, 11, 0, 0)
 
 Static methods
 ==============
