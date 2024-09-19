@@ -16,7 +16,7 @@
 
 * To install from pypi_ using ``pip``:
 
-.. code:: python
+.. code:: bash
 
    python3 -m pip install decimaldate
 

@@ -7,6 +7,7 @@ PYTEST=./venv/bin/pytest
 FLAKE8=./venv/bin/flake8
 MYPY=./venv/bin/mypy
 COVERAGE=./venv/bin/coverage
+RSTCHECK=./venv/bin/rstcheck
 
 venv/bin/activate:
 	python3.11 -m venv venv
@@ -66,3 +67,7 @@ code: venv
 
 .PHONY: all
 all: setup
+
+.PHONY: rstcheck
+rstcheck: venv
+	$(RSTCHECK) *.rst docs/source/*.rst

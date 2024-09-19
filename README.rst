@@ -27,6 +27,9 @@
 .. image:: https://static.pepy.tech/badge/decimaldate
    :target: https://pepy.tech/project/decimaldate
 
+.. image:: https://static.pepy.tech/badge/decimaldate/week
+   :target: https://pepy.tech/project/decimaldate
+
 ================
   Introduction
 ================
@@ -38,7 +41,7 @@ The source for this ``decimaldate`` project is available on `GitHub <https://git
    This project and the development of the module ``datetime`` is documented here, in *this* ``README.rst`` file.
 
    The Python module itself, and its use, is documented in the ``docs/source`` as reStructuredText to be processed with Sphinx_
-   and made available on `readthedocs <https://decimaldate.readthedocs.io/>`_.
+   and made available on readthedocs as `decimaldate <https://decimaldate.readthedocs.io/>`_.
 
 =========================
   Setup for Development
@@ -66,7 +69,7 @@ Activate (source) the virtual environment (remember the ``.``).
 
 .. note::
 
-   This will activate for macOS and Linux.
+   This will activate for macOS and Linux.\\
    For Windows CMD or PowerShell run the activation scripts instead.
 
 Install requirements
@@ -176,8 +179,51 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 .. image:: docs/source/_static/sphinx_make_default.png
    :width: 800
 
+When ready update documentation on readthedocs_.
 
-readthedocs
------------
+It is highly recommended to test the update by uploading to 
+https://test.pypi.org/
+before updating PyPI_. 
 
-See `readthedocs <https://about.readthedocs.com/>`_.
+Locally you can run ``make html`` to see the generated output,
+and ``rstcheck`` to validate and lint you markup.
+
+=========
+  Tools 
+=========
+
+``python3`` 
+
+   Of course.
+
+``flake8``
+
+   A Python linting tool for style guide enforcement.
+
+   See https://github.com/pycqa/flake8
+
+``mypy``
+
+   A static type checker for Python (type hints are optional and not enforced). 
+
+``pytest``
+
+``coverage``
+
+``sphinx`` 
+
+   To generate local copy of documentation meant for readthedocs_.
+
+   The theme chosen is readthedocs (the default is Alebaster).
+
+``readthedocs``
+
+   A site hosting documentation.
+
+``rstcheck`` 
+
+   Lints your reStructuredText markdown files.
+
+   .. image:: docs/source/_static/rstcheck_run.png
+      :width: 480
+

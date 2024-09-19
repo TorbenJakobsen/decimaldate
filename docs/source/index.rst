@@ -79,8 +79,9 @@ DecimalDate(20240214)
   Use
 =======
 
+--------
 Creation
-========
+--------
 
 A ``DecimalDate`` accepts:
 
