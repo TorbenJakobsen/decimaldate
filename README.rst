@@ -12,12 +12,14 @@
 .. list-table::
     :stub-columns: 1
 
+    * - general
+      - |license|
     * - docs
       - |docs|
     * - code
       - |code-style| |commits-since|
     * - package
-      - |license| |wheel| |supported-versions| |supported-implementations| 
+      - |wheel| |supported-versions| |supported-implementations| 
     * - downloads
       - |downloads-total| |downloads-weekly|
 
@@ -164,7 +166,7 @@ Make sure you have ``build`` so the latest (and only the latest) version is in t
 
 .. note:: 
    
-   You will need ``twine`` installed; which is part of the requirements file.
+   You will need ``twine`` installed; which is part of the development requirements file.
 
 .. code:: bash
 
@@ -181,12 +183,12 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
 
    If you see:
 
-      400 The description failed to render for 'text/x-rst'.
-      See https://pypi.org/help/#description-content-type for more information.
+      | 400 The description failed to render for 'text/x-rst'.
+      | See https://pypi.org/help/#description-content-type for more information.
    
-   You most likely have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
+   You may have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
 
-   See the rst checker https://github.com/rstcheck/rstcheck 
+   See `rstcheck <https://github.com/rstcheck/rstcheck>`_ for a linter to help you. 
 
 Comments
 --------
@@ -215,7 +217,7 @@ https://test.pypi.org/
 before updating PyPI_. 
 
 Locally you can run ``make html`` to see the generated output,
-and ``rstcheck`` to validate and lint you markup.
+and ``rstcheck`` to validate and lint your markup.
 
 =========
   Tools 

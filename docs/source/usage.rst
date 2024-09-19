@@ -1,3 +1,5 @@
+.. _PyPI: https://pypi.org/
+
 #########
   Usage
 #########
@@ -29,6 +31,8 @@ you can use the methods of ``datetime``.
 
 >>> DecimalDate.today().as_datetime() - DecimalDate.yesterday().as_datetime()
 datetime.timedelta(days=1)
+
+For more complex ``datetime`` computations see `python-dateutil <https://dateutil.readthedocs.io/en/stable/index.html>`_ see PyPI_,
 
 Creation
 ========

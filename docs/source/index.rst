@@ -7,12 +7,14 @@
 .. list-table::
     :stub-columns: 1
 
+    * - general
+      - |license|
     * - docs
       - |docs|
     * - code
       - |code-style| |commits-since|
     * - package
-      - |license| |wheel| |supported-versions| |supported-implementations| 
+      - |wheel| |supported-versions| |supported-implementations| 
     * - downloads
       - |downloads-total| |downloads-weekly|
 
