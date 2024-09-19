@@ -45,4 +45,4 @@ Bugfixes
   0.1.7 (2024-09-18)
 ======================
 
-Initial Release
+Initial release.
