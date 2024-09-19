@@ -40,8 +40,8 @@ The source for this ``decimaldate`` project is available on `GitHub <https://git
 
    This project and the development of the module ``datetime`` is documented here, in *this* ``README.rst`` file.
 
-   The Python module itself, and its use, is documented in the ``docs/source`` as reStructuredText to be processed with Sphinx_
-   and made available on readthedocs as `decimaldate <https://decimaldate.readthedocs.io/>`_.
+   The Python ``datetime`` module itself, and its use, is documented in the ``docs/source`` as reStructuredText to be processed with Sphinx_
+   and made available on readthedocs_ as `decimaldate <https://decimaldate.readthedocs.io/>`_.
 
 =========================
   Setup for Development
@@ -69,8 +69,8 @@ Activate (source) the virtual environment (remember the ``.``).
 
 .. note::
 
-   This will activate for macOS and Linux.\\
-   For Windows CMD or PowerShell run the activation scripts instead.
+   | This will activate for macOS and Linux.
+   | For Windows CMD or PowerShell run the activation scripts instead.
 
 Install requirements
 --------------------
@@ -193,17 +193,14 @@ and ``rstcheck`` to validate and lint you markup.
 =========
 
 ``python3`` 
-
    Of course.
 
 ``flake8``
-
    A Python linting tool for style guide enforcement.
 
    See https://github.com/pycqa/flake8
 
 ``mypy``
-
    A static type checker for Python (type hints are optional and not enforced). 
 
 ``pytest``
@@ -211,17 +208,14 @@ and ``rstcheck`` to validate and lint you markup.
 ``coverage``
 
 ``sphinx`` 
-
    To generate local copy of documentation meant for readthedocs_.
 
    The theme chosen is readthedocs (the default is Alebaster).
 
 ``readthedocs``
-
    A site hosting documentation.
 
 ``rstcheck`` 
-
    Lints your reStructuredText markdown files.
 
    .. image:: docs/source/_static/rstcheck_run.png

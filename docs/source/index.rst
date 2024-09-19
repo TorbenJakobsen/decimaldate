@@ -20,6 +20,12 @@
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 
+.. image:: https://static.pepy.tech/badge/decimaldate
+   :target: https://pepy.tech/project/decimaldate
+
+.. image:: https://static.pepy.tech/badge/decimaldate/week
+   :target: https://pepy.tech/project/decimaldate
+   
 .. meta::
    :description: Supports decimal dates on the form yyyymmdd
    :keywords: decimaldate Decimal Date
@@ -41,6 +47,8 @@
 ================
 
 This documentation was generated |today|.
+
+The source for this ``decimaldate`` project is available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
 
 ``decimaldate`` is a Python utility package to handle integer dates on the form ``yyyymmdd``.
 
