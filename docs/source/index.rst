@@ -117,7 +117,7 @@ Creation
 
 A ``DecimalDate`` accepts:
 
-No argument or ``None`` which both will use today's date.
+No argument or ``None`` which both will use today's date
    >>> from decimaldate import DecimalDate
    >>> DecimalDate()
    DecimalDate(20240910)
@@ -126,17 +126,17 @@ No argument or ``None`` which both will use today's date.
    >>> DecimalDate(None)
    DecimalDate(20240910)
 
- ``int`` on the form ``yyyymmdd``.
+``int`` on the form ``yyyymmdd``
    >>> from decimaldate import DecimalDate
    >>> DecimalDate(2024_03_12)
    DecimalDate(20240312)
 
-``str`` on the form ``yyyymmdd``.
+``str`` on the form ``yyyymmdd``
    >>> from decimaldate import DecimalDate
    >>> DecimalDate("2024_03_12")
    DecimalDate(20240312)
 
-``datetime``.
+``datetime``
    >>> from decimaldate import DecimalDate
    >>> from datetime import datetime
    >>> DecimalDate(datetime.today())

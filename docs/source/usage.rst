@@ -111,7 +111,7 @@ Methods
     A new ``DecimalDate`` instance with the date of start-of-month.
 
     >>> DecimalDate(2024_09_11).start_of_month()
-    DecimalDate(20240930)
+    DecimalDate(20240901)
 
 ``end_of_month()``
     A new ``DecimalDate`` instance with the date of end-of-month.
@@ -120,18 +120,27 @@ Methods
     DecimalDate(20240930)
 
 ``split()``
+    Splits date into constituent year, month, and day.
+
     >>> DecimalDate(2024_09_11).split()
     (2024, 9, 11)
 
 ``clone()``
+    | A new ``DecimalDate`` instance identical to original.
+    | As ``DecimalDate`` is immutable you should consider an assignment instead.
+
     >>> DecimalDate(2024_09_11).clone()
     DecimalDate(20240911)
 
 ``next()``
+    A new ``DecimalDate`` instance with the day after.
+
     >>> DecimalDate(2024_09_11).next()
     DecimalDate(20240912)
 
 ``previous()``
+    A new ``DecimalDate`` instance with the day before.
+
     >>> DecimalDate(2024_09_11).previous()
     DecimalDate(20240910)
 
@@ -139,6 +148,8 @@ As other types
 ==============
 
 ``as_int()``
+    ``int`` representation.
+
     >>> DecimalDate(2024_09_11).as_int()
     20240911
 
@@ -148,6 +159,8 @@ As other types
     20230117
 
 ``as_str()``
+    ``str`` representation.
+
     >>> DecimalDate(2024_09_11).as_str()
     '20240911'
 
@@ -159,19 +172,31 @@ As other types
     There is an optional separator.
 
 ``as_datetime()``
+    ``datetime`` representation.
+
     >>> DecimalDate(2024_09_11).as_datetime()
     datetime.datetime(2024, 9, 11, 0, 0)
+
+    Returned ``datetime`` has no time (hours, minutes, and seconds) and is not TimeZone aware.
+
+    The ``datetime`` representation is convenient to calculate the difference in days between two dates,
+    or to determine if a date is a Saturday.
 
 Static methods
 ==============
 
 ``today()``
+    A new ``DecimalDate`` instance with today's date.
+
     >>> DecimalDate.today()
 
 ``yesterday()``
+    A new ``DecimalDate`` instance with yesterday's date.
+
     >>> DecimalDate.yesterday()
 
 ``tomorrow()``
+    A new ``DecimalDate`` instance with tomorrows's date.
     >>> DecimalDate.tomorrow()
 
 ``range()``
