@@ -21,10 +21,11 @@
       - |downloads-total| |downloads-weekly|
 
 .. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
-    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
 
 .. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :alt: Using black formatter
    :target: https://github.com/psf/black
 
 .. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.8.svg
@@ -32,8 +33,8 @@
    :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.8...main
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-   :target: https://opensource.org/licenses/BSD-3-Clause
    :alt: BSD 3 Clause
+   :target: https://opensource.org/licenses/BSD-3-Clause
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
     :alt: PyPI Wheel
@@ -44,9 +45,11 @@
     :target: https://pypi.org/project/decimaldate
 
 .. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
+   :alt: Total downloads counter
    :target: https://pepy.tech/project/decimaldate
 
 .. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
+   :alt: Weekly downloads counter
    :target: https://pepy.tech/project/decimaldate
 
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
