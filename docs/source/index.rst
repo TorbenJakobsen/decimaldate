@@ -2,33 +2,57 @@
   ``decimaldate`` Documentation
 ######################################################
 
-.. image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
-    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
+.. start-badges
+
+.. list-table::
+    :stub-columns: 1
+
+    * - docs
+      - |docs|
+    * - code
+      - |code-style| |commits-since|
+    * - package
+      - |license| |wheel| |supported-versions| |supported-implementations| 
+    * - downloads
+      - |downloads-total| |downloads-weekly|
+
+.. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
     :alt: Documentation Status
+    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
 
-.. image:: https://img.shields.io/pypi/pyversions/decimaldate
-   :alt: PyPI - Python Version
-
-.. image:: https://img.shields.io/pypi/v/decimaldate.svg
-   :target: https://pypi.org/project/decimaldate/
-   :alt: Package on PyPI
-
-.. image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-   :target: https://opensource.org/licenses/BSD-3-Clause
-   :alt: BSD 3 Clause
-
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+.. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :alt: Using black formatter
    :target: https://github.com/psf/black
 
-.. image:: https://static.pepy.tech/badge/decimaldate
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.8.svg
+   :alt: Commits since latest release
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.8...main
+
+.. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+   :alt: BSD 3 Clause
+   :target: https://opensource.org/licenses/BSD-3-Clause
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
+    :alt: PyPI Wheel
+    :target: https://pypi.org/project/decimaldate
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/decimaldate.svg
+    :alt: Supported versions
+    :target: https://pypi.org/project/decimaldate
+
+.. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
+   :alt: Total downloads counter
    :target: https://pepy.tech/project/decimaldate
 
-.. image:: https://static.pepy.tech/badge/decimaldate/week
+.. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
+   :alt: Weekly downloads counter
    :target: https://pepy.tech/project/decimaldate
-   
-.. meta::
-   :description: Supports decimal dates on the form yyyymmdd
-   :keywords: decimaldate Decimal Date
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
+    :alt: Supported implementations
+    :target: https://pypi.org/project/decimaldate
+
+.. end-badges
 
 .. toctree::
    :hidden:
@@ -42,13 +66,13 @@
    decimaldaterange
    changelog
 
-================
-  Introduction
-================
-
 This documentation was generated |today|.
 
 The source for this ``decimaldate`` project is available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
+
+================
+  Introduction
+================
 
 ``decimaldate`` is a Python utility package to handle integer dates on the form ``yyyymmdd``.
 
