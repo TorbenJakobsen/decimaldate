@@ -6,29 +6,54 @@
   decimaldate
 ###############
 
-.. image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
+.. start-badges
+
+.. list-table::
+    :stub-columns: 1
+
+    * - docs
+      - |docs|
+    * - code
+      - |code-style| |commits-since|
+    * - package
+      - |license| |wheel| |supported-versions| |supported-implementations| 
+    * - downloads
+      - |downloads-total| |downloads-weekly|
+
+.. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
     :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://img.shields.io/pypi/pyversions/decimaldate
-   :alt: PyPI - Python Version
+.. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
 
-.. image:: https://img.shields.io/pypi/v/decimaldate.svg
-   :target: https://pypi.org/project/decimaldate/
-   :alt: Package on PyPI
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.8.svg
+   :alt: Commits since latest release
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.8...main
 
-.. image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+.. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
    :target: https://opensource.org/licenses/BSD-3-Clause
    :alt: BSD 3 Clause
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black
+.. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
+    :alt: PyPI Wheel
+    :target: https://pypi.org/project/decimaldate
 
-.. image:: https://static.pepy.tech/badge/decimaldate
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/decimaldate.svg
+    :alt: Supported versions
+    :target: https://pypi.org/project/decimaldate
+
+.. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
    :target: https://pepy.tech/project/decimaldate
 
-.. image:: https://static.pepy.tech/badge/decimaldate/week
+.. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
    :target: https://pepy.tech/project/decimaldate
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
+    :alt: Supported implementations
+    :target: https://pypi.org/project/decimaldate
+
+.. end-badges
 
 ================
   Introduction
@@ -204,6 +229,7 @@ and ``rstcheck`` to validate and lint you markup.
    A static type checker for Python (type hints are optional and not enforced). 
 
 ``pytest``
+   Unit testing framework.
 
 ``coverage``
 
