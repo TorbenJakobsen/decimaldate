@@ -15,6 +15,7 @@ Other Changes
 -------------
 
 * Updates to documentation.
+* Added `MANIFEST.in` to make the build include the LICENSE file.
 
 Bugfixes
 --------
