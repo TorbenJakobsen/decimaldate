@@ -239,22 +239,22 @@ and ``rstcheck`` to validate and lint your markup.
    
    At some later date I will replace some of the tooling with ruff_.
 
-``python3`` 
+python3
    Of course...
    
    See Python_.
 
-``flake8``
+flake8
    A Python linting tool for style guide enforcement.
 
    See flake8_.
 
-``mypy``
+mypy
    A static type checker for Python (type hints are optional and not enforced). 
 
    See mypy_.
 
-``pytest``
+pytest
    From the documentation:
 
       The pytest framework makes it easy to write small, readable tests, 
@@ -262,19 +262,19 @@ and ``rstcheck`` to validate and lint your markup.
 
    See pytest_.
 
-``coverage``
-   From the dcoumentation:
+coverage
+   From the documentation:
 
       Coverage.py is a tool for measuring code coverage of Python programs. 
       It monitors your program, noting which parts of the code have been executed,
       then analyzes the source to identify code that could have been executed but was not.
 
    My personal preference is to use ``coverage`` as is,
-   and not the extension for pytest ``pytest-cov`` (pytest-cov_).
+   and not the extension for pytest ``pytest-cov`` (see pytest-cov_).
 
    See coverage_.
 
-``sphinx`` 
+sphinx 
    To generate local copy of documentation meant for readthedocs_.
 
    The `theme <https://sphinx-themes.readthedocs.io/en/latest/>`_ chosen
@@ -283,12 +283,12 @@ and ``rstcheck`` to validate and lint your markup.
 
    See Sphinx_.
 
-``readthedocs``
+readthedocs
    A site building and hosting documentation.
 
    See readthedocs_.
 
-``rstcheck`` 
+rstcheck
    Lints your reStructuredText markdown files.
 
    .. image:: docs/source/_static/rstcheck_run.png
