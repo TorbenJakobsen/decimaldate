@@ -10,6 +10,7 @@
 .. _pytest: https://pytest.org/
 .. _pytest-cov: https://pypi.org/project/pytest-cov/
 .. _coverage: https://coverage.readthedocs.io/
+.. _readthedocs-community: https://about.readthedocs.com/pricing/#/community
 
 ###############
   decimaldate
@@ -77,13 +78,14 @@
   Introduction
 ================
 
-The source for this ``decimaldate`` project is available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
+The source for this ``decimaldate`` project is publicly available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
 
 .. note::
 
    This project and the development of the module ``datetime`` is documented here, in *this* ``README.rst`` file.
 
-   The Python ``datetime`` module itself, and its use, is documented in the ``docs/source`` as reStructuredText to be processed with Sphinx_
+   The Python ``decimaldate`` package itself, and its use, is documented in 
+   the project's ``docs/source`` as reStructuredText to be processed with Sphinx_
    and made available on readthedocs_ as `decimaldate <https://decimaldate.readthedocs.io/>`_.
 
 =========================
@@ -286,6 +288,9 @@ sphinx
 readthedocs
    A site building and hosting documentation.
 
+   Sign up for a free account if you qualify (FOSS).
+   The free account has a limit on concurrent builds (think GitHub actions and CI/CD) and displays a tiny advertisement (see readthedocs-community_).
+
    See readthedocs_.
 
 rstcheck
@@ -299,6 +304,6 @@ rstcheck
       :width: 620
 
    The shown warnings/errors are benign and are caused by the autogeneration of links for sections.
-   As some sections have the same name this is flagged. These particular warnings I will ignore.
+   As some sections have the same name, this is flagged. These particular warnings I will ignore.
 
    See rstcheck_.

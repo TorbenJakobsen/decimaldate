@@ -1,4 +1,4 @@
-.. _pypi: https://pypi.org/
+.. _PyPI: https://pypi.org/
 
 #############################
   Installation Instructions
@@ -14,11 +14,15 @@
   Installing
 ==============
 
-* To install from pypi_ using ``pip``:
+.. note:: 
+  
+  It is optional, but *highly* recommended to create and use a virtual environment.
+
+To install from PyPI_ using ``pip`` :
 
 .. code:: bash
 
-   python3 -m pip install decimaldate
+  python3 -m pip install decimaldate
 
 =================
   Documentation
