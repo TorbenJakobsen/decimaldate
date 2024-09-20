@@ -130,11 +130,19 @@ Methods
     (2024, 9, 11)
 
 ``clone()``
-    | A new ``DecimalDate`` instance identical to original.
-    | As ``DecimalDate`` is immutable you should consider an assignment instead.
+    A new ``DecimalDate`` instance identical to original.
 
-    >>> DecimalDate(2024_09_11).clone()
-    DecimalDate(20240911)
+    >>> dd = DecimalDate(2024_09_11).clone()
+    >>> clone = dd.clone()
+    >>> dd == clone
+    True
+    >>> dd is dd
+    True
+    >>> dd is clone
+    False
+
+    .. note:: 
+        As ``DecimalDate`` is immutable you should consider an assignment instead.
 
 ``next()``
     A new ``DecimalDate`` instance with the day after.
@@ -201,6 +209,7 @@ Static methods
 
 ``tomorrow()``
     A new ``DecimalDate`` instance with tomorrows's date.
+    
     >>> DecimalDate.tomorrow()
 
 ``range()``
