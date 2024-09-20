@@ -4,7 +4,7 @@
 .. _Alabaster: https://sphinx-themes.readthedocs.io/en/latest/sample-sites/default-alabaster/
 .. _ruff: https://docs.astral.sh/ruff/
 .. _Python: https://www.python.org/
-.. _rstcheck: https://github.com/rstcheck/rstcheck
+.. _rstcheck: https://github.com/rstcheck/
 .. _flake8: https://github.com/pycqa/flake8
 .. _mypy: https://www.mypy-lang.org/
 .. _pytest: https://pytest.org/
@@ -291,6 +291,10 @@ readthedocs
 rstcheck
    Lints your reStructuredText markdown files.
 
+   From the documentation:
+
+      Checks syntax of reStructuredText and code blocks nested within it.
+   
    .. image:: docs/source/_static/rstcheck_run.png
       :width: 620
 
