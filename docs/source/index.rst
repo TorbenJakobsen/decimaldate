@@ -148,10 +148,13 @@ No argument or ``None`` which both will use today's date
   Utility and Convenience
 ===========================
 
-...
+.. note:: 
+
+   To be written...
 
 ===============
   Outstanding
 ===============
 
 - ``range`` step.
+- ``range`` inverse start and stop.

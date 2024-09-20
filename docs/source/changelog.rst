@@ -14,7 +14,7 @@ New Features
 Other Changes
 -------------
 
-* None.
+* Updates to documentation.
 
 Bugfixes
 --------

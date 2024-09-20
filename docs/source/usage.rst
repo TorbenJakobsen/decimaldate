@@ -132,7 +132,7 @@ Methods
 ``clone()``
     A new ``DecimalDate`` instance identical to original.
 
-    >>> dd = DecimalDate(2024_09_11).clone()
+    >>> dd = DecimalDate(2024_09_11)
     >>> clone = dd.clone()
     >>> dd == clone
     True
@@ -209,7 +209,7 @@ Static methods
 
 ``tomorrow()``
     A new ``DecimalDate`` instance with tomorrows's date.
-    
+
     >>> DecimalDate.tomorrow()
 
 ``range()``
