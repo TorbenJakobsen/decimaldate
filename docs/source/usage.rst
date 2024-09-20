@@ -1,4 +1,5 @@
 .. _PyPI: https://pypi.org/
+.. _python-dateutil: https://dateutil.readthedocs.io/
 
 #########
   Usage
@@ -32,7 +33,7 @@ you can use the methods of ``datetime``.
 >>> DecimalDate.today().as_datetime() - DecimalDate.yesterday().as_datetime()
 datetime.timedelta(days=1)
 
-For more complex ``datetime`` computations see `python-dateutil <https://dateutil.readthedocs.io/en/stable/index.html>`_ see PyPI_,
+For more complex ``datetime`` computations see python-dateutil_,
 
 Creation
 --------
@@ -80,11 +81,34 @@ Comparisons
 The usual comparison operators are available:
   
   - equality, ``==``
+  
+    >>> DecimalDate.today() == DecimalDate.yesterday()
+    False
+  
   - inequality, ``!=``
+
+    >>> DecimalDate.today() != DecimalDate.yesterday()
+    True
+  
   - less-than, ``<``
+
+    >>> DecimalDate.today() < DecimalDate.yesterday()
+    False
+
   - less-than-or-equal, ``<=``
+
+    >>> DecimalDate.today() <= DecimalDate.yesterday()
+    False
+
   - greater-than, ``>``
+
+    >>> DecimalDate.today() > DecimalDate.yesterday()
+    True
+
   - greater-than-or-equal, ``>=``
+
+    >>> DecimalDate.today() >= DecimalDate.yesterday()
+    True
 
 Methods
 -------
