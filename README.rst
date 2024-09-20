@@ -2,6 +2,14 @@
 .. _Sphinx: https://www.sphinx-doc.org/ 
 .. _PyPI: https://pypi.org/
 .. _Alabaster: https://sphinx-themes.readthedocs.io/en/latest/sample-sites/default-alabaster/
+.. _ruff: https://docs.astral.sh/ruff/
+.. _Python: https://www.python.org/
+.. _rstcheck: https://github.com/rstcheck/rstcheck
+.. _flake8: https://github.com/pycqa/flake8
+.. _mypy: https://www.mypy-lang.org/
+.. _pytest: https://pytest.org/
+.. _pytest-cov: https://pypi.org/project/pytest-cov/
+.. _coverage: https://coverage.readthedocs.io/
 
 ###############
   decimaldate
@@ -21,7 +29,7 @@
     * - package
       - |wheel| |supported-versions| |supported-implementations| 
     * - downloads
-      - |downloads-total| |downloads-weekly|
+      - |downloads-total| |downloads-monthly| |downloads-weekly|
 
 .. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
     :alt: Documentation Status
@@ -49,6 +57,10 @@
 
 .. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
    :alt: Total downloads counter
+   :target: https://pepy.tech/project/decimaldate
+
+.. |downloads-monthly| image:: https://static.pepy.tech/badge/decimaldate/month
+   :alt: Weekly downloads counter
    :target: https://pepy.tech/project/decimaldate
 
 .. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
@@ -188,7 +200,7 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
    
    You may have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
 
-   See `rstcheck <https://github.com/rstcheck/rstcheck>`_ for a linter to help you. 
+   See rstcheck_ for a linter to help you. 
 
 Comments
 --------
@@ -223,21 +235,44 @@ and ``rstcheck`` to validate and lint your markup.
   Tools 
 =========
 
+.. note:: 
+   
+   At some later date I will replace some of the tooling with ruff_.
+
 ``python3`` 
-   Of course.
+   Of course...
+   
+   See Python_.
 
 ``flake8``
    A Python linting tool for style guide enforcement.
 
-   See https://github.com/pycqa/flake8
+   See flake8_.
 
 ``mypy``
    A static type checker for Python (type hints are optional and not enforced). 
 
+   See mypy_.
+
 ``pytest``
-   Unit testing framework.
+   From the documentation:
+
+      The pytest framework makes it easy to write small, readable tests, 
+      and can scale to support complex functional testing for applications and libraries.
+
+   See pytest_.
 
 ``coverage``
+   From the dcoumentation:
+
+      Coverage.py is a tool for measuring code coverage of Python programs. 
+      It monitors your program, noting which parts of the code have been executed,
+      then analyzes the source to identify code that could have been executed but was not.
+
+   My personal preference is to use ``coverage`` as is,
+   and not the extension for pytest ``pytest-cov`` (pytest-cov_).
+
+   See coverage_.
 
 ``sphinx`` 
    To generate local copy of documentation meant for readthedocs_.
@@ -246,12 +281,20 @@ and ``rstcheck`` to validate and lint your markup.
    is `Read The Docs <https://sphinx-themes.readthedocs.io/en/latest/sample-sites/sphinx-rtd-theme/>`_ 
    (the default is Alabaster_).
 
+   See Sphinx_.
+
 ``readthedocs``
-   A site hosting documentation.
+   A site building and hosting documentation.
+
+   See readthedocs_.
 
 ``rstcheck`` 
    Lints your reStructuredText markdown files.
 
    .. image:: docs/source/_static/rstcheck_run.png
-      :width: 600
+      :width: 620
 
+   The shown warnings/errors are benign and are caused by the autogeneration of links for sections.
+   As some sections have the same name this is flagged. These particular warnings I will ignore.
+
+   See rstcheck_.

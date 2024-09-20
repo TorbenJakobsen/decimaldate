@@ -2,23 +2,75 @@
 
 A Python class to handle decimal dates.
 
-=======
-License
-=======
+.. start-badges
 
-BSD 3-Clause
+.. list-table::
+    :stub-columns: 1
 
-=============
-Main Features
-=============
+    * - general
+      - |license|
+    * - docs
+      - |docs|
+    * - code
+      - |code-style| |commits-since|
+    * - package
+      - |wheel| |supported-versions| |supported-implementations| 
+    * - downloads
+      - |downloads-total| |downloads-monthly| |downloads-weekly|
+
+.. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
+    :alt: Documentation Status
+    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
+
+.. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :alt: Using black formatter
+   :target: https://github.com/psf/black
+
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.9.svg
+   :alt: Commits since latest release
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.9...main
+
+.. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+   :alt: BSD 3 Clause
+   :target: https://opensource.org/licenses/BSD-3-Clause
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
+    :alt: PyPI Wheel
+    :target: https://pypi.org/project/decimaldate
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/decimaldate.svg
+    :alt: Supported versions
+    :target: https://pypi.org/project/decimaldate
+
+.. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
+   :alt: Total downloads counter
+   :target: https://pepy.tech/project/decimaldate
+
+.. |downloads-monthly| image:: https://static.pepy.tech/badge/decimaldate/month
+   :alt: Weekly downloads counter
+   :target: https://pepy.tech/project/decimaldate
+
+.. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
+   :alt: Weekly downloads counter
+   :target: https://pepy.tech/project/decimaldate
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
+    :alt: Supported implementations
+    :target: https://pypi.org/project/decimaldate
+
+.. end-badges
+
+=================
+  Main Features
+=================
 
 Simplifies handling of decimal dates - integers on the form :code:`yyyymmdd`.
 
 See documentation hosted on readthedocs_.
 
-===============
-Where to get it
-===============
+===================
+  Where to get it
+===================
 
 The source code is hosted on GitHub at https://github.com/TorbenJakobsen/decimaldate
 
@@ -28,16 +80,16 @@ An installer for the latest released version is available at PyPI.
 
     python3 -m pip install decimaldate
 
-============
-Dependencies
-============
+================
+  Dependencies
+================
 
 Python >=3.11
 
 There are no other dependencies.
 
-=============
-Documentation
-=============
+=================
+  Documentation
+=================
 
-Documentation is hosted on readthedocs readthedocs_.
+Documentation is hosted on readthedocs_.

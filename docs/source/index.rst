@@ -16,7 +16,7 @@
     * - package
       - |wheel| |supported-versions| |supported-implementations| 
     * - downloads
-      - |downloads-total| |downloads-weekly|
+      - |downloads-total| |downloads-monthly| |downloads-weekly|
 
 .. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
     :alt: Documentation Status
@@ -44,6 +44,10 @@
 
 .. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
    :alt: Total downloads counter
+   :target: https://pepy.tech/project/decimaldate
+
+.. |downloads-monthly| image:: https://static.pepy.tech/badge/decimaldate/month
+   :alt: Weekly downloads counter
    :target: https://pepy.tech/project/decimaldate
 
 .. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week

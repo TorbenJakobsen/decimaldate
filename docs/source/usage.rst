@@ -35,13 +35,15 @@ datetime.timedelta(days=1)
 For more complex ``datetime`` computations see `python-dateutil <https://dateutil.readthedocs.io/en/stable/index.html>`_ see PyPI_,
 
 Creation
-========
+--------
 
 No argument or ``None``
-    Will use today's date::
-
-        DecimalDate()
-        DecimalDate(None)
+    Will use today's date:
+        
+    .. code:: python
+       
+       DecimalDate()
+       DecimalDate(None)
 
 ``int``
     >>> DecimalDate(20240911)
@@ -57,7 +59,7 @@ No argument or ``None``
     True
 
 Representation
-==============
+--------------
 
 ``repr()``
     >>> repr(DecimalDate(2024_09_11))
@@ -73,7 +75,7 @@ Representation
 
 
 Comparisons
-===========
+-----------
 
 The usual comparison operators are available:
   
@@ -85,7 +87,7 @@ The usual comparison operators are available:
   - greater-than-or-equal, ``>=``
 
 Methods
-=======
+-------
 
 ``year()``
     The year of date (1-9999).
@@ -157,7 +159,7 @@ Methods
     DecimalDate(20240910)
 
 As other types
-==============
+--------------
 
 ``as_int()``
     ``int`` representation.
@@ -195,7 +197,7 @@ As other types
     or to determine if a date is a Saturday.
 
 Static methods
-==============
+--------------
 
 ``today()``
     A new ``DecimalDate`` instance with today's date.
@@ -232,7 +234,7 @@ Intended use is by using the ``DecimalDate`` static method ``range()``.
 will behave identically.
 
 Creation
-========
+--------
 
 ``DecimalDateRange``
     >>> for dd in DecimalDateRange(DecimalDate(2024_02_14), DecimalDate(2024_02_17)):
