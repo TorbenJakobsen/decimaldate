@@ -96,7 +96,8 @@ Use a virtual environment
 -------------------------
 
 It is optional, but *highly* recommended to create and use a virtual environment.
-This documentation will assume the use of a virtual environment and ``venv``.
+This documentation will assume the use of a virtual environment and ``venv``
+(handled if you use ``make```).
 
 .. code:: bash
 
@@ -124,10 +125,13 @@ Install requirements and their dependencies for development (which are not deplo
 
 .. code:: bash
 
+   . venv/bin/activate
    python3 -m pip install --upgrade -r requirements/development.txt
 
 Build and Test
 --------------
+
+Remember activation of the virtual environment.
 
 Build
 ~~~~~
@@ -165,18 +169,46 @@ Make run coverage into report:
 
    coverage report -m
 
+The coverage will generate a ``.coverage`` file,
+which can be shared, used by other tools, or be used to make a coverage report.
+
 Make run coverage into report as HTML:
 
 .. code:: bash
 
    coverage html
 
-To see the HTML report, open the default location: ``htmlcov\index.html`` in a browser and/or light-weight http server.
+To see the HTML report, open the default location: ``htmlcov/index.html`` in a browser and/or lightweight http server.
+
+.. code:: bash
+
+   . venv/bin/activate
+   coverage report -m
+   coverage html
+   # macOS
+   open htmlcov/index.html
+
+Documentation
+~~~~~~~~~~~~~
+
+Activate the virtual enrironment and run Sphinx_ (similar to how readthedocs_ builds).
+
+.. code:: bash
+
+   . venv/bin/activate
+   cd docs
+   make html
+   # macOS
+   open build/html/index.html
+
+To see the output documentation, open in a browser and/or lightweight http server.
 
 Upload to PyPI
 ~~~~~~~~~~~~~~
 
-Make sure you have ``build`` so the latest (and only the latest) version is in the ``dist`` directory.
+Make sure you have ``build`` beforehand,
+so the latest (and only the latest) version is in the ``dist`` directory.
+If you use ``make build`` the ``dist`` directory will be emptied before building.
 
 .. note:: 
    
