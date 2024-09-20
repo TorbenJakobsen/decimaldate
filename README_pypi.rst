@@ -1,4 +1,5 @@
 .. _readthedocs: https://decimaldate.readthedocs.io/en/latest/ 
+.. _PyPI: https://pypi.org/
 
 A Python class to handle decimal dates.
 
@@ -19,7 +20,7 @@ A Python class to handle decimal dates.
       - |downloads-total| |downloads-monthly| |downloads-weekly|
 
 .. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
-    :alt: Documentation Status
+    :alt: Documentation status
     :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
 
 .. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
@@ -31,7 +32,7 @@ A Python class to handle decimal dates.
    :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.9...main
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
-   :alt: BSD 3 Clause
+   :alt: BSD 3-Clause
    :target: https://opensource.org/licenses/BSD-3-Clause
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
@@ -47,7 +48,7 @@ A Python class to handle decimal dates.
    :target: https://pepy.tech/project/decimaldate
 
 .. |downloads-monthly| image:: https://static.pepy.tech/badge/decimaldate/month
-   :alt: Weekly downloads counter
+   :alt: Monthly downloads counter
    :target: https://pepy.tech/project/decimaldate
 
 .. |downloads-weekly| image:: https://static.pepy.tech/badge/decimaldate/week
@@ -74,7 +75,7 @@ See documentation hosted on readthedocs_.
 
 The source code is hosted on GitHub at https://github.com/TorbenJakobsen/decimaldate
 
-An installer for the latest released version is available at PyPI.
+An installer for the latest released version is available at PyPI_.
 
 .. code:: bash
 

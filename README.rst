@@ -84,7 +84,7 @@ The source for this ``decimaldate`` project is publicly available on `GitHub <ht
 
 .. note::
 
-   This project and the development of the module ``datetime`` is documented here, in *this* ``README.rst`` file.
+   This project and the development of the module ``decimaldate`` is documented here, in *this* ``README.rst`` file.
 
    The Python ``decimaldate`` package itself, and its use, is documented in 
    the project's ``docs/source`` as reStructuredText to be processed with Sphinx_
@@ -99,7 +99,7 @@ Use a virtual environment
 
 | It is optional, but *highly* recommended to create and use a virtual environment.
 | This documentation will assume the use of a virtual environment and ``venv``
-(handled if you use ``make`` and the supplied ``Makefile``) .
+(handled if you use ``make`` and the supplied ``Makefile``).
 
 .. code:: bash
 
