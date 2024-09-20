@@ -11,6 +11,8 @@
 .. _pytest-cov: https://pypi.org/project/pytest-cov/
 .. _coverage: https://coverage.readthedocs.io/
 .. _readthedocs-community: https://about.readthedocs.com/pricing/#/community
+.. _black: https://black.readthedocs.io/en/stable/index.html
+.. _vscode: https://code.visualstudio.com/
 
 ###############
   decimaldate
@@ -95,9 +97,9 @@ The source for this ``decimaldate`` project is publicly available on `GitHub <ht
 Use a virtual environment
 -------------------------
 
-It is optional, but *highly* recommended to create and use a virtual environment.
-This documentation will assume the use of a virtual environment and ``venv``
-(handled if you use ``make```).
+| It is optional, but *highly* recommended to create and use a virtual environment.
+| This documentation will assume the use of a virtual environment and ``venv``
+(handled if you use ``make`` and the supplied ``Makefile``) .
 
 .. code:: bash
 
@@ -159,6 +161,11 @@ Test:
 
 Coverage:
 
+.. note:: 
+
+   My personal preference is to use ``coverage`` as is,
+   and not the extension for pytest ``pytest-cov`` (see pytest-cov_).
+
 .. code:: bash
 
    coverage run -m pytest tests
@@ -201,7 +208,8 @@ Activate the virtual enrironment and run Sphinx_ (similar to how readthedocs_ bu
    # macOS
    open build/html/index.html
 
-To see the output documentation, open in a browser and/or lightweight http server.
+To see the output documentation,
+open in a browser and/or lightweight http server.
 
 Upload to PyPI
 ~~~~~~~~~~~~~~
@@ -292,6 +300,11 @@ flake8
 
    See flake8_.
 
+black
+   Part of my vscode_ installation.
+
+   See black_.
+
 mypy
    A static type checker for Python (type hints are optional and not enforced). 
 
@@ -330,7 +343,8 @@ readthedocs
    A site building and hosting documentation.
 
    Sign up for a free account if you qualify (FOSS).
-   The free account has a limit on concurrent builds (think GitHub actions and CI/CD) and displays a tiny advertisement (see readthedocs-community_).
+   The free account has a limit on concurrent builds (think GitHub actions and CI/CD)
+   and displays a tiny advertisement (see readthedocs-community_).
 
    See readthedocs_.
 
