@@ -202,14 +202,23 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
    
    You may have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
 
-   See rstcheck_ for a linter to help you. 
+   See rstcheck_ for a linter to help you fix markup problems.
 
 Comments
 --------
-
-.. note::
    
-   These commands are available as ``make`` targets in the included ``Makefile``.
+These commands are available as ``make`` targets in the included ``Makefile``.
+
+.. code:: bash
+
+   make setup
+
+will create the virtual environment and install the dependencies.
+
+.. note:: 
+
+   The chosen version of Python for ``make`` targets in the ``Makefile`` is 3.11,
+   which must be present on the development environment.
 
 =================
   Documentation
