@@ -114,25 +114,25 @@ Methods
 -------
 
 ``year()``
-    The year of date (1-9999).
+    The year of date as an integer (1-9999).
 
     >>> DecimalDate(2024_09_11).year()
     2024
 
 ``month()``
-    The month of date (1-12).
+    The month of date as an integer (1-12).
 
     >>> DecimalDate(2024_09_11).month()
     9
 
 ``day()``
-    The day of date (1-31).
+    The day of date as an integer (1-31).
 
     >>> DecimalDate(2024_09_11).day()
     11
 
 ``last_day_of_month()``
-    The last day of date's month (1-31).
+    The last day of date's month as an integer (1-31).
 
     >>> DecimalDate(2024_09_11).last_day_of_month()
     30
@@ -150,7 +150,7 @@ Methods
     DecimalDate(20240930)
 
 ``split()``
-    Splits date into constituent year, month, and day.
+    Splits date into constituent year, month, and day as a tuple of integers.
 
     >>> DecimalDate(2024_09_11).split()
     (2024, 9, 11)
@@ -176,11 +176,37 @@ Methods
     >>> DecimalDate(2024_09_11).next()
     DecimalDate(20240912)
 
+    If ``next()`` is given an argument it will return value days forward.
+
+    >>> DecimalDate(2024_09_11).next(42)
+    DecimalDate(20241023)
+
+    A negative argument is simlar to ``previous()``
+
+    >>> DecimalDate(2024_09_11).next(-42)
+    DecimalDate(20240731)
+
+    >>> DecimalDate(2024_09_11).previous(42)
+    DecimalDate(20240731)
+
 ``previous()``
     A new ``DecimalDate`` instance with the day before.
 
     >>> DecimalDate(2024_09_11).previous()
     DecimalDate(20240910)
+
+    If ``previous()`` is given an argument it will return value days back.
+
+    >>> DecimalDate(2024_09_11).previous(42)
+    DecimalDate(20240731)
+
+    A negative argument is simlar to ``next()``
+
+    >>> DecimalDate(2024_09_11).previous(-42)
+    DecimalDate(20241023)
+
+    >>> DecimalDate(2024_09_11).next(42)
+    DecimalDate(20241023)
 
 As other types
 --------------

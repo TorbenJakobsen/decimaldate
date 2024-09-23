@@ -37,10 +37,6 @@ clean:
 test: venv
 	$(PYTEST)
 
-.PHONY: test_fast
-test_fast: venv
-	$(PYTEST) -m "not slow"
-
 .PHONY: coverage
 coverage: venv
 	$(COVERAGE) run -m pytest tests

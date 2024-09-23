@@ -16,7 +16,8 @@
 
 .. note:: 
   
-  It is optional, but *highly* recommended to create and use a virtual environment.
+  It is optional, but *highly* recommended,
+  and best practice, to create and use a virtual environment.
 
 To install from PyPI_ using ``pip`` :
 
