@@ -42,9 +42,9 @@
    :alt: Using black formatter
    :target: https://github.com/psf/black
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.9.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.10.svg
    :alt: Commits since latest release
-   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.9...main
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.10...main
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
    :alt: BSD 3 Clause
@@ -80,7 +80,7 @@
   About
 =========
 
-Python decimal date utility to handle integer dates on the form ``yyyymmdd```.
+Python decimal date utility to handle integer dates on the form ``yyyymmdd``.
 
 Creation
 --------
@@ -109,7 +109,7 @@ No argument or ``None``
 Functionality
 -------------
 
-There are a variety of utillity and computational class
+There are computational and utillity/ convenience class
 and instance methods to make use of ``DecimalDate`` including a ``range()``.
 
 Please see the latest
@@ -141,8 +141,7 @@ Use a virtual environment
 -------------------------
 
 | It is optional, but *highly* recommended to create and use a virtual environment.
-| This documentation will assume the use of a virtual environment and ``venv``
-(handled if you use ``make`` and the supplied ``Makefile``).
+| This documentation will assume the use of a virtual environment and ``venv`` (handled if you use ``make`` and the supplied ``Makefile``).
 
 .. code:: bash
 
@@ -405,3 +404,10 @@ rstcheck
    As some sections have the same name, this is flagged. These particular warnings I will ignore.
 
    See rstcheck_.
+
+===============
+  Outstanding
+===============
+
+- ``range`` step.
+- ``range`` inverse start and stop.

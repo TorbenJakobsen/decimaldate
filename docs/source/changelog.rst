@@ -14,6 +14,25 @@ New Features
 Other Changes
 -------------
 
+* None.
+
+Bugfixes
+--------
+
+* None.
+
+======================
+  0.1.10 (2024-09-23)
+======================
+
+New Features
+------------
+
+* None.
+
+Other Changes
+-------------
+
 * Updates to documentation.
 
 Bugfixes
