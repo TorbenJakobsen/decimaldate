@@ -76,6 +76,49 @@
 
 .. end-badges
 
+=========
+  About
+=========
+
+Python decimal date utility to handle integer dates on the form ``yyyymmdd```.
+
+Creation
+--------
+
+No argument or ``None``
+    Will use today's date:
+        
+    .. code:: python
+       
+       DecimalDate()
+       DecimalDate(None)
+
+``int``
+    >>> DecimalDate(20240911)
+    DecimalDate(20240911)
+
+``str``
+    >>> DecimalDate("20240911")
+    DecimalDate(20240911)
+
+``decimaldate``
+    >>> from datetime import datetime
+    >>> DecimalDate(datetime.today()) == DecimalDate.today()
+    True
+
+Functionality
+-------------
+
+There are a variety of utillity and computational class
+and instance methods to make use of ``DecimalDate`` including a ``range()``.
+
+Please see the latest
+`documentation <https://decimaldate.readthedocs.io/en/latest/>`_
+and the
+`usage <https://decimaldate.readthedocs.io/en/latest/usage.html>`_
+page.
+
+
 ================
   Introduction
 ================

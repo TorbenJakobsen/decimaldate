@@ -1,7 +1,7 @@
 .. _readthedocs: https://decimaldate.readthedocs.io/en/latest/ 
 .. _PyPI: https://pypi.org/
 
-A Python class to handle decimal dates.
+A Python class to handle decimal dates on the form ``yyyymmdd``.
 
 .. start-badges
 
@@ -60,6 +60,12 @@ A Python class to handle decimal dates.
     :target: https://pypi.org/project/decimaldate
 
 .. end-badges
+
+=========
+  About
+=========
+
+Python decimal date utility to handle integer dates on the form ``yyyymmdd``.
 
 =================
   Main Features
