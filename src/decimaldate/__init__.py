@@ -15,7 +15,7 @@ that can be given as argument to 'init' methods.
 #
 
 
-class DecimalDate:
+class DecimalDate(object):
     """
     A class to represent a decimal date on the form ``yyyymmdd``.
 
@@ -25,12 +25,21 @@ class DecimalDate:
 
     Examples::
 
-        DecimalDate()          # today's date
-        DecimalDate(None)      # today's date
+        DecimalDate()            # today's date
+        DecimalDate(None)        # today's date
         DecimalDate(20231225)
         DecimalDate("20230518")
         DecimalDate(datetime.today())
     """
+
+    __slots__ = (
+        "__dd_int",
+        "__dd_str",
+        "__dd_dt",
+        "__year",
+        "__month",
+        "__day",
+    )
 
     @staticmethod
     def __split(dd: int) -> tuple[int, int, int]:
@@ -765,5 +774,5 @@ class DecimalDateRange:
                 )
             return self.__stop.previous(-i)
 
-        # To make `mypy` not complain about missing return statement
-        raise RuntimeError("Failure to compare argument")
+        # To make `mypy` not complain about missing return statement -> exclude from coverage
+        raise RuntimeError("Failure to compare argument")  # pragma: no cover

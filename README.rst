@@ -141,7 +141,8 @@ Use a virtual environment
 -------------------------
 
 | It is optional, but *highly* recommended to create and use a virtual environment.
-| This documentation will assume the use of a virtual environment and ``venv`` (handled if you use ``make`` and the supplied ``Makefile``).
+| This documentation will assume the use of a virtual environment and ``venv``
+  (handled if you use ``make`` and the supplied ``Makefile``).
 
 .. code:: bash
 
