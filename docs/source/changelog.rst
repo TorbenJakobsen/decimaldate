@@ -14,7 +14,9 @@ New Features
 Other Changes
 -------------
 
-* None.
+* Updates to documentation.
+* Use ``__slots__`` to improve resource use and immutability.
+* Use ``__all__`` to manage exports from module
 
 Bugfixes
 --------

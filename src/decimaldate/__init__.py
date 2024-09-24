@@ -10,6 +10,12 @@ The regular types (excluding ``None`` and ``DecimalDate``)
 that can be given as argument to 'init' methods.
 """
 
+
+__all__ = [
+    "DecimalDate",
+    "DecimalDateRange",
+]
+
 #
 # DecimalDate
 #
@@ -32,6 +38,7 @@ class DecimalDate(object):
         DecimalDate(datetime.today())
     """
 
+    # replace __dict__ : optimization and solidifying immutability
     __slots__ = (
         "_DecimalDate__dd_int",
         "_DecimalDate__dd_str",
@@ -646,6 +653,14 @@ class DecimalDate(object):
 
 
 class DecimalDateRange:
+
+    # replace __dict__ : optimization and solidifying immutability
+    __slots__ = (
+        "_DecimalDateRange__start",
+        "_DecimalDateRange__stop",
+        "_DecimalDateRange__step",
+        "_DecimalDateRange__length",
+    )
 
     def __init__(
         self: Self,
