@@ -33,12 +33,12 @@ class DecimalDate(object):
     """
 
     __slots__ = (
-        "__dd_int",
-        "__dd_str",
-        "__dd_dt",
-        "__year",
-        "__month",
-        "__day",
+        "_DecimalDate__dd_int",
+        "_DecimalDate__dd_str",
+        "_DecimalDate__dd_dt",
+        "_DecimalDate__year",
+        "_DecimalDate__month",
+        "_DecimalDate__day",
     )
 
     @staticmethod
