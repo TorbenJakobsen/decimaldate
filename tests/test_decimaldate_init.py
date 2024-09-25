@@ -129,4 +129,3 @@ def test_init_bad_str_raises_value_error() -> None:
         match=r".*yyyymmdd.*",
     ):
         _ = DecimalDate(bad_arg)
-        _ = DecimalDate(bad_arg)

@@ -124,6 +124,28 @@ def test_init_step_zero_raises_value_error() -> None:
         _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", 0)
 
 
+def test_init_step_none_raises_value_error() -> None:
+    """
+    Tests range argument ``step=None`` raises ``ValueError``.
+    """
+    with pytest.raises(
+        expected_exception=ValueError,
+        match=r".*step.*",
+    ):
+        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", None)
+
+
+def test_init_step_str_raises_type_error() -> None:
+    """
+    Tests range argument ``step=None`` raises ``TypeError``.
+    """
+    with pytest.raises(
+        expected_exception=TypeError,
+        match=r".*step.*",
+    ):
+        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", "1")
+
+
 """
 __len__
 """

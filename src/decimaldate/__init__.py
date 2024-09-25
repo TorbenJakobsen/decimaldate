@@ -693,9 +693,10 @@ class DecimalDateRange:
         :type stop: DecimalDate | int | str | datetime
         :param step: Sequence step, defaults to 1 (on value of 1 is implemented)
         :type step: int, optional
-        :raises ValueError: If any argument is None
+        :raises ValueError: If any argument is ``None``
         :raises TypeError: If step argument is not instance of ``int``
-        :raises NotImplementedError: If step is other than 1
+        :raises ValueError: If step argument is ``0``
+        :raises NotImplementedError: If step argument is other than ``1``
         """
         if start is None:
             raise ValueError("DecimalDateRange argument start is None.")
@@ -712,14 +713,17 @@ class DecimalDateRange:
         #
 
         self.__start: DecimalDate
-        """ The start of the range (*inclusive*). """
+        """ The start of the decimal date range (*inclusive*). """
 
         self.__stop: DecimalDate
-        """ The end of the range (*exclusive*). """
+        """ The end of the decimal date range (*exclusive*). """
 
         self.__step: int
-        """ The steps between items in range.\\
-        A value of ``1`` will return every date in the range.\\
+        """ The steps between items in the decimal date range from
+        start (*inclusive*) to end (*exclusive*).
+
+        A value of ``1`` will return every date in the decimal date range.
+
         *Currently only a value of ``1``is implemented*.
         """
 
