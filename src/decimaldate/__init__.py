@@ -38,7 +38,7 @@ class DecimalDate(object):
         DecimalDate(datetime.today())
     """
 
-    # replace __dict__ : optimization and solidifying immutability
+    # replace __dict__ : optimization and improving immutability
     __slots__ = (
         "_DecimalDate__dd_int",
         "_DecimalDate__dd_str",
@@ -177,6 +177,7 @@ class DecimalDate(object):
 
         #
         # Instance variables
+        # These have been placed in ``__slots__``
         #
 
         self.__dd_int: int
@@ -649,12 +650,12 @@ class DecimalDate(object):
 #
 
 # TODO Implement step
-# TODO Implement argument order (start/stop)
+# TODO Implement inverse argument order (start/stop)
 
 
 class DecimalDateRange:
 
-    # replace __dict__ : optimization and solidifying immutability
+    # replace __dict__ : optimization and improving immutability
     __slots__ = (
         "_DecimalDateRange__start",
         "_DecimalDateRange__stop",
@@ -705,8 +706,33 @@ class DecimalDateRange:
         if not isinstance(step, int):
             raise TypeError("DecimalDateRange step argument is not an `int`.")
 
-        self.__start: DecimalDate = DecimalDate(start)
-        self.__stop: DecimalDate = DecimalDate(stop)
+        #
+        # Instance variables
+        # These have been placed in ``__slots__``
+        #
+
+        self.__start: DecimalDate
+        """ The start of the range (*inclusive*). """
+
+        self.__stop: DecimalDate
+        """ The end of the range (*exclusive*). """
+
+        self.__step: int
+        """ The steps between items in range.\\
+        A value of ``1`` will return every date in the range.\\
+        *Currently only a value of ``1``is implemented*.
+        """
+
+        self.__length: int
+        """ Internal instance value of the length of the range.\\
+        The range start is *inclusive*.\\
+        The range end is *exclusive*.
+        """
+
+        #
+
+        self.__start = DecimalDate(start)
+        self.__stop = DecimalDate(stop)
         self.__step = step
 
         if self.__step == 0:
@@ -717,7 +743,7 @@ class DecimalDateRange:
                 f"DecimalDateRange argument step {self.__step} != 1 is not implemented."
             )
 
-        self.__length: int = (
+        self.__length = (
             0
             if self.__start > self.__stop
             else (self.__stop.as_datetime() - self.__start.as_datetime()).days
