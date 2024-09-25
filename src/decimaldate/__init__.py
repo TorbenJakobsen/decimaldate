@@ -709,8 +709,13 @@ class DecimalDateRange:
         self.__stop: DecimalDate = DecimalDate(stop)
         self.__step = step
 
+        if self.__step == 0:
+            raise ValueError("DecimalDateRange argument step 0 is not valid.")
+
         if self.__step != 1:
-            raise NotImplementedError("argument step != 1 is not implemented.")
+            raise NotImplementedError(
+                f"DecimalDateRange argument step {self.__step} != 1 is not implemented."
+            )
 
         self.__length: int = (
             0

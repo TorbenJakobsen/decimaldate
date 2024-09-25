@@ -113,6 +113,17 @@ def test_init_argument_order() -> None:
     assert len(DecimalDateRange(stop, start)) == 0
 
 
+def test_init_step_zero_raises_value_error() -> None:
+    """
+    Tests range argument ``step=0`` raises ``ValueError``.
+    """
+    with pytest.raises(
+        expected_exception=ValueError,
+        match=r".*step.*",
+    ):
+        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", 0)
+
+
 """
 __len__
 """
@@ -239,3 +250,12 @@ def test_list() -> None:
     ]
     # THEN
     assert list(sut) == expected
+
+
+"""
+not implemented
+"""
+
+
+def test_step_not_one_raises_not_implemented():
+    assert DecimalDateRange(DecimalDate.yesterday(), DecimalDate.today(), 1)

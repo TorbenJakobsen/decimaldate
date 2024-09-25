@@ -21,7 +21,7 @@ Other Changes
 Bugfixes
 --------
 
-* None.
+* ``range`` raises ``ValueError`` if argument value for step is ``0``.
 
 ======================
   0.1.10 (2024-09-23)
