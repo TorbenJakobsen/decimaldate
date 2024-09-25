@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Literal
 
 import pytest
 
@@ -106,3 +107,26 @@ def test_init_datetime_now(
     sut = DecimalDate(today)
     # THEN
     assert sut.as_int() == today_as_decimaldate_int
+
+
+def test_init_bad_int_raises_value_error() -> None:
+    # GIVEN
+    bad_arg: Literal[20241311] = 2024_13_11
+    # THEN
+    with pytest.raises(
+        expected_exception=ValueError,
+        match=r".*yyyymmdd.*",
+    ):
+        _ = DecimalDate(bad_arg)
+
+
+def test_init_bad_str_raises_value_error() -> None:
+    # GIVEN
+    bad_arg: Literal["2024_13_11"] = "2024_13_11"
+    # THEN
+    with pytest.raises(
+        expected_exception=ValueError,
+        match=r".*yyyymmdd.*",
+    ):
+        _ = DecimalDate(bad_arg)
+        _ = DecimalDate(bad_arg)

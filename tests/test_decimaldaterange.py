@@ -257,5 +257,7 @@ not implemented
 """
 
 
-def test_step_not_one_raises_not_implemented():
+def test_step_not_one_raises_not_implemented() -> None:
     assert DecimalDateRange(DecimalDate.yesterday(), DecimalDate.today(), 1)
+    with pytest.raises(expected_exception=NotImplementedError):
+        _ = DecimalDateRange(DecimalDate.yesterday(), DecimalDate.today(), 42)
