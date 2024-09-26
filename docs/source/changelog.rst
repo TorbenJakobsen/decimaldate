@@ -14,7 +14,8 @@ New Features
 Other Changes
 -------------
 
-* None.
+* | Added ``datetime.date`` as a valid argument type to ``__init__``.
+  | Includes the method ``as_date()`` and unit tests.
 
 Bugfixes
 --------

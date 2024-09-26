@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Literal
 
 import pytest
@@ -61,17 +61,34 @@ def test_init_str_today(
     assert sut.as_str() == str(today_as_decimaldate_int)
 
 
+def test_init_date_today(
+    today_as_decimaldate_int: int,
+    freezer,
+) -> None:
+    # GIVEN
+    today_as_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
+    today_as_date: date = today_as_dd.as_date()
+    # WHEN
+    sut: DecimalDate = DecimalDate(today_as_date)
+    # THEN
+    assert sut.as_int() == today_as_decimaldate_int
+    assert sut.as_str() == str(today_as_decimaldate_int)
+    assert sut.as_date() == today_as_date
+
+
 def test_init_datetime_today(
     today_as_decimaldate_int: int,
     freezer,
 ) -> None:
     # GIVEN
     today_as_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
+    today_as_datetime: date = today_as_dd.as_datetime()
     # WHEN
-    sut: DecimalDate = DecimalDate(today_as_dd)
+    sut: DecimalDate = DecimalDate(today_as_datetime)
     # THEN
     assert sut.as_int() == today_as_decimaldate_int
     assert sut.as_str() == str(today_as_decimaldate_int)
+    assert sut.as_datetime() == today_as_datetime
 
 
 def test_init_datetime(

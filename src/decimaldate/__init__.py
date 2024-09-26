@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from collections.abc import Generator
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from typing import Any, Literal, Self, TypeAlias
 
-DecimalDateInitTypes: TypeAlias = int | str | datetime
+DecimalDateInitTypes: TypeAlias = int | str | datetime | date
 """
 The regular types (excluding ``None`` and ``DecimalDate``)
 that can be given as argument to 'init' methods.
@@ -25,9 +25,13 @@ class DecimalDate(object):
     """
     A class to represent a decimal date on the form ``yyyymmdd``.
 
-    Only dates that are valid for ``datetime`` are accepted.
+    The class assumes *only* a Gregorian (went into effect in October 1582) calendar
+    with: year, month, and day.
 
-    Used and exposed ``datetime`` objects in this class are *not* TimeZone aware!
+    Only dates that are valid for ``datetime.date`` are accepted.
+
+    Used and exposed``datetime.date`` and ``datetime.datetime`` objects
+    in this class are *naive* (meaning *not* TimeZone aware)!
 
     Examples::
 
@@ -35,6 +39,7 @@ class DecimalDate(object):
         DecimalDate(None)        # today's date
         DecimalDate(20231225)
         DecimalDate("20230518")
+        DecimalDate(date.today())
         DecimalDate(datetime.today())
     """
 
@@ -42,7 +47,8 @@ class DecimalDate(object):
     __slots__ = (
         "_DecimalDate__dd_int",
         "_DecimalDate__dd_str",
-        "_DecimalDate__dd_dt",
+        "_DecimalDate__dd_datetime",
+        "_DecimalDate__dd_date",
         "_DecimalDate__year",
         "_DecimalDate__month",
         "_DecimalDate__day",
@@ -72,23 +78,38 @@ class DecimalDate(object):
         :return: Today's date on the form ``yyyymmdd``.
         :rtype: int
         """
-        today: datetime = datetime.today()  # no tzinfo
-        return DecimalDate.__datetime_as_int(today)
+        today: date = date.today()  # no tzinfo
+        return DecimalDate.__date_as_int(today)
 
     @staticmethod
-    def __datetime_as_int(dt: datetime) -> int:
+    def __datetime_as_int(_datetime: datetime) -> int:
         """
         Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
 
         >>> DecimalDate.__datetime_as_int(datetime.today())
             20240906
 
-        :param dt: A ``datetime``.
-        :type dt: datetime
-        :return: Decimal date on the form ``yyyymmdd``.
+        :param _datetime: A ``datetime.datetime``.
+        :type _datetime: datetime
+        :return: Decimal date integer on the form ``yyyymmdd``.
         :rtype: int
         """
-        return DecimalDate.__ymd_as_int(dt.year, dt.month, dt.day)
+        return DecimalDate.__date_as_int(_datetime.date())
+
+    @staticmethod
+    def __date_as_int(_date: date) -> int:
+        """
+        Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
+
+        >>> DecimalDate.__date_as_int(date.today())
+            20240906
+
+        :param _date: A ``datetime.date``.
+        :type _date: date
+        :return: Decimal date integer on the form ``yyyymmdd``.
+        :rtype: int
+        """
+        return DecimalDate.__ymd_as_int(_date.year, _date.month, _date.day)
 
     @staticmethod
     def __int_as_datetime(dd: int) -> datetime:
@@ -177,7 +198,7 @@ class DecimalDate(object):
 
         #
         # Instance variables
-        # These have been placed in ``__slots__``
+        # These have been placed in `__slots__`
         #
 
         self.__dd_int: int
@@ -186,8 +207,11 @@ class DecimalDate(object):
         self.__dd_str: str
         """ Internal instance value of the decimal date as a ``str`` on the form ``"yyyymmdd"``. """
 
-        self.__dd_dt: datetime
-        """ Internal instance value of the decimal date as a ``datetime``. """
+        self.__dd_datetime: datetime
+        """ Internal instance value of the decimal date as a ``datetime.datetime``. """
+
+        self.__dd_date: date
+        """ Internal instance value of the decimal date as a ``datetime.date``. """
 
         self.__year: int
         """ Internal instance value of the year (1-9999). """
@@ -220,6 +244,9 @@ class DecimalDate(object):
         elif isinstance(dd, datetime):
             self.__dd_int = DecimalDate.__datetime_as_int(dd)
 
+        elif isinstance(dd, date):
+            self.__dd_int = DecimalDate.__date_as_int(dd)
+
         elif isinstance(dd, DecimalDate):
             self.__dd_int = dd.as_int()
 
@@ -231,8 +258,9 @@ class DecimalDate(object):
         self.__dd_str = str(self.__dd_int)
 
         try:
-            # If not a valid date, then this line raises ValueError
-            self.__dd_dt = DecimalDate.__int_as_datetime(self.__dd_int)
+            # If not a valid Gregorian date, then this line raises `ValueError`
+            self.__dd_datetime = DecimalDate.__int_as_datetime(self.__dd_int)
+            self.__dd_date = self.__dd_datetime.date()
         except ValueError as e_info:
             raise ValueError(
                 f"argument {dd} is not a valid literal on the form `yyyymmdd`."
@@ -583,42 +611,52 @@ class DecimalDate(object):
         yyyy, mm, dd = self.split()
         return f"{yyyy:04d}{sep}{mm:02d}{sep}{dd:02d}"
 
+    def as_date(self: Self) -> date:
+        """
+        This ``DecimalDate`` instance's date as a ``datetime.date`` object.
+
+        :return: ``datetime.date`` representation.
+        :rtype: date
+        """
+        return self.__dd_date
+
     def as_datetime(self: Self) -> datetime:
         """
-        This ``DecimalDate`` instance's date as a ``datetime`` object.
+        This ``DecimalDate`` instance's date as a ``datetime.datetime`` object.
 
-        :return: ``datetime`` representation.
+        :return: ``datetime.datetime`` representation.
         :rtype: datetime
         """
-        return self.__dd_dt
+        return self.__dd_datetime
 
     #
     #
     #
 
-    @staticmethod
-    def today():
+    @classmethod
+    def today(cls):
         """
         Todays's date as a ``DecimalDate`` instance.
         """
-        return DecimalDate(DecimalDate.__today_as_int())
+        return cls(cls.__today_as_int())
 
-    @staticmethod
-    def yesterday():
+    @classmethod
+    def yesterday(cls):
         """
         Yesterdays's date as a ``DecimalDate`` instance.
         """
-        return DecimalDate.today().previous()
+        return cls.today().previous()
 
-    @staticmethod
-    def tomorrow():
+    @classmethod
+    def tomorrow(cls):
         """
         Tomorrow's date as a ``DecimalDate`` instance.
         """
-        return DecimalDate.today().next()
+        return cls.today().next()
 
-    @staticmethod
+    @classmethod
     def range(
+        cls,
         start: DecimalDate | DecimalDateInitTypes,
         stop: DecimalDate | DecimalDateInitTypes,
         step: int = 1,

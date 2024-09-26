@@ -76,6 +76,11 @@ This documentation was generated |today|.
 
 The source for this ``decimaldate`` project is available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
 
+.. note:: 
+   
+   Even if the module is classified as Beta-software and in devopment
+   with a low version number it is stable and ready for production.
+
 ================
   Introduction
 ================
@@ -142,15 +147,29 @@ No argument or ``None`` which both will use today's date
    >>> DecimalDate("2024_03_12")
    DecimalDate(20240312)
 
-``datetime``
+``datetime.date``
+   >>> from decimaldate import DecimalDate
+   >>> from datetime import date
+   >>> DecimalDate(date.today())
+   DecimalDate(20240910)
+
+``datetime.datetime``
    >>> from decimaldate import DecimalDate
    >>> from datetime import datetime
    >>> DecimalDate(datetime.today())
    DecimalDate(20240910)
 
-===========================
-  Utility and Convenience
-===========================
+===================================
+  Class Utilities and Convenience
+===================================
+
+.. note:: 
+
+   To be written...
+
+======================================
+  Instance Utilities and Convenience
+======================================
 
 .. note:: 
 

@@ -82,6 +82,9 @@
 
 Python decimal date utility to handle integer dates on the form ``yyyymmdd``.
 
+Even if the module is classified as Beta-software and in devopment
+with a low version number it is stable and ready for production.
+
 Creation
 --------
 

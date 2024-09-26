@@ -132,7 +132,7 @@ def test_init_step_none_raises_value_error() -> None:
         expected_exception=ValueError,
         match=r".*step.*",
     ):
-        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", None)
+        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", None)  # type: ignore[arg-type]
 
 
 def test_init_step_str_raises_type_error() -> None:
@@ -143,7 +143,7 @@ def test_init_step_str_raises_type_error() -> None:
         expected_exception=TypeError,
         match=r".*step.*",
     ):
-        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", "1")
+        _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", "1")  # type: ignore[arg-type]
 
 
 """
