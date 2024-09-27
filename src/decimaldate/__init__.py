@@ -475,6 +475,45 @@ class DecimalDate(object):
         """
         return DecimalDate.__last_day_of_month(self.as_datetime())
 
+    def weekday(self: Self) -> int:
+        """
+        Day of the week (0-6), where Monday == ``0`` ... Sunday == ``6``.
+
+        :return: Day of the week (0-6)
+        :rtype: int
+        """
+        return self.as_datetime().weekday()
+
+    def isoweekday(self: Self) -> int:
+        """
+        Day of the week (1-7), where Monday == ``1`` ... Sunday == ``7``.
+
+        :return: Day of the week (1-7)
+        :rtype: int
+        """
+        return self.as_datetime().isoweekday()
+
+    def isoformat(self: Self) -> str:
+        """
+        The decimal date formatted according to ISO ``yyyy-mm-dd``.
+
+        >>> from decimaldate import DecimalDate
+        >>> DecimalDate(2024_09_27).isoformat()
+        '2024-09-27'
+
+        To create a ``DecimalDate``from an ISO formatted date,
+        use ``datetime.date.fromisoformat()`` or ``datetime.datetime.fromisoformat``.
+
+        >>> from datetime import date
+        >>> from decimaldate import DecimalDate
+        >>> DecimalDate(date.fromisoformat('2024-09-27'))
+        DecimalDate(20240927)
+
+        :return: String representation formatted according to ISO.
+        :rtype: str
+        """
+        return self.as_date().isoformat()
+
     def start_of_month(self: Self) -> DecimalDate:
         """
         The start date of the month and year of this instance.\\
@@ -483,7 +522,8 @@ class DecimalDate(object):
         :return:  A new ``DecimalDate`` with the value of start-of-month.
         :rtype: DecimalDate
         """
-        return DecimalDate(DecimalDate.__start_of_month(self.as_datetime()))
+        month_start: datetime = DecimalDate.__start_of_month(self.as_datetime())
+        return DecimalDate(month_start)
 
     def end_of_month(self: Self) -> DecimalDate:
         """
@@ -576,7 +616,7 @@ class DecimalDate(object):
         return self.next(-delta_days)
 
     #
-    #
+    # As ...
     #
 
     def as_int(self: Self) -> int:
@@ -643,6 +683,40 @@ class DecimalDate(object):
     #
     #
     #
+
+    @classmethod
+    def try_instantiate(
+        cls,
+        dd: DecimalDateInitTypes | DecimalDate | None = None,
+    ):
+        """
+        A new instance of ``DecimalDate`` if successful;
+        otherwise ``None``.
+
+        If no argument is given then uses today's date.
+
+        >>> dd: DecimalDate = DecimalDate.try_instantiate(2024_27_09)
+        >>> if dd:
+        >>>     print(f"success {dd}")
+        >>> else:
+        >>>     print(f"failure {dd}")
+        success 20240927
+
+        >>> dd: DecimalDate = DecimalDate.try_instantiate(2024_09_27)
+        >>> if dd:
+        >>>     print(f"success {dd}")
+        >>> else:
+        >>>     print(f"failure {dd}")
+        failure None
+
+        >>> DecimalDate.try_instantiate() == DecimalDate.today()
+        True
+        """
+
+        try:
+            return DecimalDate(dd)
+        except (ValueError, TypeError):
+            return None
 
     @classmethod
     def today(cls):

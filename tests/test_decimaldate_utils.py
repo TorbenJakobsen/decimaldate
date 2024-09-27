@@ -356,3 +356,80 @@ end_of_month
 )
 def test_end_of_month(sut: DecimalDate, expected: DecimalDate) -> None:
     assert sut.end_of_month() == expected
+
+
+"""
+weekday
+"""
+
+
+def test_weekday() -> None:
+    # GIVEN
+    FRIDAY: Literal[4] = 4
+    # WHEN
+    wd: int = DecimalDate(2024_09_27).weekday()
+    # THEN
+    assert wd == FRIDAY
+
+
+"""
+isoweekday
+"""
+
+
+def test_isoweekday() -> None:
+    # GIVEN
+    ISO_FRIDAY: Literal[5] = 5
+    # WHEN
+    iso_wd: int = DecimalDate(2024_09_27).isoweekday()
+    # THEN
+    assert iso_wd == ISO_FRIDAY
+
+
+"""
+isoformat
+"""
+
+
+def test_isoformat() -> None:
+    # WHEN
+    iso: str = DecimalDate(2024_09_27).isoformat()
+    # THEN
+    assert iso == "2024-09-27"
+
+
+"""
+try_instantiate
+"""
+
+
+def test_try_instantiate_none_is_today() -> None:
+    # WHEN
+    dd: DecimalDate | None = DecimalDate.try_instantiate(None)
+    # THEN
+    assert dd == DecimalDate.today()
+
+
+def test_try_instantiate_no_arg_is_today() -> None:
+    # WHEN
+    dd: DecimalDate | None = DecimalDate.try_instantiate()
+    # THEN
+    assert dd == DecimalDate.today()
+
+
+def test_try_instantiate_bad_is_none() -> None:
+    # GIVEN
+    bad_date: int = 2024_27_09
+    # WHEN
+    dd: DecimalDate | None = DecimalDate.try_instantiate(bad_date)
+    # THEN
+    assert dd is None
+
+
+def test_try_instantiate_good_is_ok() -> None:
+    # GIVEN
+    good_date: int = 2024_09_27
+    # WHEN
+    dd: DecimalDate | None = DecimalDate.try_instantiate(good_date)
+    # THEN
+    assert str(dd) == str(good_date)
