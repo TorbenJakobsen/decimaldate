@@ -296,14 +296,23 @@ As other types
     >>> DecimalDate(2024_09_11).as_str('-')
     '2024-09-11'
 
+``as_date()``
+    ``datetime.date`` representation.
+
+    >>> from decimaldate import DecimalDate
+    >>> DecimalDate(2024_09_27).as_date()
+    datetime.date(2024, 9, 27)
+
+    The returned ``date`` has no time (hours, minutes, and seconds) and is *not* TimeZone aware.
+
 ``as_datetime()``
-    ``datetime`` representation.
+    ``datetime.datetime`` representation.
 
     >>> from decimaldate import DecimalDate
     >>> DecimalDate(2024_09_11).as_datetime()
     datetime.datetime(2024, 9, 11, 0, 0)
 
-    Returned ``datetime`` has no time (hours, minutes, and seconds) and is not TimeZone aware.
+    The returned ``datetime`` has no time (hours, minutes, and seconds) and is *not* TimeZone aware.
 
     The ``datetime`` representation is convenient to calculate the difference in days between two dates,
     or to determine if a date is a Saturday.
