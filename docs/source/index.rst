@@ -78,7 +78,7 @@ The source for this ``decimaldate`` project is available on `GitHub <https://git
 
 .. note:: 
    
-   Even if the module is classified as Beta-software and in devopment
+   Even if the module is classified as Beta-software and in development
    with a low version number it is stable and ready for production.
 
 ================
