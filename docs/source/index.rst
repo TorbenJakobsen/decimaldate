@@ -163,17 +163,13 @@ No argument or ``None`` which both will use today's date
   Class Utilities and Convenience
 ===================================
 
-.. note:: 
-
-   To be written...
+See the :doc:`usage <./usage>` page.
 
 ======================================
   Instance Utilities and Convenience
 ======================================
 
-.. note:: 
-
-   To be written...
+See the :doc:`usage <./usage>` page.
 
 ===============
   Outstanding

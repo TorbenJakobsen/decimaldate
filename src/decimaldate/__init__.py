@@ -447,7 +447,7 @@ class DecimalDate(object):
 
     def day(self: Self) -> int:
         """
-        Day (0-31).
+        Day (1-31).
 
         >>> DecimalDate("2023_01_06").day()
             6
@@ -477,7 +477,7 @@ class DecimalDate(object):
 
     def weekday(self: Self) -> int:
         """
-        Day of the week (0-6), where Monday == ``0`` ... Sunday == ``6``.
+        The day of the week as an integer (0-6), where Monday == ``0`` ... Sunday == ``6``.
 
         :return: Day of the week (0-6)
         :rtype: int
@@ -486,7 +486,7 @@ class DecimalDate(object):
 
     def isoweekday(self: Self) -> int:
         """
-        Day of the week (1-7), where Monday == ``1`` ... Sunday == ``7``.
+        The day of the week as an integer (1-7), where Monday == ``1`` ... Sunday == ``7``.
 
         :return: Day of the week (1-7)
         :rtype: int

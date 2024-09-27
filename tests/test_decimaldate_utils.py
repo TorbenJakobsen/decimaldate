@@ -419,7 +419,7 @@ def test_try_instantiate_no_arg_is_today() -> None:
 
 def test_try_instantiate_bad_is_none() -> None:
     # GIVEN
-    bad_date: int = 2024_27_09
+    bad_date: Literal[20242709] = 2024_27_09
     # WHEN
     dd: DecimalDate | None = DecimalDate.try_instantiate(bad_date)
     # THEN
@@ -428,7 +428,7 @@ def test_try_instantiate_bad_is_none() -> None:
 
 def test_try_instantiate_good_is_ok() -> None:
     # GIVEN
-    good_date: int = 2024_09_27
+    good_date: Literal[20240927] = 2024_09_27
     # WHEN
     dd: DecimalDate | None = DecimalDate.try_instantiate(good_date)
     # THEN
