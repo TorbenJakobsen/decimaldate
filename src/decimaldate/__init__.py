@@ -170,7 +170,7 @@ class DecimalDate(object):
         >>> DecimalDate("2024_02_06")
             29
 
-        :param dt: A ``datetime``.
+        :param dt: A ``datetime.datetime``.
         :type dt: datetime
         :return: End day (1-31)
         :rtype: int
@@ -181,6 +181,19 @@ class DecimalDate(object):
     def __parse_int_value_from_argument(
         dd: DecimalDateInitTypes | DecimalDate | None,
     ) -> int:
+        """
+        Integer value of argument.
+
+        The function returns an integer but does not validate the integer as a valid date.
+
+        :param dd: A decimal date representation in one of the valid argument types.
+        :type dd: DecimalDateInitTypes | DecimalDate | None
+        :raises ValueError: If argument cannot be represented as an integer.
+        :raises TypeError: If argument is not one of the valid argument types.
+        :return: Integer value parsed from the argument.
+                 The value is not guaranteed to be a valid date.
+        :rtype: int
+        """
         if dd is None:
             # Use the default today's date
             return DecimalDate.__today_as_int()
@@ -241,9 +254,6 @@ class DecimalDate(object):
         self.__dd_datetime: datetime
         """ Internal instance value of the decimal date as a ``datetime.datetime``. """
 
-        self.__dd_date: date
-        """ Internal instance value of the decimal date as a ``datetime.date``. """
-
         self.__year: int
         """ Internal instance value of the year (1-9999). """
 
@@ -262,7 +272,6 @@ class DecimalDate(object):
         try:
             # If not a valid Gregorian date, then the following raises `ValueError`
             self.__dd_datetime = DecimalDate.__int_as_datetime(self.__dd_int)
-            self.__dd_date = self.__dd_datetime.date()
         except ValueError as e_info:
             raise ValueError(
                 f"argument {dd} is not a valid literal on the form `yyyymmdd`."
@@ -620,7 +629,7 @@ class DecimalDate(object):
         :return: ``datetime.date`` representation.
         :rtype: date
         """
-        return self.__dd_date
+        return self.__dd_datetime.date()
 
     def as_datetime(self: Self) -> datetime:
         """
