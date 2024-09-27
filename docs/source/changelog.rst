@@ -14,6 +14,31 @@ New Features
 Other Changes
 -------------
 
+* None.
+
+Bugfixes
+--------
+
+* None.
+
+=======================
+  0.1.12 (2024-09-27)
+=======================
+
+New Features
+------------
+
+* New conveneince methods: 
+  - ``weekday()``, 
+  - ``isoweekday()``, and 
+  - ``isoformat()`` 
+  similar to ``datetime``'s methods.
+* Now constructor: ``try_initialize()`` that returns ``None`` instead of raising error.
+
+Other Changes
+-------------
+
+* Update to documentation.
 * | Added ``datetime.date`` as a valid argument type to ``__init__``.
   | Includes the method ``as_date()`` and unit tests.
 
@@ -75,7 +100,7 @@ Other Changes
 -------------
 
 * Updates to documentation.
-* Added `MANIFEST.in` to make the build include the LICENSE file.
+* Added the file ``MANIFEST.in`` to make the build include the ``LICENSE`` file.
 
 Bugfixes
 --------
