@@ -28,10 +28,10 @@ Bugfixes
 New Features
 ------------
 
-* New conveneince methods: 
-  - ``weekday()``, 
-  - ``isoweekday()``, and 
-  - ``isoformat()`` 
+* New convenience methods: 
+  | - ``weekday()``, 
+  | - ``isoweekday()``, and 
+  | - ``isoformat()`` 
   similar to ``datetime``'s methods.
 * Now constructor: ``try_initialize()`` that returns ``None`` instead of raising error.
 
