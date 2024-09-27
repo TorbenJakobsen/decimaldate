@@ -177,6 +177,37 @@ class DecimalDate(object):
         """
         return DecimalDate.__end_of_month(dt).day
 
+    @staticmethod
+    def __parse_int_value_from_argument(
+        dd: DecimalDateInitTypes | DecimalDate | None,
+    ) -> int:
+        if dd is None:
+            # Use the default today's date
+            return DecimalDate.__today_as_int()
+
+        elif isinstance(dd, int):
+            return dd
+
+        elif isinstance(dd, str):
+            try:
+                return int(dd)
+            except ValueError as e_info:
+                raise ValueError(f"argument {dd} is not a valid literal.") from e_info
+
+        elif isinstance(dd, datetime):
+            return DecimalDate.__datetime_as_int(dd)
+
+        elif isinstance(dd, date):
+            return DecimalDate.__date_as_int(dd)
+
+        elif isinstance(dd, DecimalDate):
+            return dd.as_int()
+
+        else:
+            raise TypeError(
+                f"argument {dd} is not a valid literal on the form `yyyymmdd`."
+            )
+
     #
     # Initialization
     #
@@ -222,43 +253,14 @@ class DecimalDate(object):
         self.__day: int
         """ Internal instance value of the day (1-31). """
 
-        #
+        # ---
 
-        if dd is None:
-            # Use the default today's date
-            self.__dd_int = DecimalDate.__today_as_int()
-
-        elif isinstance(dd, int):
-            # Save argument, and validate when saving as a ``datetime``
-            self.__dd_int = dd
-
-        elif isinstance(dd, str):
-            try:
-                # Save argument, and validate when saving as a ``datetime``
-                self.__dd_int = int(dd)
-            except ValueError as e_info:
-                raise ValueError(
-                    f"argument {dd} is not a valid literal on the form `yyyymmdd`."
-                ) from e_info
-
-        elif isinstance(dd, datetime):
-            self.__dd_int = DecimalDate.__datetime_as_int(dd)
-
-        elif isinstance(dd, date):
-            self.__dd_int = DecimalDate.__date_as_int(dd)
-
-        elif isinstance(dd, DecimalDate):
-            self.__dd_int = dd.as_int()
-
-        else:
-            raise TypeError(
-                f"argument {dd} is not a valid literal on the form `yyyymmdd`."
-            )
+        self.__dd_int = DecimalDate.__parse_int_value_from_argument(dd)
 
         self.__dd_str = str(self.__dd_int)
 
         try:
-            # If not a valid Gregorian date, then this line raises `ValueError`
+            # If not a valid Gregorian date, then the following raises `ValueError`
             self.__dd_datetime = DecimalDate.__int_as_datetime(self.__dd_int)
             self.__dd_date = self.__dd_datetime.date()
         except ValueError as e_info:
