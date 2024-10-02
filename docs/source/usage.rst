@@ -36,8 +36,8 @@ datetime.timedelta(days=1)
 
 For more complex ``datetime`` computations see python-dateutil_,
 
-Creation
---------
+Initialization
+--------------
 
 No argument or ``None``
     Will use today's date:
