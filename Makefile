@@ -12,7 +12,7 @@ RSTCHECK=./venv/bin/rstcheck
 venv/bin/activate:
 	python3.11 -m venv venv
 	. ./venv/bin/activate
-	$(PYTHON) -m pip install --upgrade pip 
+	$(PYTHON) -m pip install --upgrade pip setuptools
 	$(PYTHON) -m pip install -r requirements/development.txt
 
 venv: venv/bin/activate
@@ -67,3 +67,7 @@ all: setup
 .PHONY: rstcheck
 rstcheck: venv
 	$(RSTCHECK) *.rst docs/source/*.rst
+
+.PHONY: upload
+upload: venv
+	$(PYTHON) -m twine upload --verbose --repository pypi dist/*
