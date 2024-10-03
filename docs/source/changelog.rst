@@ -49,11 +49,15 @@ New Features
 ------------
 
 * New convenience methods: 
-  | - ``weekday()``, 
-  | - ``isoweekday()``, and 
-  | - ``isoformat()`` 
-  similar to ``datetime``'s methods.
-* Now constructor: ``try_initialize()`` that returns ``None`` instead of raising error.
+  
+    - ``weekday()``, 
+    - ``isoweekday()``, and 
+    - ``isoformat()``
+
+    similar to ``datetime``'s methods.
+
+* Now constructor: ``try_initialize()`` that returns ``None`` 
+  instead of raising error when failing to initialize.
 
 Other Changes
 -------------
