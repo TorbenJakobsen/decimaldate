@@ -14,6 +14,26 @@ New Features
 Other Changes
 -------------
 
+* None.
+
+Bugfixes
+--------
+
+* None.
+
+=======================
+  0.2.0 (2024-10-03)
+=======================
+
+New Features
+------------
+
+* None.
+
+Other Changes
+-------------
+
+* Ready for Python 3.13.
 * Updates to documentation.
 
 Bugfixes

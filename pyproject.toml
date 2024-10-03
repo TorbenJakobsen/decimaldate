@@ -1,6 +1,6 @@
 [project]
 name = "decimaldate"
-version = "0.1.12"
+version = "0.2.0"
 description = "A decimal date utility to handle integer dates on the form `yyyymmdd`."
 authors = [
     { name = "Torben Jakobsen", email = "torben.jakobsen@icloud.com" }
@@ -24,6 +24,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities",

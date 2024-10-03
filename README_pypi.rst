@@ -27,9 +27,9 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
    :alt: Using black formatter
    :target: https://github.com/psf/black
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.1.12.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.2.0.svg
    :alt: Commits since latest release
-   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.1.12...main
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.2.0...main
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
    :alt: BSD 3-Clause
@@ -96,7 +96,7 @@ An installer for the latest released version is available at PyPI_.
 
 Python >=3.11
 
-There are no other dependencies.
+There are no other dependencies for deployment.
 
 =================
   Documentation
