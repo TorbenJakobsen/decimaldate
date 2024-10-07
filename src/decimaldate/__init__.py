@@ -41,6 +41,8 @@ class DecimalDate(object):
         DecimalDate("20230518")
         DecimalDate(date.today())
         DecimalDate(datetime.today())
+
+    Objects of this type are immutable.
     """
 
     # replace __dict__ : optimization and improving immutability
@@ -87,7 +89,7 @@ class DecimalDate(object):
         Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
 
         >>> DecimalDate.__datetime_as_int(datetime.today())
-            20240906
+        20240906
 
         :param _datetime: A ``datetime.datetime``.
         :type _datetime: datetime
@@ -102,7 +104,7 @@ class DecimalDate(object):
         Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
 
         >>> DecimalDate.__date_as_int(date.today())
-            20240906
+        20240906
 
         :param _date: A ``datetime.date``.
         :type _date: date
@@ -135,7 +137,7 @@ class DecimalDate(object):
         The day will always be ``1``.
 
         >>> DicimalDate(DecimalDate.__start_of_month(DecimalDate("2024_02_06").as_datetime()))
-            DecimalDate(20240201)
+        DecimalDate(20240201)
 
         :param dt: A ``datetime``.
         :type dt: datetime
@@ -150,7 +152,7 @@ class DecimalDate(object):
         End date of a year and month taken from the argument.
 
         >>> DicimalDate(DecimalDate.__end_of_month(DecimalDate("2024_02_06").as_datetime()))
-            DecimalDate(20240229)
+        DecimalDate(20240229)
 
         :param dt: A ``datetime``.
         :type dt: datetime
@@ -168,7 +170,7 @@ class DecimalDate(object):
         End day (1-31) of a year and month taken from the argument.
 
         >>> DecimalDate("2024_02_06")
-            29
+        29
 
         :param dt: A ``datetime.datetime``.
         :type dt: datetime
@@ -386,7 +388,7 @@ class DecimalDate(object):
         When called by built-in ``repr()`` method returning a machine readable representation of ``DecimalDate``.
 
         >>> DecimalDate("2023_01_06")
-            DecimalDate(20230106)
+        DecimalDate(20230106)
 
         :return: machine readable representation of this instance.
         :rtype: str
@@ -398,7 +400,7 @@ class DecimalDate(object):
         When ``str()`` is called on an instance of ``DecimalDate``.
 
         >>> str(DecimalDate(2023_01_06))
-            '20230106'
+        '20230106'
 
         :return: string representation of this instance.
         :rtype: str
@@ -410,7 +412,7 @@ class DecimalDate(object):
         When ``int()`` is called on an instance of ``DecimalDate``.
 
         >>> int(DecimalDate("2023_01_06"))
-            20230106
+        20230106
 
         :return: integer representation of this instance.
         :rtype: int
@@ -426,7 +428,7 @@ class DecimalDate(object):
         Year (1-9999).
 
         >>> DecimalDate("2023_01_06").year()
-            2023
+        2023
 
         :return: Year (1-9999).
         :rtype: int
@@ -438,7 +440,7 @@ class DecimalDate(object):
         Month (1-12).
 
         >>> DecimalDate("2023_01_06").month()
-            1
+        1
 
         :return: Month (1-12).
         :rtype: int
@@ -450,7 +452,7 @@ class DecimalDate(object):
         Day (1-31).
 
         >>> DecimalDate("2023_01_06").day()
-            6
+        6
 
         :return: Day (0-31).
         :rtype: int
@@ -462,13 +464,13 @@ class DecimalDate(object):
         Day (28-31).
 
         >>> DecimalDate("2023_01_06").last_day_of_month()
-            31
+        31
 
         >>> DecimalDate("2023_02_06").last_day_of_month()
-            28
+        28
 
         >>> DecimalDate("2024_02_06").last_day_of_month()  # leap year
-            29
+        29
 
         :return: Day (28-31).
         :rtype: int
@@ -531,13 +533,13 @@ class DecimalDate(object):
         For February the end day will be ``28`` or ``29`` depending on leap year.
 
         >>> DecimalDate("2023_01_06")
-            DecimalDate(20230131)
+        DecimalDate(20230131)
 
         >>> DecimalDate("2023_02_06")
-            DecimalDate(20230228)
+        DecimalDate(20230228)
 
         >>> DecimalDate("2024_02_06")
-            DecimalDate(20240229)
+        DecimalDate(20240229)
 
         :return: A new ``DecimalDate`` with the value of end-of-month.
         :rtype: DecimalDate
@@ -551,7 +553,7 @@ class DecimalDate(object):
 
         >>> yyyy, mmm, dd = DecimalDate(2021_02_17).split()
         >>> print(yyyy, mmm, dd)
-            2021 2 17
+        2021 2 17
 
         :return: year, month, and day.
         :rtype: tuple[int, int, int]
@@ -566,11 +568,11 @@ class DecimalDate(object):
 
         >>> today = DecimalDate().today()
         >>> today.clone() == today
-            True
+        True
 
         >>> today = DecimalDate().today()
         >>> today.clone() is today
-            False
+        False
 
         :return: A new ``DecimalDate`` instance identical to original.
                  But not same reference.
@@ -626,11 +628,11 @@ class DecimalDate(object):
         Convenience method similar to ``int()``.
 
         >>> DecimalDate(2023_04_18).as_int()
-            20230418
+        20230418
 
         >>> dd = DecimalDate(2023_04_18)
         >>> int(dd) == dd.as_int()
-            True
+        True
 
         :return: Integer representation on the form ``yyyymmdd``.
         :rtype: int
@@ -645,10 +647,10 @@ class DecimalDate(object):
         This ``DecimalDate`` instance's date with an optional separator as a ``str`` object.
 
         >>> DecimalDate(2023_04_18).as_str()
-            '20230418'
+        '20230418'
 
         >>> DecimalDate(2023_04_18).as_str('.')
-            '2023.04.18'
+        '2023.04.18'
 
         :param sep: Optional separator, defaults to ``None``.
         :type sep: str | None, optional
@@ -802,7 +804,7 @@ class DecimalDate(object):
         :raises TypeError: if ``start``is not a valid argument type for ``DecimalDate`` .
         :raises ValueError: if ``start``is not a valid date.
         :raises TypeError: if ``step``is not an integer.
-        :raises ValueError: if ``step``is 0.
+        :raises ValueError: if ``step``is ``0``.
         :raises: OverflowError when generator reaches beyound valid ``datetime.date`` values (e.g. 9999-12-31).
         :yield: a sequence of evenly spaced decimal dates.
         :rtype: Generator[DecimalDate, Any, NoReturn]
@@ -856,9 +858,9 @@ class DecimalDateRange:
 
         >>> for dd in DecimalDateRange(2023_05_04, 2023_05_07):
         >>>     print(dd.as_str('.'))
-            2023.05.04
-            2023.05.05
-            2023.05.06
+        2023.05.04
+        2023.05.05
+        2023.05.06
 
         :param start: Sequence start (inclusive).
         :type start: DecimalDate | int | str | datetime
