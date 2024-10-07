@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 from datetime import date, datetime, timedelta
-from typing import Any, Literal, Self, TypeAlias
+from typing import Any, Literal, NoReturn, Self, TypeAlias
 
 DecimalDateInitTypes: TypeAlias = int | str | datetime | date
 """
@@ -714,7 +714,7 @@ class DecimalDate(object):
         """
 
         try:
-            return DecimalDate(dd)
+            return cls(dd)
         except (ValueError, TypeError):
             return None
 
@@ -739,9 +739,8 @@ class DecimalDate(object):
         """
         return cls.today().next()
 
-    @classmethod
+    @staticmethod
     def range(
-        cls,
         start: DecimalDate | DecimalDateInitTypes,
         stop: DecimalDate | DecimalDateInitTypes,
         step: int = 1,
@@ -756,9 +755,9 @@ class DecimalDate(object):
 
         >>> for dd in DecimalDate.range(2023_05_04, 2023_05_07):
         >>>     print(dd.as_str('.'))
-            2023.05.04
-            2023.05.05
-            2023.05.06
+        2023.05.04
+        2023.05.05
+        2023.05.06
 
         :param start: Sequence start (inclusive).
         :type start: DecimalDate | int | str | datetime
@@ -766,6 +765,57 @@ class DecimalDate(object):
         :type stop: DecimalDate | int | str | datetime
         """
         return DecimalDateRange(start, stop, step)
+
+    @classmethod
+    def count(
+        cls,
+        start: DecimalDate | DecimalDateInitTypes = None,
+        step: int = 1,
+    ) -> Generator[DecimalDate, Any, NoReturn]:
+        """
+        Make an iterator that returns evenly spaced decimal dates beginning with start.
+
+        >>> from decimaldate import DecimalDate
+        >>> for idx, dd in enumerate(DecimalDate.count(2024_03_01, 7)):
+        >>>     if idx >= 6:
+        >>>         break
+        >>>     print(idx, dd.isoformat())
+        0 2024-03-01
+        1 2024-03-08
+        2 2024-03-15
+        3 2024-03-22
+        4 2024-03-29
+        5 2024-04-05
+
+        Similar to ``itertools.count()``.
+        https://docs.python.org/3/library/itertools.html#itertools.count
+        intended for ``zip()`` and ``map()``.
+
+        The iterator will continue until it reaches beyond valid ``decimal.date``values;
+        eg. less than 1-1-1 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
+        and then throw ``OverflowError``.
+
+        :param start: The starting decimal date, defaults to ``None``. If no argument or ``None`` uses todays's date as start.
+        :type start: DecimalDate | DecimalDateInitTypes, optional
+        :param step: difference in day between dates in sequence, defaults to 1
+        :type step: int, optional
+        :raises TypeError: if ``start``is not a valid argument type for ``DecimalDate`` .
+        :raises ValueError: if ``start``is not a valid date.
+        :raises TypeError: if ``step``is not an integer.
+        :raises ValueError: if ``step``is 0.
+        :raises: OverflowError when generator reaches beyound valid ``datetime.date`` values (e.g. 9999-12-31).
+        :yield: a sequence of evenly spaced decimal dates.
+        :rtype: Generator[DecimalDate, Any, NoReturn]
+        """
+        if not isinstance(step, int):
+            raise TypeError("count step argument is not an `int`.")
+        if step == 0:
+            raise ValueError("count step argument is 0.")
+
+        dd: DecimalDate = cls(start)
+        while True:
+            yield dd
+            dd = dd.next(step)
 
 
 #
@@ -887,7 +937,7 @@ class DecimalDateRange:
         The length operator, ``len()``.
 
         >>> len(DecimalDateRange(DecimalDate(2023_11_11), DecimalDate(2023_11_15)))
-            4
+        4
 
         :return: Length of sequence.
         :rtype: int
@@ -901,7 +951,7 @@ class DecimalDateRange:
         >>> DecimalDate(2023_11_16) in DecimalDateRange(
         >>>     DecimalDate(2023_11_11), DecimalDate(2023_11_22)
         >>> )
-            True
+        True
         """
         if not isinstance(dd, DecimalDate):
             raise TypeError(
@@ -914,7 +964,7 @@ class DecimalDateRange:
         The index operator, ``[]``.
 
         >>> DecimalDateRange(2023_05_04, 2023_05_07)[2]
-            DecimalDate(20230506)
+        DecimalDate(20230506)
 
         Negative argument is not implemented!
 
