@@ -76,11 +76,6 @@ This documentation was generated |today|.
 
 The source for this ``decimaldate`` project is available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
 
-.. note:: 
-   
-   Even if the module is classified as Beta-software and in development
-   with a low version number it is stable and ready for production.
-
 ================
   Introduction
 ================
