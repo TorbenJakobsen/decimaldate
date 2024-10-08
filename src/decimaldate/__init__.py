@@ -839,31 +839,80 @@ class DecimalDateRange(object):
 
         # TODO replace naive implementation by using % and //
 
+        #
+        # start == stop
+        #
+
         if start == stop:
             return None
+
+        current: DecimalDate = start
+        last: DecimalDate = start
+
+        #
+        # start < stop
+        #
 
         if start < stop:
             if step < 0:
                 return None
+            while current < stop:
+                last = current
+                current = current.next(step)
+            return last
 
-            else:
-                current: DecimalDate = start
-                last: DecimalDate = start
-                while current < stop:
-                    last = current
-                    current = current.next(step)
-                return last
+        #
+        # start > stop
+        #
 
-        else:  # start > stop
-            if step > 0:
-                return None
+        if step > 0:
+            return None
+        while current > stop:
+            last = current
+            current = current.next(step)
+        return last
 
-            else:
-                current: DecimalDate = start
-                last: DecimalDate = start
-                while current > stop:
-                    current = current.next(step)
-                return last
+    @staticmethod
+    def __get_length_of_sequence(
+        start: DecimalDate,
+        stop: DecimalDate,
+        step: int,
+    ) -> int:
+
+        # TODO replace naive implementation by using % and //
+
+        #
+        # start == stop
+        #
+
+        if start == stop:
+            return 0
+
+        _length: int = 0
+        _current = start
+
+        #
+        # start < stop
+        #
+
+        if start < stop:
+            if step < 0:
+                return 0
+            while _current < stop:
+                _length += 1
+                _current = _current.next(step)  # go forward
+            return _length
+
+        #
+        # start > stop
+        #
+
+        if step > 0:
+            return 0
+        while _current > stop:
+            _length += 1
+            _current = _current.next(step)  # go back
+        return _length
 
     # replace __dict__ : optimization and improving immutability
     __slots__ = (
@@ -955,34 +1004,11 @@ class DecimalDateRange(object):
         if self.__step == 0:
             raise ValueError("DecimalDateRange argument step 0 is not valid.")
 
-        # ---
-
-        # TODO replace naive implementation by using % and //
-
-        if self.__start == self.__stop:
-            self.__length = 0
-
-        elif self.__start < self.__stop:
-            if self.__step < 0:
-                self.__length = 0
-            else:
-                self.__length = 0
-                _current = self.__start
-                while _current < self.__stop:
-                    self.__length += 1
-                    _current = _current.next(self.__step)
-
-        else:
-            if self.__step > 0:
-                self.__length = 0
-            else:
-                self.__length = 0
-                _current = self.__start
-                while _current > self.__stop:
-                    self.__length += 1
-                    _current = _current.next(self.__step)
-
-        # ---
+        self.__length = DecimalDateRange.__get_length_of_sequence(
+            self.__start,
+            self.__stop,
+            self.__step,
+        )
 
         self.__last = DecimalDateRange.__get_last_in_sequence(
             self.__start,

@@ -2,7 +2,7 @@ from decimaldate import DecimalDate, DecimalDateRange
 
 ###
 
-dd_09_31: DecimalDate = DecimalDate(2024_09_31)
+dd_09_30: DecimalDate = DecimalDate(2024_09_30)
 
 dd_10_01: DecimalDate = DecimalDate(2024_10_01)
 dd_10_02: DecimalDate = DecimalDate(2024_10_02)
