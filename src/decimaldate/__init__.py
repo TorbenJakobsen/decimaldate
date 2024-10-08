@@ -824,11 +824,22 @@ class DecimalDate(object):
 # DecimalDateRange
 #
 
-# TODO Implement step
-# TODO Implement inverse argument order (start/stop)
-
 
 class DecimalDateRange(object):
+    """
+    Return an object that produces a sequence of ``DecimalDate`` objects
+    from ``start`` (inclusive) to ``stop`` (exclusive)
+
+    Valid argument types are (except``None``) identical to ``DecimalDate``.
+
+    >>> for dd in DecimalDateRange(2023_05_04, 2023_05_07, 1):
+    >>>     print(dd.as_str('.'))
+    2023.05.04
+    2023.05.05
+    2023.05.06
+
+    Objects of this type are immutable.
+    """
 
     @staticmethod
     def __get_last_in_sequence(
@@ -933,15 +944,14 @@ class DecimalDateRange(object):
         """
         Return an object that produces a sequence of ``DecimalDate`` objects
         from ``start`` (inclusive) to ``stop`` (exclusive)
-        by ``step`` days
-        (currently only value of step=1 is implemented).
+        by ``step`` days.
 
         Valid argument types for ``start`` and ``stop``
         are identical to ``DecimalDate`` excepting ``None`` ('today').
 
         Start is expected to be before Stop or the sequence will be empty.
 
-        >>> for dd in DecimalDateRange(2023_05_04, 2023_05_07):
+        >>> for dd in DecimalDateRange(2023_05_04, 2023_05_07, 1):
         >>>     print(dd.as_str('.'))
         2023.05.04
         2023.05.05
@@ -951,12 +961,11 @@ class DecimalDateRange(object):
         :type start: DecimalDate | int | str | datetime
         :param stop: Sequence stop (exclusive).
         :type stop: DecimalDate | int | str | datetime
-        :param step: Sequence step, defaults to 1 (on value of 1 is implemented)
+        :param step: Sequence step, defaults to ``1``
         :type step: int, optional
         :raises ValueError: If any argument is ``None``
         :raises TypeError: If step argument is not instance of ``int``
         :raises ValueError: If step argument is ``0``
-        :raises NotImplementedError: If step argument is other than ``1``
         """
         if start is None:
             raise ValueError("DecimalDateRange argument start is None.")
@@ -1015,6 +1024,7 @@ class DecimalDateRange(object):
             self.__stop,
             self.__step,
         )
+        """ If ``None`` then sequence is empty. """
 
     def __repr__(self: Self) -> str:
         """
@@ -1036,36 +1046,7 @@ class DecimalDateRange(object):
 
         Behave similar to regular ``range()`` but for ``DecimalDate``:
 
-        >>> list(range(1, 7, 1))
-        [1, 2, 3, 4, 5, 6]
-        >>> list(range(1, 7, -1))
-        []
-        >>> list(range(7, 1, -1))
-        [7, 6, 5, 4, 3, 2]
-        >>> list(range(7, 1, 1))
-        []
-        >>> list(range(4, 4, 1))
-        []
-        >>> list(range(4, 4, -1))
-        []
-        >>> list(range(1, 7, 5))
-        [1, 6]
-        >>> list(range(1, 7, 6))
-        [1]
-        >>> list(range(1, 7, 7))
-        [1]
-        >>> list(range(1, 7, 42))
-        [1]
-        >>> list(range(7, 1, -5))
-        [7, 2]
-        >>> list(range(7, 1, -6))
-        [7]
-        >>> list(range(7, 1, -7))
-        [7]
-        >>> list(range(7, 1, -42))
-        [7]
-
-        :yield: _description_
+        :yield: next ``DecimalDate`` in generator sequence.
         :rtype: Generator[DecimalDate, Any, None]
         """
 
@@ -1156,12 +1137,11 @@ class DecimalDateRange(object):
         >>> DecimalDateRange(2023_05_04, 2023_05_07)[2]
         DecimalDate(20230506)
 
-        Negative argument is not implemented!
+        The 0 index is 2023_05_04, 1 is 2023_05_05, and 2 is 2023_05_06
 
         :param index: index into range [0..len[.
         :type index: int
         :raises TypeError: If index is not an ``int``.
-        :raises NotImplementedError: If index is negative (less than 0)
         :raises IndexError: If index is outside sequence [0..len[ or [-len..0[.
         :raises RuntimeError: If failed to compare index.
         :return: Object at index in sequence.
@@ -1203,16 +1183,98 @@ class DecimalDateRange(object):
     # ---
 
     def start(self: Self) -> DecimalDate:
+        """
+        Start of sequence as called when initializing.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+        >>> rng.start()
+        DecimalDate(20241001)
+
+        :return: start of sequence.
+        :rtype: DecimalDate
+        """
         return self.__start
 
     def stop(self: Self) -> DecimalDate:
+        """
+        Stop of sequence as called when initializing.
+
+        Often different from the last ``DecimalDate`` in the sequence.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+        >>> rng.stop()
+        DecimalDate(20241101)
+        >>> rng.last()
+        DecimalDate(20241029)
+
+        :return: stop of sequence.
+        :rtype: DecimalDate
+        """
         return self.__stop
 
     def step(self: Self) -> int:
+        """
+        Step of sequence as called when initializing.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+        >>> rng.step()
+        4
+
+        :return: step of sequence.
+        :rtype: int
+        """
         return self.__step
 
     def length(self: Self) -> int:
+        """
+        Length of sequence.
+
+        Identical to ``len()``.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+        >>> list(rng)
+        [DecimalDate(20241001), DecimalDate(20241005), DecimalDate(20241009), DecimalDate(20241013), DecimalDate(20241017), DecimalDate(20241021), DecimalDate(20241025), DecimalDate(20241029)]
+        >>> rng.length()
+        8
+        >>> len(rng)
+        8
+
+        >>> from decimaldate import DecimalDate, DecimalDateRange
+        >>> rng = DecimalDateRange(DecimalDate.today(), DecimalDate.today())
+        >>> list(rng)
+        []
+        >>> rng.length()
+        0
+        >>> len/rng)
+        0
+
+        :return: length of sequence.
+        :rtype: int
+        """
         return self.__length
 
     def last(self: Self) -> DecimalDate | None:
+        """
+        Last ``DecimalDate`` in sequence.
+
+        Often different from the ``stop`` argument.
+
+        If the sequence is empty; then returns ``None``.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+        >>> list(rng)
+        [DecimalDate(20241001), DecimalDate(20241005), DecimalDate(20241009), DecimalDate(20241013), DecimalDate(20241017), DecimalDate(20241021), DecimalDate(20241025), DecimalDate(20241029)]
+        >>> rng.last()
+        DecimalDate(20241029)
+        >>> rng.stop()
+        DecimalDate(20241101)
+
+        :return: Last ``DecimalDate`` in sequence or ``None`` if empty.
+        :rtype: DecimalDate | None
+        """
         return self.__last
