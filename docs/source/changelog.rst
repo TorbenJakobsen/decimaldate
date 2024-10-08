@@ -22,6 +22,28 @@ Bugfixes
 * None.
 
 ======================
+  0.2.2 (2024-10-08)
+======================
+
+New Features
+------------
+
+* | Implemented inversal of start and stop arguments in ``range()`` and step argument other than ``1`` and ``-1`` in same.
+  | **Note**: The implementation of additions to ``range()`` are naive and slow; made to satisfy the creation of unit tests for later release of improvements.
+
+Other Changes
+-------------
+
+* Updates to documentation.
+* Improved unit tests.
+* Unit testing ``count()`` outstanding in 0.2.1.
+
+Bugfixes
+--------
+
+* None.
+
+======================
   0.2.1 (2024-10-08)
 ======================
 

@@ -1,6 +1,6 @@
 [project]
 name = "decimaldate"
-version = "0.2.1"
+version = "0.2.2"
 description = "A decimal date utility to handle integer dates on the form `yyyymmdd`."
 authors = [
     { name = "Torben Jakobsen", email = "torben.jakobsen@icloud.com" }
