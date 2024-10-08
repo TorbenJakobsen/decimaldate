@@ -1249,7 +1249,7 @@ class DecimalDateRange(object):
         []
         >>> rng.length()
         0
-        >>> len/rng)
+        >>> len(rng)
         0
 
         :return: length of sequence.
