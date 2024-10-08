@@ -109,9 +109,12 @@ def test_1_7_1():
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 1)
 
-    assert len(_sut) == 6
-
     # THEN
+
+    assert len(_sut) == 6
+    assert list(_sut) == [dd_10_01, dd_10_02, dd_10_03, dd_10_04, dd_10_05, dd_10_06]
+
+    # ---
 
     with pytest.raises(
         expected_exception=IndexError,
@@ -143,10 +146,12 @@ def test_1_7_2():
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 2)
 
+    # THEN
+
     assert len(_sut) == 3
     assert list(_sut) == [dd_10_01, dd_10_03, dd_10_05]
 
-    # THEN
+    # ---
 
     with pytest.raises(
         expected_exception=IndexError,
@@ -174,10 +179,12 @@ def test_1_7_3():
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 3)
 
+    # THEN
+
     assert len(_sut) == 2
     assert list(_sut) == [dd_10_01, dd_10_04]
 
-    # THEN
+    # ---
 
     with pytest.raises(
         expected_exception=IndexError,
@@ -197,17 +204,18 @@ def test_1_7_3():
         _ = _sut[2]
 
 
-@pytest.mark.xfail(reason="WIP")
 def test_1_7_4():
 
     # WHEN
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 4)
 
+    # THEN
+
     assert len(_sut) == 2
     assert list(_sut) == [dd_10_01, dd_10_05]
 
-    # THEN
+    # ---
 
     with pytest.raises(
         expected_exception=IndexError,
@@ -225,3 +233,369 @@ def test_1_7_4():
         expected_exception=IndexError,
     ):
         _ = _sut[2]
+
+
+def test_1_7_5():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_01, dd_10_07, 5)
+
+    # THEN
+
+    assert len(_sut) == 2
+    assert list(_sut) == [dd_10_01, dd_10_06]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-3]
+
+    assert _sut[-2] == dd_10_01
+    assert _sut[-1] == dd_10_06
+
+    assert _sut[0] == dd_10_01
+
+    assert _sut[1] == dd_10_06
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[2]
+
+
+def test_1_7_6():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_01, dd_10_07, 6)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_01]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_01
+
+    assert _sut[0] == dd_10_01
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]
+
+
+def test_1_7_7():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_01, dd_10_07, 7)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_01]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_01
+
+    assert _sut[0] == dd_10_01
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]
+
+
+def test_1_7_365():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_01, dd_10_07, 365)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_01]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_01
+
+    assert _sut[0] == dd_10_01
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]
+
+
+#
+#
+#
+
+
+def test_7_1_1():
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -1)
+
+    # THEN
+
+    assert len(_sut) == 6
+    assert list(_sut) == [dd_10_07, dd_10_06, dd_10_05, dd_10_04, dd_10_03, dd_10_02]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = sut[-6]
+
+    assert _sut[-5] == dd_10_06
+    assert _sut[-4] == dd_10_05
+    assert _sut[-3] == dd_10_04
+    assert _sut[-2] == dd_10_03
+    assert _sut[-1] == dd_10_02
+
+    assert _sut[0] == dd_10_07
+
+    assert _sut[1] == dd_10_06
+    assert _sut[2] == dd_10_05
+    assert _sut[3] == dd_10_04
+    assert _sut[4] == dd_10_03
+    assert _sut[5] == dd_10_02
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[6]
+
+
+def test_7_1_2():
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -2)
+
+    # THEN
+
+    assert len(_sut) == 3
+    assert list(_sut) == [dd_10_07, dd_10_05, dd_10_03]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-4]
+
+    assert _sut[-3] == dd_10_07
+    assert _sut[-2] == dd_10_05
+    assert _sut[-1] == dd_10_03
+
+    assert _sut[0] == dd_10_07
+
+    assert _sut[1] == dd_10_05
+    assert _sut[2] == dd_10_03
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[3]
+
+
+def test_7_1_3():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -3)
+
+    # THEN
+
+    assert len(_sut) == 2
+    assert list(_sut) == [dd_10_07, dd_10_04]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-3]
+
+    assert _sut[-2] == dd_10_07
+    assert _sut[-1] == dd_10_04
+
+    assert _sut[0] == dd_10_07
+
+    assert _sut[1] == dd_10_04
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[2]
+
+
+def test_7_1_4():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -4)
+
+    # THEN
+
+    assert len(_sut) == 2
+    assert list(_sut) == [dd_10_07, dd_10_03]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-3]
+
+    assert _sut[-2] == dd_10_07
+    assert _sut[-1] == dd_10_03
+
+    assert _sut[0] == dd_10_07
+
+    assert _sut[1] == dd_10_03
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[2]
+
+
+def test_7_1_5():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -5)
+
+    # THEN
+
+    assert len(_sut) == 2
+    assert list(_sut) == [dd_10_07, dd_10_02]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-3]
+
+    assert _sut[-2] == dd_10_07
+    assert _sut[-1] == dd_10_02
+
+    assert _sut[0] == dd_10_07
+
+    assert _sut[1] == dd_10_02
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[2]
+
+
+def test_7_1_6():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -6)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_07]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_07
+
+    assert _sut[0] == dd_10_07
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]
+
+
+def test_7_1_7():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -7)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_07]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_07
+
+    assert _sut[0] == dd_10_07
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]
+
+
+def test_7_1_365():
+
+    # WHEN
+
+    _sut = DecimalDateRange(dd_10_07, dd_10_01, -365)
+
+    # THEN
+
+    assert len(_sut) == 1
+    assert list(_sut) == [dd_10_07]
+
+    # ---
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[-2]
+
+    assert _sut[-1] == dd_10_07
+
+    assert _sut[0] == dd_10_07
+
+    with pytest.raises(
+        expected_exception=IndexError,
+    ):
+        _ = _sut[1]

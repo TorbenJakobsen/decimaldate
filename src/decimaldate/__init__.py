@@ -771,7 +771,7 @@ class DecimalDate(object):
     @classmethod
     def count(
         cls,
-        start: DecimalDate | DecimalDateInitTypes = None,
+        start: DecimalDate | DecimalDateInitTypes | None = None,
         step: int = 1,
     ) -> Generator[DecimalDate, Any, NoReturn]:
         """
@@ -846,8 +846,8 @@ class DecimalDateRange(object):
         if start == stop:
             return None
 
-        current: DecimalDate = start
-        last: DecimalDate = start
+        _current: DecimalDate = start
+        _last: DecimalDate = start
 
         #
         # start < stop
@@ -856,10 +856,10 @@ class DecimalDateRange(object):
         if start < stop:
             if step < 0:
                 return None
-            while current < stop:
-                last = current
-                current = current.next(step)
-            return last
+            while _current < stop:
+                _last = _current
+                _current = _current.next(step)
+            return _last
 
         #
         # start > stop
@@ -867,10 +867,10 @@ class DecimalDateRange(object):
 
         if step > 0:
             return None
-        while current > stop:
-            last = current
-            current = current.next(step)
-        return last
+        while _current > stop:
+            _last = _current
+            _current = _current.next(step)
+        return _last
 
     @staticmethod
     def __get_length_of_sequence(
@@ -993,7 +993,7 @@ class DecimalDateRange(object):
         The range end is *exclusive*.
         """
 
-        self.__last: DecimalDate
+        self.__last: DecimalDate | None
 
         #
 
@@ -1069,25 +1069,25 @@ class DecimalDateRange(object):
         :rtype: Generator[DecimalDate, Any, None]
         """
 
+        _current: DecimalDate = self.__start
+
         if self.__start < self.__stop:
             if self.__step < 0:
                 return
 
-            current: DecimalDate = self.__start
-            while current < self.__stop:
-                yield current
-                current = current.next(self.__step)  # go forward
+            while _current < self.__stop:
+                yield _current
+                _current = _current.next(self.__step)  # go forward
 
         else:
             if self.__step > 0:
                 return
 
-            current: DecimalDate = self.__start
-            while current > self.__stop:
-                yield current
-                current = current.next(self.__step)  # go back
+            while _current > self.__stop:
+                yield _current
+                _current = _current.next(self.__step)  # go back
 
-    def __len__(self) -> int:
+    def __len__(self: Self) -> int:
         """
         The length operator, ``len()``.
 
@@ -1170,29 +1170,37 @@ class DecimalDateRange(object):
         if not isinstance(index, int):
             raise TypeError("DecimalDateRange index argument is not an `int`.")
 
+        if self.__last is None:
+            raise IndexError(
+                f"DecimalDateRange object index {index} into empty sequence"
+            )
+
         if index == 0:
             return self.__start
+
+        if index == -1:
+            return self.__last
 
         if index > 0:
             if self.__length <= index:
                 raise IndexError(
                     f"DecimalDateRange object index {index} out of range: [0..{self.__length}[."
                 )
+
             return self.__start.next(index * self.__step)
 
-        if index < 0:
+        if index < -1:
             if index < -self.__length:
                 raise IndexError(
                     f"DecimalDateRange object index {index} out of range: [-{self.__length}..0[."
                 )
-            print("stop>", self.__stop)
-            print("last>", ((self.__length - 1) * self.__step))
-            prev = self.__stop.previous(index * -self.__step)
-            print("prev>", prev, " - ", index * -self.__step)
-            return prev
+
+            return self.__last.next((1 + index) * self.__step)
 
         # To make `mypy` not complain about missing return statement -> exclude from coverage
-        raise RuntimeError("Failure to compare argument")  # pragma: no cover
+        raise RuntimeError("Failure to compare index argument")  # pragma: no cover
+
+    # ---
 
     def start(self: Self) -> DecimalDate:
         return self.__start
@@ -1200,11 +1208,11 @@ class DecimalDateRange(object):
     def stop(self: Self) -> DecimalDate:
         return self.__stop
 
-    def length(self: Self) -> int:
-        return self.__length
-
     def step(self: Self) -> int:
         return self.__step
+
+    def length(self: Self) -> int:
+        return self.__length
 
     def last(self: Self) -> DecimalDate | None:
         return self.__last
