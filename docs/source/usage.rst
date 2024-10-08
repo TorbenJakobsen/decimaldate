@@ -123,8 +123,8 @@ The usual comparison operators are available:
     >>> DecimalDate.today() >= DecimalDate.yesterday()
     True
 
-Methods
--------
+Instance Methods
+----------------
 
 ``year()``
     The year of date as an integer (1-9999).
@@ -146,7 +146,6 @@ Methods
     >>> from decimaldate import DecimalDate
     >>> DecimalDate(2024_09_11).day()
     11
-
 
 ``weekday()``
     The day of the week as an integer (0-6), where Monday == ``0`` ... Sunday == ``6``.
@@ -339,7 +338,43 @@ Class Methods
     >>> DecimalDate.tomorrow()
 
 ``range()``
+    Return an object that produces a sequence of ``DecimalDate`` objects
+    from ``start`` (inclusive) to ``stop`` (exclusive)
+    by one day.
+
+    Valid argument types are (except``None``) identical to ``DecimalDate``.
+
+    >>> for dd in DecimalDate.range(2023_05_04, 2023_05_07):
+    >>>     print(dd.as_str('.'))
+    2023.05.04
+    2023.05.05
+    2023.05.06
+
     See ``DecimalDateRange``.
+
+``count()``
+    Make an iterator that returns evenly spaced decimal dates beginning with start.
+
+    >>> from decimaldate import DecimalDate
+    >>> for idx, dd in enumerate(DecimalDate.count(2024_03_01, 7)):
+    >>>     if idx >= 6:
+    >>>         break
+    >>>     print(idx, dd.isoformat())
+    0 2024-03-01
+    1 2024-03-08
+    2 2024-03-15
+    3 2024-03-22
+    4 2024-03-29
+    5 2024-04-05
+
+    Similar to ``itertools.count()``.
+    https://docs.python.org/3/library/itertools.html#itertools.count
+    intended for ``zip()`` and ``map()``.
+
+    The iterator will continue until it reaches beyond valid ``decimal.date``values;
+    eg. less than 1-01-01 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
+    and then throw ``OverflowError``.
+
 
 ``try_instantiate()``
     A new instance of ``DecimalDate`` if successful; otherwise ``None``.
@@ -393,3 +428,81 @@ Creation
     20240214
     20240215
     20240216
+
+Representation
+--------------
+
+``repr()``
+    >>> from decimaldate import DecimalDate, DecimalDateRange
+    >>> repr(DecimalDateRange(DecimalDate(2024_02_14), DecimalDate(2024_02_17), 3))
+    DecimalDateRange(20240214, 20240217, 3)
+
+Instance Methods
+----------------
+
+``start()``
+    Start of sequence as called when initializing.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+    >>> rng.start()
+    DecimalDate(20241001)
+
+``stop()``
+    Stop of sequence as called when initializing.
+
+    Often different from the last ``DecimalDate`` in the sequence.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+    >>> rng.stop()
+    DecimalDate(20241101)
+    >>> rng.last()
+    DecimalDate(20241029)
+
+``step()``
+    Step of sequence as called when initializing.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+    >>> rng.step()
+    4
+    
+``length()``
+    Length of sequence.
+
+    Identical to ``len()``.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+    >>> list(rng)
+    [DecimalDate(20241001), DecimalDate(20241005), DecimalDate(20241009), DecimalDate(20241013), DecimalDate(20241017), DecimalDate(20241021), DecimalDate(20241025), DecimalDate(20241029)]
+    >>> rng.length()
+    8
+    >>> len(rng)
+    8
+
+    >>> from decimaldate import DecimalDate, DecimalDateRange
+    >>> rng = DecimalDateRange(DecimalDate.today(), DecimalDate.today())
+    >>> list(rng)
+    []
+    >>> rng.length()
+    0
+    >>> len(rng)
+    0
+
+``last()``
+    Last ``DecimalDate`` in sequence.
+
+    Often different from the ``stop`` argument.
+
+    If the sequence is empty; then returns ``None``.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> rng = DecimalDateRange(2024_10_01, 2024_11_01, 4)
+    >>> list(rng)
+    [DecimalDate(20241001), DecimalDate(20241005), DecimalDate(20241009), DecimalDate(20241013), DecimalDate(20241017), DecimalDate(20241021), DecimalDate(20241025), DecimalDate(20241029)]
+    >>> rng.last()
+    DecimalDate(20241029)
+    >>> rng.stop()
+    DecimalDate(20241101)

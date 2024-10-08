@@ -236,7 +236,7 @@ class DecimalDate(object):
 
         If argument is not present or ``None``, then use today's date.
 
-        :param dd: > date representation on the form ``yyyymmdd`` or a ``datetime``, defaults to ``None``
+        :param dd: date representation on the form ``yyyymmdd`` or a ``datetime``, defaults to ``None``
         :type dd: DecimalDateInitTypes | Self | None, optional
         :raises ValueError: If not a valid date, that can be represented on the form ``yyyymmdd``.
         :raises TypeError: If argument type is not valid (``None``, ``DecimalDate``, ``int``, ``str``, ``datetime``).
@@ -794,7 +794,7 @@ class DecimalDate(object):
         intended for ``zip()`` and ``map()``.
 
         The iterator will continue until it reaches beyond valid ``decimal.date``values;
-        eg. less than 1-1-1 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
+        eg. less than 1-01-01 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
         and then throw ``OverflowError``.
 
         :param start: The starting decimal date, defaults to ``None``. If no argument or ``None`` uses todays's date as start.
