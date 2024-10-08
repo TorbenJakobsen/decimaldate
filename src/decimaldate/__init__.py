@@ -1115,30 +1115,39 @@ class DecimalDateRange(object):
 
         # TODO replace naive implementation by using % and //
 
+        #
+        # start == stop
+        #
+
         if self.__start == self.__stop:
             return False
 
-        elif self.__start < self.__stop:
+        _current = self.__start
+
+        #
+        # start < stop
+        #
+
+        if self.__start < self.__stop:
             if self.__step < 0:
                 return False
-            else:
-                _current = self.__start
-                while _current < self.__stop:
-                    if _current == dd:
-                        return True
-                    _current = _current.next(self.__step)
-                return False
+            while _current < self.__stop:
+                if _current == dd:
+                    return True
+                _current = _current.next(self.__step)
+            return False
 
-        else:
-            if self.__step > 0:
-                return False
-            else:
-                _current = self.__start
-                while _current > self.__stop:
-                    if _current == dd:
-                        return True
-                    _current = _current.next(self.__step)
-                return False
+        #
+        # start > stop
+        #
+
+        if self.__step > 0:
+            return False
+        while _current > self.__stop:
+            if _current == dd:
+                return True
+            _current = _current.next(self.__step)
+        return False
 
     def __getitem__(self: Self, index: int) -> DecimalDate:
         """
