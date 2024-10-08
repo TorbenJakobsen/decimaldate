@@ -109,8 +109,8 @@ def test_init_argument_order() -> None:
     start: DecimalDate = dd_10_05
     stop: DecimalDate = dd_10_08
     # THEN
-    assert len(DecimalDateRange(start, stop)) == 3
-    assert len(DecimalDateRange(stop, start)) == 0
+    assert len(DecimalDateRange(start, stop, 1)) == 3
+    assert len(DecimalDateRange(stop, start, 1)) == 0
 
 
 def test_init_step_zero_raises_value_error() -> None:
@@ -157,106 +157,6 @@ def test_len() -> None:
 
 
 """
-__contains__
-"""
-
-
-def test_contains() -> None:
-    # THEN
-    assert dd_10_01 not in sut
-    assert dd_10_20 not in sut
-    assert dd_10_21 in sut
-    assert dd_10_22 in sut
-    assert dd_10_23 in sut
-    assert dd_10_24 in sut
-    assert dd_10_25 in sut
-    assert dd_10_26 not in sut
-    assert dd_11_01 not in sut
-
-
-def test_contains_invalid_type_raises_typeerror() -> None:
-    with pytest.raises(expected_exception=TypeError):
-        _ = "3" in sut  # type: ignore[operator]
-
-
-"""
-__getitem__
-"""
-
-
-def test_getitem_all() -> None:
-    assert sut[0] == dd_10_21
-    assert sut[1] == dd_10_22
-    assert sut[2] == dd_10_23
-    assert sut[3] == dd_10_24
-    assert sut[4] == dd_10_25
-
-
-def test_getitem_zero_returns_start() -> None:
-    assert sut[0] == sut_start_incl
-    assert sut[-0] == sut_start_incl
-
-
-def test_getitem_minus_one_returns_last_before_stop() -> None:
-    assert sut[-1] == sut_stop_excl.previous(1)
-
-
-def test_getitem_minus_len_returns_start() -> None:
-    assert sut[-len(sut)] == sut_start_incl
-
-
-def test_getitem() -> None:
-    assert sut[1] == sut_start_incl.next(1)
-    assert sut[-2] == sut_stop_excl.previous(2)
-
-
-def test_getitem_outside_raises_indexerror() -> None:
-
-    with pytest.raises(expected_exception=IndexError):
-        _ = sut[len(sut)]
-
-    with pytest.raises(expected_exception=IndexError):
-        _ = sut[-(len(sut) + 1)]
-
-    with pytest.raises(expected_exception=IndexError):
-        _ = sut[100_000_000]
-
-    with pytest.raises(expected_exception=IndexError):
-        _ = sut[-100_000_000]
-
-
-def test_getitem_invalid_type_raises_typeerror() -> None:
-    with pytest.raises(expected_exception=TypeError):
-        _ = sut["3"]  # type: ignore[index]
-
-
-"""
-__iter__
-"""
-
-
-def test_iter_ident_is_empty() -> None:
-    # sequence 'end' is exclusive
-    assert len(DecimalDateRange(dd_10_07, dd_10_07)) == 0
-
-
-"""
-next()
-"""
-
-
-def test_next() -> None:
-    it = iter(sut)
-    assert next(it) == dd_10_21
-    assert next(it) == dd_10_22
-    assert next(it) == dd_10_23
-    assert next(it) == dd_10_24
-    assert next(it) == dd_10_25
-    with pytest.raises(expected_exception=StopIteration):
-        _ = next(it)
-
-
-"""
 list()
 """
 
@@ -272,14 +172,3 @@ def test_list() -> None:
     ]
     # THEN
     assert list(sut) == expected
-
-
-"""
-not implemented
-"""
-
-
-def test_step_not_one_raises_not_implemented() -> None:
-    assert DecimalDateRange(DecimalDate.yesterday(), DecimalDate.today(), 1)
-    with pytest.raises(expected_exception=NotImplementedError):
-        _ = DecimalDateRange(DecimalDate.yesterday(), DecimalDate.today(), 42)

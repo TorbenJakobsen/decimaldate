@@ -67,9 +67,6 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
 
 Python decimal date utility to handle integer dates on the form ``yyyymmdd``.
 
-Even if the module is classified as Beta-software and in development
-with a low version number it is stable and ready for production.
-
 =================
   Main Features
 =================

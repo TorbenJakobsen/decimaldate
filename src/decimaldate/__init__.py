@@ -139,9 +139,9 @@ class DecimalDate(object):
         >>> DicimalDate(DecimalDate.__start_of_month(DecimalDate("2024_02_06").as_datetime()))
         DecimalDate(20240201)
 
-        :param dt: A ``datetime``.
+        :param dt: A ``datetime`` object.
         :type dt: datetime
-        :return: start date of year and month.
+        :return: start date of year and month (day will always be 1).
         :rtype: datetime
         """
         return dt.replace(day=1)  # new datetime
@@ -917,22 +917,103 @@ class DecimalDateRange:
         if self.__step == 0:
             raise ValueError("DecimalDateRange argument step 0 is not valid.")
 
-        if self.__step != 1:
-            raise NotImplementedError(
-                f"DecimalDateRange argument step {self.__step} != 1 is not implemented."
-            )
+        # ---
 
-        self.__length = (
-            0
-            if self.__start > self.__stop
-            else (self.__stop.as_datetime() - self.__start.as_datetime()).days
-        )
+        # TODO replace naive implementation by using % and //
 
-    def __iter__(self) -> Generator[DecimalDate, Any, None]:
-        current: DecimalDate = self.__start
-        while current < self.__stop:
-            yield current
-            current = current.next()
+        if self.__start == self.__stop:
+            self.__length = 0
+
+        elif self.__start < self.__stop:
+            if self.__step < 0:
+                self.__length = 0
+            else:
+                self.__length = 0
+                _current = self.__start
+                while _current < self.__stop:
+                    self.__length += 1
+                    _current = _current.next(self.__step)
+
+        else:
+            if self.__step > 0:
+                self.__length = 0
+            else:
+                self.__length = 0
+                _current = self.__start
+                while _current > self.__stop:
+                    self.__length += 1
+                    _current = _current.next(self.__step)
+
+    def __repr__(self: Self) -> str:
+        """
+        When called by built-in ``repr()`` method returning a machine readable representation of ``DecimalDateRange``.
+
+        >>> from decimaldate import DecimalDateRange
+        >>> DecimalDateRange("2023_01_06", 2023_02_17)
+        DecimalDateRange(20230106, 20230217, 1)
+
+        :return: machine readable representation of this instance.
+        :rtype: str
+        """
+        return f"DecimalDateRange({self.start().as_int(), self.stop().as_int(), self.step()})"
+
+    def __iter__(self: Self) -> Generator[DecimalDate, Any, None]:
+        """
+        Return an object that produces a sequence of ``DecimalDate``
+        from start (inclusive) to stop (exclusive) by step.
+
+        Behave similar to regular ``range()`` but for ``DecimalDate``:
+
+        >>> list(range(1, 7, 1))
+        [1, 2, 3, 4, 5, 6]
+        >>> list(range(1, 7, -1))
+        []
+        >>> list(range(7, 1, -1))
+        [7, 6, 5, 4, 3, 2]
+        >>> list(range(7, 1, 1))
+        []
+        >>> list(range(4, 4, 1))
+        []
+        >>> list(range(4, 4, -1))
+        []
+        >>> list(range(1, 7, 5))
+        [1, 6]
+        >>> list(range(1, 7, 6))
+        [1]
+        >>> list(range(1, 7, 7))
+        [1]
+        >>> list(range(1, 7, 42))
+        [1]
+        >>> list(range(7, 1, -5))
+        [7, 2]
+        >>> list(range(7, 1, -6))
+        [7]
+        >>> list(range(7, 1, -7))
+        [7]
+        >>> list(range(7, 1, -42))
+        [7]
+
+        :yield: _description_
+        :rtype: Generator[DecimalDate, Any, None]
+        """
+
+        if self.__start < self.__stop:
+            if self.__step < 0:
+                return
+
+            current: DecimalDate = self.__start
+            while current < self.__stop:
+                yield current
+                current = current.next(self.__step)  # go forward
+
+        else:
+            if self.__step > 0:
+                return
+
+            current: DecimalDate = self.__start
+            while current > self.__stop:
+                yield current
+                current = current.next(self.__step)  # go back
 
     def __len__(self) -> int:
         """
@@ -946,7 +1027,7 @@ class DecimalDateRange:
         """
         return self.__length
 
-    def __contains__(self, dd: DecimalDate) -> bool:
+    def __contains__(self: Self, dd: DecimalDate) -> bool:
         """
         The containment-check operator, ``in``.
 
@@ -959,9 +1040,35 @@ class DecimalDateRange:
             raise TypeError(
                 "DecimalDateRange contains argument is not a `DecimalDate`."
             )
-        return self.__start <= dd < self.__stop
 
-    def __getitem__(self, i: int) -> DecimalDate:
+        # TODO replace naive implementation by using % and //
+
+        if self.__start == self.__stop:
+            return False
+
+        elif self.__start < self.__stop:
+            if self.__step < 0:
+                return False
+            else:
+                _current = self.__start
+                while _current < self.__stop:
+                    if _current == dd:
+                        return True
+                    _current = _current.next(self.__step)
+                return False
+
+        else:
+            if self.__step > 0:
+                return False
+            else:
+                _current = self.__start
+                while _current > self.__stop:
+                    if _current == dd:
+                        return True
+                    _current = _current.next(self.__step)
+                return False
+
+    def __getitem__(self: Self, index: int) -> DecimalDate:
         """
         The index operator, ``[]``.
 
@@ -970,34 +1077,67 @@ class DecimalDateRange:
 
         Negative argument is not implemented!
 
-        :param i: index into range [0..len[.
-        :type i: int
+        :param index: index into range [0..len[.
+        :type index: int
         :raises TypeError: If index is not an ``int``.
         :raises NotImplementedError: If index is negative (less than 0)
-        :raises IndexError: If index is outside sequence [0..len[.
+        :raises IndexError: If index is outside sequence [0..len[ or [-len..0[.
         :raises RuntimeError: If failed to compare index.
         :return: Object at index in sequence.
         :rtype: DecimalDate
         """
-        if not isinstance(i, int):
+        if not isinstance(index, int):
             raise TypeError("DecimalDateRange index argument is not an `int`.")
 
-        if i == 0:
+        if index == 0:
             return self.__start
 
-        if i > 0:
-            if not (0 <= i < self.__length):
+        if index > 0:
+            if self.__length <= index:
                 raise IndexError(
-                    f"DecimalDateRange object index {i} out of range: [0..{self.__length}[."
+                    f"DecimalDateRange object index {index} out of range: [0..{self.__length}[."
                 )
-            return self.__start.next(i)
+            return self.__start.next(index * self.__step)
 
-        if i < 0:
-            if not (-self.__length <= i < 0):
+        if index < 0:
+            if index < -self.__length:
                 raise IndexError(
-                    f"DecimalDateRange object index {i} out of range: [-{self.__length}..0[."
+                    f"DecimalDateRange object index {index} out of range: [-{self.__length}..0[."
                 )
-            return self.__stop.previous(-i)
+            print("stop>", self.__stop)
+            print("last>", ((self.__length - 1) * self.__step))
+            prev = self.__stop.previous(index * -self.__step)
+            print("prev>", prev, " - ", index * -self.__step)
+            return prev
 
         # To make `mypy` not complain about missing return statement -> exclude from coverage
         raise RuntimeError("Failure to compare argument")  # pragma: no cover
+
+    def start(self: Self) -> DecimalDate:
+        return self.__start
+
+    def stop(self: Self) -> DecimalDate:
+        return self.__stop
+
+    def length(self: Self) -> int:
+        return self.__length
+
+    def step(self: Self) -> DecimalDate:
+        return self.__step
+
+    def last(self: Self) -> DecimalDate | None:
+
+        # TODO replace naive implementation by using % and //
+
+        if self.__start == self.__stop:
+            return None
+
+        elif self.__start < self.__stop:
+            if self.__step < 0:
+                return None
+            return self.__start.next((self.__length // self.__step) * self.__step)
+
+        else:
+            if self.__step > 0:
+                return None
+            return self.__start.next(-self.__length // self.__step)
