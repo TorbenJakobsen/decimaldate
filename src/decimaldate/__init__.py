@@ -1027,7 +1027,7 @@ class DecimalDateRange(object):
         :return: machine readable representation of this instance.
         :rtype: str
         """
-        return f"DecimalDateRange({self.start().as_int(), self.stop().as_int(), self.step()})"
+        return f"DecimalDateRange({self.start().as_int()}, {self.stop().as_int()}, {self.step()})"
 
     def __iter__(self: Self) -> Generator[DecimalDate, Any, None]:
         """

@@ -79,7 +79,7 @@ def test_getitem() -> None:
     assert sut[-2] == sut_stop_excl.previous(2)
 
 
-def test_getitem_outside_raises_indexerror() -> None:
+def test_getitem_outside_raises_index_error() -> None:
 
     with pytest.raises(expected_exception=IndexError):
         _ = sut[len(sut)]
@@ -94,17 +94,28 @@ def test_getitem_outside_raises_indexerror() -> None:
         _ = sut[-100_000_000]
 
 
-def test_getitem_invalid_type_raises_typeerror() -> None:
+def test_getitem_invalid_type_raises_type_error() -> None:
     with pytest.raises(expected_exception=TypeError):
         _ = sut["3"]  # type: ignore[index]
 
 
+def test_getitem_empty_sequence_raises_index_error(today_as_decimaldate_int) -> None:
+    # WHEN
+    _sut: DecimalDateRange = DecimalDateRange(
+        today_as_decimaldate_int, today_as_decimaldate_int
+    )
+    # THEN
+    assert list(_sut) == []
+    with pytest.raises(expected_exception=IndexError):
+        _ = _sut[0]
+
+
 #
 #
 #
 
 
-def test_1_7_1():
+def test_getitem_1_7_1():
     # WHEN
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 1)
@@ -141,7 +152,7 @@ def test_1_7_1():
         _ = _sut[6]
 
 
-def test_1_7_2():
+def test_getitem_1_7_2():
     # WHEN
 
     _sut = DecimalDateRange(dd_10_01, dd_10_07, 2)
@@ -173,7 +184,7 @@ def test_1_7_2():
         _ = _sut[3]
 
 
-def test_1_7_3():
+def test_getitem_1_7_3():
 
     # WHEN
 
@@ -204,7 +215,7 @@ def test_1_7_3():
         _ = _sut[2]
 
 
-def test_1_7_4():
+def test_getitem_1_7_4():
 
     # WHEN
 
@@ -235,7 +246,7 @@ def test_1_7_4():
         _ = _sut[2]
 
 
-def test_1_7_5():
+def test_getitem_1_7_5():
 
     # WHEN
 
@@ -266,7 +277,7 @@ def test_1_7_5():
         _ = _sut[2]
 
 
-def test_1_7_6():
+def test_getitem_1_7_6():
 
     # WHEN
 
@@ -294,7 +305,7 @@ def test_1_7_6():
         _ = _sut[1]
 
 
-def test_1_7_7():
+def test_getitem_1_7_7():
 
     # WHEN
 
@@ -322,7 +333,7 @@ def test_1_7_7():
         _ = _sut[1]
 
 
-def test_1_7_365():
+def test_getitem_1_7_365():
 
     # WHEN
 
@@ -355,7 +366,7 @@ def test_1_7_365():
 #
 
 
-def test_7_1_1():
+def test_getitem_7_1_1():
     # WHEN
 
     _sut = DecimalDateRange(dd_10_07, dd_10_01, -1)
@@ -392,7 +403,7 @@ def test_7_1_1():
         _ = _sut[6]
 
 
-def test_7_1_2():
+def test_getitem_7_1_2():
     # WHEN
 
     _sut = DecimalDateRange(dd_10_07, dd_10_01, -2)
@@ -424,7 +435,7 @@ def test_7_1_2():
         _ = _sut[3]
 
 
-def test_7_1_3():
+def test_getitem_7_1_3():
 
     # WHEN
 
@@ -455,7 +466,7 @@ def test_7_1_3():
         _ = _sut[2]
 
 
-def test_7_1_4():
+def test_getitem_7_1_4():
 
     # WHEN
 
@@ -486,7 +497,7 @@ def test_7_1_4():
         _ = _sut[2]
 
 
-def test_7_1_5():
+def test_getitem_7_1_5():
 
     # WHEN
 
@@ -517,7 +528,7 @@ def test_7_1_5():
         _ = _sut[2]
 
 
-def test_7_1_6():
+def test_getitem_7_1_6():
 
     # WHEN
 
@@ -545,7 +556,7 @@ def test_7_1_6():
         _ = _sut[1]
 
 
-def test_7_1_7():
+def test_getitem_7_1_7():
 
     # WHEN
 
@@ -573,7 +584,7 @@ def test_7_1_7():
         _ = _sut[1]
 
 
-def test_7_1_365():
+def test_getitem_7_1_365():
 
     # WHEN
 

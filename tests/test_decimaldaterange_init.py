@@ -149,14 +149,16 @@ def test_init_step_str_raises_type_error() -> None:
         _: DecimalDateRange = DecimalDateRange(2024_10_21, "20241026", "1")  # type: ignore[arg-type]
 
 
-"""
-__len__
-"""
-
-
-def test_len() -> None:
+def test_str() -> None:
+    # GIVEN
+    step: int = 7
+    # WHEN
+    _sut: DecimalDateRange = DecimalDateRange(sut_start_incl, sut_stop_excl, step)
     # THEN
-    assert len(sut) == 5
+    assert (
+        repr(_sut)
+        == f"DecimalDateRange({sut_start_incl.as_int()}, {sut_stop_excl.as_int()}, {step})"
+    )
 
 
 """
