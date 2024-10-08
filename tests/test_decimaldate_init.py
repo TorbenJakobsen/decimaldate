@@ -8,7 +8,6 @@ from decimaldate import DecimalDate
 
 def test_init_no_arguments(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # WHEN
     sut: DecimalDate = DecimalDate()
@@ -19,7 +18,6 @@ def test_init_no_arguments(
 
 def test_init_none(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # WHEN
     sut: DecimalDate = DecimalDate(None)
@@ -37,7 +35,6 @@ def test_init_bad_string_raises_valueerror() -> None:
 
 def test_init_int_today(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_as_int: int = today_as_decimaldate_int
@@ -50,7 +47,6 @@ def test_init_int_today(
 
 def test_init_str_today(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_as_str: str = str(today_as_decimaldate_int)
@@ -63,7 +59,6 @@ def test_init_str_today(
 
 def test_init_date_today(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_as_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -78,7 +73,6 @@ def test_init_date_today(
 
 def test_init_datetime_today(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_as_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -91,9 +85,7 @@ def test_init_datetime_today(
     assert sut.as_datetime() == today_as_datetime
 
 
-def test_init_datetime(
-    freezer,
-) -> None:
+def test_init_datetime() -> None:
     # GIVEN
     arbitrary_date = 2024_09_22
     arbitrary_dd: DecimalDate = DecimalDate(arbitrary_date)
@@ -116,7 +108,6 @@ def test_init_float_raises_typeerror() -> None:
 
 def test_init_datetime_now(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today: datetime = datetime.today()  # no tzinfo

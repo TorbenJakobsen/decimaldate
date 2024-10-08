@@ -245,7 +245,6 @@ tomorrow
 
 def test_tomorrow(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # WHEN
     sut: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -261,7 +260,6 @@ yesterday
 
 def test_yesterday(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # WHEN
     sut: DecimalDate = DecimalDate(today_as_decimaldate_int)

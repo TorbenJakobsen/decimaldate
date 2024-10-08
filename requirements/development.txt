@@ -2,7 +2,6 @@ build
 pytest
 twine
 setuptools
-pytest-freezegun
 coverage
 flake8
 mypy

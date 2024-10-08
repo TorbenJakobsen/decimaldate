@@ -21,6 +21,26 @@ Bugfixes
 
 * None.
 
+======================
+  0.2.1 (2024-10-08)
+======================
+
+New Features
+------------
+
+* Added ``count()`` - not yet unit tested
+
+Other Changes
+-------------
+
+* Updates to documentation.
+* Removed dependency of deprecated ``pytest-freezegun``.
+
+Bugfixes
+--------
+
+* None.
+
 =======================
   0.2.0 (2024-10-03)
 =======================

@@ -9,7 +9,6 @@ __eq__
 
 def test_dunder_equality_true(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -22,7 +21,6 @@ def test_dunder_equality_true(
 def test_dunder_equality_false(
     today_as_decimaldate_int: int,
     future_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -34,7 +32,6 @@ def test_dunder_equality_false(
 
 def test_equality_ident(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -46,7 +43,6 @@ def test_equality_ident(
 
 def test_equality_same_value(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today1_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -58,7 +54,6 @@ def test_equality_same_value(
 
 def test_equality_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
@@ -78,7 +73,6 @@ __ne__
 def test_dunder_non_equality_true(
     today_as_decimaldate_int: int,
     future_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -90,7 +84,6 @@ def test_dunder_non_equality_true(
 
 def test_dunder_non_equality_false(
     today_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     today_dd: DecimalDate = DecimalDate(today_as_decimaldate_int)
@@ -102,7 +95,6 @@ def test_dunder_non_equality_false(
 
 def test_dunder_non_equality_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
@@ -121,7 +113,6 @@ __gt__
 def test_dunder_greater_than(
     today_as_decimaldate_int: int,
     past_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     # WHEN
@@ -135,7 +126,6 @@ def test_dunder_greater_than(
 
 def test_dunder_greater_than_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
@@ -154,7 +144,6 @@ __ge__
 def test_dunder_greater_than_or_equal(
     today_as_decimaldate_int: int,
     past_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     # WHEN
@@ -169,7 +158,6 @@ def test_dunder_greater_than_or_equal(
 
 def test_dunder_greater_than_or_equal_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
@@ -188,7 +176,6 @@ __lt__
 def test_dunder_less_than(
     today_as_decimaldate_int: int,
     past_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     # WHEN
@@ -202,7 +189,6 @@ def test_dunder_less_than(
 
 def test_dunder_less_than_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
@@ -221,7 +207,6 @@ __le__
 def test_dunder_less_than_or_equal(
     today_as_decimaldate_int: int,
     past_as_decimaldate_int: int,
-    freezer,
 ) -> None:
     # GIVEN
     # WHEN
@@ -235,7 +220,6 @@ def test_dunder_less_than_or_equal(
 
 def test_dunder_less_than_or_equal_unsupported_type_raises_typeerror(
     today_as_decimaldate_int,
-    freezer,
 ) -> None:
     # WHEN
     today = DecimalDate.today()
