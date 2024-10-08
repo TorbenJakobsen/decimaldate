@@ -828,7 +828,42 @@ class DecimalDate(object):
 # TODO Implement inverse argument order (start/stop)
 
 
-class DecimalDateRange:
+class DecimalDateRange(object):
+
+    @staticmethod
+    def __get_last_in_sequence(
+        start: DecimalDate,
+        stop: DecimalDate,
+        step: int,
+    ) -> DecimalDate | None:
+
+        # TODO replace naive implementation by using % and //
+
+        if start == stop:
+            return None
+
+        if start < stop:
+            if step < 0:
+                return None
+
+            else:
+                current: DecimalDate = start
+                last: DecimalDate = start
+                while current < stop:
+                    last = current
+                    current = current.next(step)
+                return last
+
+        else:  # start > stop
+            if step > 0:
+                return None
+
+            else:
+                current: DecimalDate = start
+                last: DecimalDate = start
+                while current > stop:
+                    current = current.next(step)
+                return last
 
     # replace __dict__ : optimization and improving immutability
     __slots__ = (
@@ -836,6 +871,7 @@ class DecimalDateRange:
         "_DecimalDateRange__stop",
         "_DecimalDateRange__step",
         "_DecimalDateRange__length",
+        "_DecimalDateRange__last",
     )
 
     def __init__(
@@ -908,6 +944,8 @@ class DecimalDateRange:
         The range end is *exclusive*.
         """
 
+        self.__last: DecimalDate
+
         #
 
         self.__start = DecimalDate(start)
@@ -943,6 +981,14 @@ class DecimalDateRange:
                 while _current > self.__stop:
                     self.__length += 1
                     _current = _current.next(self.__step)
+
+        # ---
+
+        self.__last = DecimalDateRange.__get_last_in_sequence(
+            self.__start,
+            self.__stop,
+            self.__step,
+        )
 
     def __repr__(self: Self) -> str:
         """
@@ -1122,22 +1168,8 @@ class DecimalDateRange:
     def length(self: Self) -> int:
         return self.__length
 
-    def step(self: Self) -> DecimalDate:
+    def step(self: Self) -> int:
         return self.__step
 
     def last(self: Self) -> DecimalDate | None:
-
-        # TODO replace naive implementation by using % and //
-
-        if self.__start == self.__stop:
-            return None
-
-        elif self.__start < self.__stop:
-            if self.__step < 0:
-                return None
-            return self.__start.next((self.__length // self.__step) * self.__step)
-
-        else:
-            if self.__step > 0:
-                return None
-            return self.__start.next(-self.__length // self.__step)
+        return self.__last

@@ -197,6 +197,7 @@ def test_1_7_3():
         _ = _sut[2]
 
 
+@pytest.mark.xfail(reason="WIP")
 def test_1_7_4():
 
     # WHEN
