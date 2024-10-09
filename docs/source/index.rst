@@ -165,10 +165,3 @@ See the :doc:`usage <./usage>` page.
 ======================================
 
 See the :doc:`usage <./usage>` page.
-
-===============
-  Outstanding
-===============
-
-- ``range`` step.
-- ``range`` inverse start and stop.

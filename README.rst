@@ -233,6 +233,7 @@ To see the HTML report, open the default location: ``htmlcov/index.html`` in a b
 .. code:: bash
 
    . venv/bin/activate
+   coverage run -m pytest tests
    coverage report -m
    coverage html
    # macOS
@@ -406,9 +407,3 @@ rstcheck
 
    See rstcheck_.
 
-===============
-  Outstanding
-===============
-
-- ``range`` step.
-- ``range`` inverse start and stop.

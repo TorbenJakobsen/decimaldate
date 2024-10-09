@@ -100,10 +100,3 @@ There are no other dependencies for deployment.
 =================
 
 Documentation is hosted on readthedocs_.
-
-===============
-  Outstanding
-===============
-
-- ``range`` step.
-- ``range`` inverse start and stop.
