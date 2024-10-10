@@ -22,6 +22,25 @@ Bugfixes
 * None.
 
 ======================
+  0.2.3 (2024-10-10)
+======================
+
+New Features
+------------
+
+* Added ``DecimalDateRange.has_empty_sequence()`` simplifying internal logic.
+
+Other Changes
+-------------
+
+* Updates to documentation.
+
+Bugfixes
+--------
+
+* None.
+
+======================
   0.2.2 (2024-10-08)
 ======================
 

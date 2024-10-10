@@ -481,6 +481,8 @@ class DecimalDate(object):
         """
         The day of the week as an integer (0-6), where Monday == ``0`` ... Sunday == ``6``.
 
+        See also ``isoweekday()``.
+
         :return: Day of the week (0-6)
         :rtype: int
         """
@@ -489,6 +491,8 @@ class DecimalDate(object):
     def isoweekday(self: Self) -> int:
         """
         The day of the week as an integer (1-7), where Monday == ``1`` ... Sunday == ``7``.
+
+        See also ``weekday()``.
 
         :return: Day of the week (1-7)
         :rtype: int
@@ -797,6 +801,8 @@ class DecimalDate(object):
         eg. less than 1-01-01 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
         and then throw ``OverflowError``.
 
+        To get the length of the sequence use ``len(dd)`` or ``dd.length()``.
+
         :param start: The starting decimal date, defaults to ``None``. If no argument or ``None`` uses todays's date as start.
         :type start: DecimalDate | DecimalDateInitTypes, optional
         :param step: difference in day between dates in sequence, defaults to 1
@@ -816,6 +822,7 @@ class DecimalDate(object):
 
         dd: DecimalDate = cls(start)
         while True:
+            # intentionally never stops
             yield dd
             dd = dd.next(step)
 
@@ -900,7 +907,7 @@ class DecimalDateRange(object):
             return 0
 
         _length: int = 0
-        _current = start
+        _current: DecimalDate = start
 
         #
         # start < stop
@@ -974,7 +981,7 @@ class DecimalDateRange(object):
         if step is None:
             raise ValueError("DecimalDateRange argument step is None.")
         if not isinstance(step, int):
-            raise TypeError("DecimalDateRange step argument is not an `int`.")
+            raise TypeError("DecimalDateRange argument step is not an `int`.")
 
         #
         # Instance variables
@@ -996,13 +1003,18 @@ class DecimalDateRange(object):
         *Currently only a value of ``1``is implemented*.
         """
 
-        self.__length: int
-        """ Internal instance value of the length of the range.\\
-        The range start is *inclusive*.\\
-        The range end is *exclusive*.
+        self.__last: DecimalDate | None
+        """ Internal instance value of the last ``DecimalDate`` object in the sequence.
+
+        If ``None`` then sequence is empty.
         """
 
-        self.__last: DecimalDate | None
+        self.__length: int
+        """ Internal instance value of the length of the range.
+
+        The range start is *inclusive*.\\
+        The range stop is *exclusive*.
+        """
 
         #
 
@@ -1013,18 +1025,22 @@ class DecimalDateRange(object):
         if self.__step == 0:
             raise ValueError("DecimalDateRange argument step 0 is not valid.")
 
-        self.__length = DecimalDateRange.__get_length_of_sequence(
-            self.__start,
-            self.__stop,
-            self.__step,
-        )
-
         self.__last = DecimalDateRange.__get_last_in_sequence(
             self.__start,
             self.__stop,
             self.__step,
         )
-        """ If ``None`` then sequence is empty. """
+        # If ``None`` then sequence is empty.
+
+        self.__length = (
+            0
+            if self.__last is None
+            else DecimalDateRange.__get_length_of_sequence(
+                self.__start,
+                self.__stop,
+                self.__step,
+            )
+        )
 
     def __repr__(self: Self) -> str:
         """
@@ -1050,20 +1066,17 @@ class DecimalDateRange(object):
         :rtype: Generator[DecimalDate, Any, None]
         """
 
+        if self.has_empty_sequence():
+            return
+
         _current: DecimalDate = self.__start
 
         if self.__start < self.__stop:
-            if self.__step < 0:
-                return
-
             while _current < self.__stop:
                 yield _current
                 _current = _current.next(self.__step)  # go forward
 
         else:
-            if self.__step > 0:
-                return
-
             while _current > self.__stop:
                 yield _current
                 _current = _current.next(self.__step)  # go back
@@ -1094,24 +1107,24 @@ class DecimalDateRange(object):
                 "DecimalDateRange contains argument is not a `DecimalDate`."
             )
 
+        if self.has_empty_sequence():
+            return False
+
         # TODO replace naive implementation by using % and //
+
+        _current = self.__start
 
         #
         # start == stop
         #
-
-        if self.__start == self.__stop:
-            return False
-
-        _current = self.__start
+        # Handled by self.has_empty_sequence()
+        #
 
         #
         # start < stop
         #
 
         if self.__start < self.__stop:
-            if self.__step < 0:
-                return False
             while _current < self.__stop:
                 if _current == dd:
                     return True
@@ -1122,8 +1135,6 @@ class DecimalDateRange(object):
         # start > stop
         #
 
-        if self.__step > 0:
-            return False
         while _current > self.__stop:
             if _current == dd:
                 return True
@@ -1150,7 +1161,7 @@ class DecimalDateRange(object):
         if not isinstance(index, int):
             raise TypeError("DecimalDateRange index argument is not an `int`.")
 
-        if self.__last is None:
+        if self.has_empty_sequence():
             raise IndexError(
                 f"DecimalDateRange object index {index} into empty sequence"
             )
@@ -1278,3 +1289,6 @@ class DecimalDateRange(object):
         :rtype: DecimalDate | None
         """
         return self.__last
+
+    def has_empty_sequence(self: Self) -> bool:
+        return self.last() is None

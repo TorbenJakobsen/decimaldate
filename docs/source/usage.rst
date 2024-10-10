@@ -506,3 +506,42 @@ Instance Methods
     DecimalDate(20241029)
     >>> rng.stop()
     DecimalDate(20241101)
+
+``has_empty_sequence()``
+    Convenience method similar to ``ddr.last() is None``.
+
+    An empty sequence happens if start and stop date are identical
+    or the step is not going the same "direction"" as the start to stop.  
+
+    This behaviour is similar to the regular ``range()``.
+    
+    >>> from decimaldate import DecimalDate
+    >>> ddr = DecimalDate.range(2023_01_23, 2023_01_23)
+    >>> ddr.has_empty_sequence()
+    True
+    >>> len(ddr)
+    0
+    >>> list(ddr)
+    []
+    >>> ddr[0]
+    # ... IndexError
+
+    >>> from decimaldate import DecimalDateRange
+    >>> ddr = DecimalDateRange(2023_01_01, 2024_01_01, 7)
+    >>> ddr.has_empty_sequence()
+    False
+
+    >>> from decimaldate import DecimalDateRange
+    >>> ddr = DecimalDateRange(2023_01_01, 2024_01_01, -7)
+    >>> ddr.has_empty_sequence()
+    True
+
+    >>> from decimaldate import DecimalDateRange
+    >>> ddr = DecimalDateRange(2024_01_01, 2023_01_01, 14)
+    >>> ddr.has_empty_sequence()
+    True
+
+    >>> from decimaldate import DecimalDateRange
+    >>> ddr = DecimalDateRange(2024_01_01, 2023_01_01, -14)
+    >>> ddr.has_empty_sequence()
+    False
