@@ -939,34 +939,32 @@ class DecimalDateRange(object):
 
     @staticmethod
     def __get_length_of_sequence(
-        start: DecimalDate,
-        stop: DecimalDate,
+        start_inclusive: DecimalDate,
+        stop_exclusive: DecimalDate,
         step: int,
     ) -> int:
-
-        # TODO replace naive implementation by using % and //
 
         #
         # start == stop
         #
 
-        if start == stop:
+        if start_inclusive == stop_exclusive:
             return 0
-
-        _length: int = 0
-        _current: DecimalDate = start
 
         #
         # start < stop
         #
 
-        if start < stop:
+        if start_inclusive < stop_exclusive:
             if step < 0:
                 return 0
-            while _current < stop:
-                _length += 1
-                _current = _current.next(step)  # go forward
-            return _length
+            return (
+                DecimalDate.diff_days(
+                    start_inclusive,
+                    stop_exclusive.previous(),
+                )
+                // step
+            ) + 1
 
         #
         # start > stop
@@ -974,10 +972,13 @@ class DecimalDateRange(object):
 
         if step > 0:
             return 0
-        while _current > stop:
-            _length += 1
-            _current = _current.next(step)  # go back
-        return _length
+        return (
+            DecimalDate.diff_days(
+                start_inclusive,
+                stop_exclusive.next(),
+            )
+            // step
+        ) + 1
 
     # replace __dict__ : optimization and improving immutability
     __slots__ = (
