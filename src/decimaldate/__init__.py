@@ -15,7 +15,7 @@ __all__ = [
     "DecimalDate",
     "DecimalDateRange",
 ]
-
+""" Objects exposed in module. """
 #
 # DecimalDate
 #
@@ -267,17 +267,18 @@ class DecimalDate(object):
 
         # ---
 
+        # Raises error if an integer can not be inferred
         self.__dd_int = DecimalDate.__parse_int_value_from_argument(dd)
 
-        self.__dd_str = str(self.__dd_int)
-
+        # If not a valid Gregorian date, then the following raises `ValueError`
         try:
-            # If not a valid Gregorian date, then the following raises `ValueError`
             self.__dd_datetime = DecimalDate.__int_as_datetime(self.__dd_int)
         except ValueError as e_info:
             raise ValueError(
                 f"argument {dd} is not a valid literal on the form `yyyymmdd`."
             ) from e_info
+
+        self.__dd_str = str(self.__dd_int)
 
         self.__year, self.__month, self.__day = DecimalDate.__split(self.__dd_int)
 
@@ -826,6 +827,30 @@ class DecimalDate(object):
             yield dd
             dd = dd.next(step)
 
+    @staticmethod
+    def diff_days(
+        arg_left: DecimalDate | DecimalDateInitTypes,
+        arg_right: DecimalDate | DecimalDateInitTypes,
+    ) -> int:
+        """
+        Difference in days between two decimal dates.
+
+        Result can be negative.
+
+        >>> DecimalDate.
+        :param arg_left: valid decimal date
+        :type arg_left: DecimalDate | DecimalDateInitTypes
+        :param arg_right: valid decimal date
+        :type arg_right: DecimalDate | DecimalDateInitTypes
+        :raises TypeError: if any argument is ``None``.
+        :return: the difference in days.
+        :rtype: int
+        """
+        if arg_left is None or arg_right is None:
+            raise TypeError("argument is None")
+
+        return (DecimalDate(arg_right).as_date() - DecimalDate(arg_left).as_date()).days
+
 
 #
 # DecimalDateRange
@@ -849,9 +874,32 @@ class DecimalDateRange(object):
     """
 
     @staticmethod
+    def __highest_multiple_of(arg: int, div: int) -> int:  # NOSONAR
+        """
+        Returns the highest multiple of ``0*div``, ``1*div``, ``2*div``, ``3*div`` ...  that is less than or equal to ``arg``.
+
+        >>> highest_multiple_of(7, 1)
+        7
+        >>> highest_multiple_of(7, 3)
+        6
+        >>> highest_multiple_of(23, 10)
+        20
+        >>> highest_multiple_of(23, 40)
+        0
+
+        :param arg: _description_
+        :type arg: int
+        :param div: _description_
+        :type div: int
+        :return: _description_
+        :rtype: int
+        """
+        return (arg // div) * div
+
+    @staticmethod
     def __get_last_in_sequence(
-        start: DecimalDate,
-        stop: DecimalDate,
+        start_inclusive: DecimalDate,
+        stop_exclusive: DecimalDate,
         step: int,
     ) -> DecimalDate | None:
 
@@ -861,20 +909,20 @@ class DecimalDateRange(object):
         # start == stop
         #
 
-        if start == stop:
+        if start_inclusive == stop_exclusive:
             return None
 
-        _current: DecimalDate = start
-        _last: DecimalDate = start
+        _current: DecimalDate = start_inclusive
+        _last: DecimalDate = start_inclusive
 
         #
         # start < stop
         #
 
-        if start < stop:
+        if start_inclusive < stop_exclusive:
             if step < 0:
                 return None
-            while _current < stop:
+            while _current < stop_exclusive:
                 _last = _current
                 _current = _current.next(step)
             return _last
@@ -885,7 +933,7 @@ class DecimalDateRange(object):
 
         if step > 0:
             return None
-        while _current > stop:
+        while _current > stop_exclusive:
             _last = _current
             _current = _current.next(step)
         return _last

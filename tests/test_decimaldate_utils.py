@@ -431,3 +431,30 @@ def test_try_instantiate_good_is_ok() -> None:
     dd: DecimalDate | None = DecimalDate.try_instantiate(good_date)
     # THEN
     assert str(dd) == str(good_date)
+
+
+"""
+dif_days
+"""
+
+
+@pytest.mark.parametrize(
+    "dd1,dd2,expected",
+    [
+        pytest.param(2023_12_11, 2023_12_11, 0),
+        pytest.param(2023_12_11, 2023_12_12, 1),
+        pytest.param(2023_12_12, 2023_12_11, -1),
+    ],
+)
+def test_diff_days(dd1: int, dd2: int, expected: int) -> None:
+    assert DecimalDate.diff_days(dd1, dd2) == expected
+
+
+def test_diff_days_next() -> None:
+    # GIVEN
+    dd1: DecimalDate = DecimalDate(2024_03_01)
+    dd7: DecimalDate = DecimalDate(2024_03_07)
+    # WHEN
+    diff: int = DecimalDate.diff_days(dd1, dd7)
+    # THEN
+    assert dd1.next(diff) == dd7
