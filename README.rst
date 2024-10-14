@@ -321,10 +321,10 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 When ready update documentation on readthedocs_.
 
 .. image:: docs/source/_static/rtd_banner_logo.png
-   :width: 160
+   :width: 200
 
 .. image:: docs/source/_static/rtd_build.png
-   :width: 200
+   :width: 220
 
 It is highly recommended to test the update by uploading to 
 https://test.pypi.org/
