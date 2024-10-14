@@ -402,6 +402,27 @@ Class Methods
     >>> print(DecimalDate.try_instantiate("2024_09_27"))
     20240927
 
+
+``diff_days``
+    Difference in days between two decimal dates.
+
+    >>> from decimaldate import DecimalDate
+    >>> dd1 = DecimalDate(2024_03_01)
+    >>> dd2 = DecimalDate(2024_03_07)
+    >>> diff = DecimalDate.diff_days(dd1, dd2)
+    >>> diff
+    6
+    >>> dd1.next(diff) == dd2
+    True
+
+    If the dates are identical the diffenrence is ``0``.
+
+    >>> from decimaldate import DecimalDate
+    >>> dd = DecimalDate(2024_03_01)
+    >>> DecimalDate.diff_days(dd, dd)
+    0
+
+
 ====================
   DecimalDateRange
 ====================

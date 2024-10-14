@@ -15,7 +15,7 @@ __all__ = [
     "DecimalDate",
     "DecimalDateRange",
 ]
-
+""" Objects exposed in module. """
 #
 # DecimalDate
 #
@@ -35,8 +35,8 @@ class DecimalDate(object):
 
     Examples::
 
-        DecimalDate()            # today's date
-        DecimalDate(None)        # today's date
+        DecimalDate()              # today's date
+        DecimalDate(None)          # today's date
         DecimalDate(20231225)
         DecimalDate("20230518")
         DecimalDate(date.today())
@@ -101,7 +101,7 @@ class DecimalDate(object):
     @staticmethod
     def __date_as_int(_date: date) -> int:
         """
-        Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
+        Returns an integer on the form ``yyyymmdd`` from the argument ``date``.
 
         >>> DecimalDate.__date_as_int(date.today())
         20240906
@@ -159,7 +159,7 @@ class DecimalDate(object):
         :return: end date of year and month.
         :rtype: datetime
         """
-        # Day 28 exists in every month and 4 days later is always next month
+        # The day 28 exists in every month and 4 days later is always next month
         next_month: datetime = dt.replace(day=28) + timedelta(days=4)
         # Subtract day of next month gives last day of original month
         return next_month - timedelta(days=next_month.day)
@@ -267,17 +267,18 @@ class DecimalDate(object):
 
         # ---
 
+        # Raises error if an integer can not be inferred
         self.__dd_int = DecimalDate.__parse_int_value_from_argument(dd)
 
-        self.__dd_str = str(self.__dd_int)
-
+        # If not a valid Gregorian date, then the following raises `ValueError`
         try:
-            # If not a valid Gregorian date, then the following raises `ValueError`
             self.__dd_datetime = DecimalDate.__int_as_datetime(self.__dd_int)
         except ValueError as e_info:
             raise ValueError(
                 f"argument {dd} is not a valid literal on the form `yyyymmdd`."
             ) from e_info
+
+        self.__dd_str = str(self.__dd_int)
 
         self.__year, self.__month, self.__day = DecimalDate.__split(self.__dd_int)
 
@@ -826,6 +827,50 @@ class DecimalDate(object):
             yield dd
             dd = dd.next(step)
 
+    @staticmethod
+    def diff_days(
+        arg_left: DecimalDate | DecimalDateInitTypes,
+        arg_right: DecimalDate | DecimalDateInitTypes,
+    ) -> int:
+        """
+        Difference in days between two decimal dates.
+
+        Result can be positive, 0, or negative.
+
+        No time or TimeZone is considered.
+
+        >>> from decimaldate import DecimalDate
+        >>> dd1 = DecimalDate(2024_03_01)
+        >>> dd2 = DecimalDate(2024_03_07)
+        >>> diff = DecimalDate.diff_days(dd1, dd2)
+        >>> diff
+        6
+        >>> dd1.next(diff) == dd2
+        True
+
+        If the dates are identical the diffenrence is ``0``.
+
+        >>> from decimaldate import DecimalDate
+        >>> dd = DecimalDate(2024_03_01)
+        >>> DecimalDate.diff_days(dd, dd)
+        0
+
+        :param arg_left: valid decimal date
+        :type arg_left: DecimalDate | DecimalDateInitTypes
+        :param arg_right: valid decimal date
+        :type arg_right: DecimalDate | DecimalDateInitTypes
+        :raises TypeError: if any argument is ``None``.
+        :return: difference in days.
+        :rtype: int
+        """
+        if arg_left is None or arg_right is None:
+            raise TypeError("argument is None")
+
+        dt_right: datetime = DecimalDate(arg_right).as_datetime()
+        dt_left: datetime = DecimalDate(arg_left).as_datetime()
+
+        return (dt_right - dt_left).days
+
 
 #
 # DecimalDateRange
@@ -849,35 +894,55 @@ class DecimalDateRange(object):
     """
 
     @staticmethod
+    def __highest_multiple_of(arg: int, div: int) -> int:  # NOSONAR
+        """
+        Returns the highest multiple of ``0*div``, ``1*div``, ``2*div``, ``3*div`` ...  that is less than or equal to ``arg``.
+
+        >>> highest_multiple_of(7, 1)
+        7
+        >>> highest_multiple_of(7, 3)
+        6
+        >>> highest_multiple_of(23, 10)
+        20
+        >>> highest_multiple_of(23, 40)
+        0
+
+        :param arg: number to find the largest number that is a multiple of divider.
+        :type arg: int
+        :param div: divider
+        :type div: int
+        :return: largest number that is a multiple of divider.
+        :rtype: int
+        """
+        return (arg // div) * div
+
+    @staticmethod
     def __get_last_in_sequence(
-        start: DecimalDate,
-        stop: DecimalDate,
+        start_inclusive: DecimalDate,
+        stop_exclusive: DecimalDate,
         step: int,
     ) -> DecimalDate | None:
 
-        # TODO replace naive implementation by using % and //
-
         #
         # start == stop
         #
 
-        if start == stop:
+        if start_inclusive == stop_exclusive:
             return None
-
-        _current: DecimalDate = start
-        _last: DecimalDate = start
 
         #
         # start < stop
         #
 
-        if start < stop:
+        if start_inclusive < stop_exclusive:
             if step < 0:
                 return None
-            while _current < stop:
-                _last = _current
-                _current = _current.next(step)
-            return _last
+            return start_inclusive.next(
+                DecimalDateRange.__highest_multiple_of(
+                    DecimalDate.diff_days(start_inclusive, stop_exclusive.previous()),
+                    step,
+                )
+            )
 
         #
         # start > stop
@@ -885,41 +950,41 @@ class DecimalDateRange(object):
 
         if step > 0:
             return None
-        while _current > stop:
-            _last = _current
-            _current = _current.next(step)
-        return _last
+        return start_inclusive.next(
+            DecimalDateRange.__highest_multiple_of(
+                DecimalDate.diff_days(start_inclusive, stop_exclusive.next()),
+                step,
+            )
+        )
 
     @staticmethod
     def __get_length_of_sequence(
-        start: DecimalDate,
-        stop: DecimalDate,
+        start_inclusive: DecimalDate,
+        stop_exclusive: DecimalDate,
         step: int,
     ) -> int:
-
-        # TODO replace naive implementation by using % and //
 
         #
         # start == stop
         #
 
-        if start == stop:
+        if start_inclusive == stop_exclusive:
             return 0
-
-        _length: int = 0
-        _current: DecimalDate = start
 
         #
         # start < stop
         #
 
-        if start < stop:
+        if start_inclusive < stop_exclusive:
             if step < 0:
                 return 0
-            while _current < stop:
-                _length += 1
-                _current = _current.next(step)  # go forward
-            return _length
+            return (
+                DecimalDate.diff_days(
+                    start_inclusive,
+                    stop_exclusive.previous(),
+                )
+                // step
+            ) + 1
 
         #
         # start > stop
@@ -927,10 +992,13 @@ class DecimalDateRange(object):
 
         if step > 0:
             return 0
-        while _current > stop:
-            _length += 1
-            _current = _current.next(step)  # go back
-        return _length
+        return (
+            DecimalDate.diff_days(
+                start_inclusive,
+                stop_exclusive.next(),
+            )
+            // step
+        ) + 1
 
     # replace __dict__ : optimization and improving immutability
     __slots__ = (
@@ -943,8 +1011,8 @@ class DecimalDateRange(object):
 
     def __init__(
         self: Self,
-        start: DecimalDate | DecimalDateInitTypes,
-        stop: DecimalDate | DecimalDateInitTypes,
+        start_inclusive: DecimalDate | DecimalDateInitTypes,
+        stop_exclusive: DecimalDate | DecimalDateInitTypes,
         step: int = 1,
         /,
     ) -> None:
@@ -974,9 +1042,9 @@ class DecimalDateRange(object):
         :raises TypeError: If step argument is not instance of ``int``
         :raises ValueError: If step argument is ``0``
         """
-        if start is None:
+        if start_inclusive is None:
             raise ValueError("DecimalDateRange argument start is None.")
-        if stop is None:
+        if stop_exclusive is None:
             raise ValueError("DecimalDateRange argument stop is None.")
         if step is None:
             raise ValueError("DecimalDateRange argument step is None.")
@@ -1018,8 +1086,8 @@ class DecimalDateRange(object):
 
         #
 
-        self.__start = DecimalDate(start)
-        self.__stop = DecimalDate(stop)
+        self.__start = DecimalDate(start_inclusive)
+        self.__stop = DecimalDate(stop_exclusive)
         self.__step = step
 
         if self.__step == 0:
@@ -1093,7 +1161,7 @@ class DecimalDateRange(object):
         """
         return self.__length
 
-    def __contains__(self: Self, dd: DecimalDate) -> bool:
+    def __contains__(self: Self, dd_contains: DecimalDate) -> bool:
         """
         The containment-check operator, ``in``.
 
@@ -1102,44 +1170,44 @@ class DecimalDateRange(object):
         >>> )
         True
         """
-        if not isinstance(dd, DecimalDate):
+        if not isinstance(dd_contains, DecimalDate):
             raise TypeError(
                 "DecimalDateRange contains argument is not a `DecimalDate`."
             )
 
-        if self.has_empty_sequence():
-            return False
-
-        # TODO replace naive implementation by using % and //
-
-        _current = self.__start
-
         #
         # start == stop
         #
-        # Handled by self.has_empty_sequence()
-        #
+
+        if self.has_empty_sequence():
+            return False
 
         #
         # start < stop
         #
 
         if self.__start < self.__stop:
-            while _current < self.__stop:
-                if _current == dd:
-                    return True
-                _current = _current.next(self.__step)
-            return False
+
+            if dd_contains < self.__start:
+                return False
+            if dd_contains >= self.__stop:
+                return False
 
         #
         # start > stop
         #
 
-        while _current > self.__stop:
-            if _current == dd:
-                return True
-            _current = _current.next(self.__step)
-        return False
+        else:
+
+            if dd_contains > self.__start:
+                return False
+            if dd_contains <= self.__stop:
+                return False
+
+        # ---
+
+        diff: int = DecimalDate.diff_days(self.__start, dd_contains)
+        return (diff % self.__step) == 0
 
     def __getitem__(self: Self, index: int) -> DecimalDate:
         """

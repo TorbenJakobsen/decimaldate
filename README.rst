@@ -13,6 +13,7 @@
 .. _readthedocs-community: https://about.readthedocs.com/pricing/#/community
 .. _black: https://black.readthedocs.io/en/stable/index.html
 .. _vscode: https://code.visualstudio.com/
+.. _pip: https://pip.pypa.io/
 
 ###############
   decimaldate
@@ -339,6 +340,13 @@ python3
    
    See Python_.
 
+pip
+   The **p**ackage **i**nstaller for **P**ython. 
+   
+   Use ``pip`` to install packages from PyPI_ or other indexes.
+
+   See _pip.
+
 flake8
    A Python linting tool for style guide enforcement.
 
@@ -407,3 +415,9 @@ rstcheck
 
    See rstcheck_.
 
+===============
+  Outstanding
+===============
+
+- ``DecimalDateRange.month(year, month)``
+- ``DecimalDate.randrange(start, stop [, step])``
