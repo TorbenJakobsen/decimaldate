@@ -1161,7 +1161,7 @@ class DecimalDateRange(object):
         """
         return self.__length
 
-    def __contains__(self: Self, dd: DecimalDate) -> bool:
+    def __contains__(self: Self, dd_contains: DecimalDate) -> bool:
         """
         The containment-check operator, ``in``.
 
@@ -1170,44 +1170,44 @@ class DecimalDateRange(object):
         >>> )
         True
         """
-        if not isinstance(dd, DecimalDate):
+        if not isinstance(dd_contains, DecimalDate):
             raise TypeError(
                 "DecimalDateRange contains argument is not a `DecimalDate`."
             )
 
-        if self.has_empty_sequence():
-            return False
-
-        # TODO replace naive implementation by using % and //
-
-        _current = self.__start
-
         #
         # start == stop
         #
-        # Handled by self.has_empty_sequence()
-        #
+
+        if self.has_empty_sequence():
+            return False
 
         #
         # start < stop
         #
 
         if self.__start < self.__stop:
-            while _current < self.__stop:
-                if _current == dd:
-                    return True
-                _current = _current.next(self.__step)
-            return False
+
+            if dd_contains < self.__start:
+                return False
+            if dd_contains >= self.__stop:
+                return False
 
         #
         # start > stop
         #
 
-        while _current > self.__stop:
-            if _current == dd:
-                return True
-            _current = _current.next(self.__step)
-        return False
+        else:
+
+            if dd_contains > self.__start:
+                return False
+            if dd_contains <= self.__stop:
+                return False
+
+        # ---
+
+        diff: int = DecimalDate.diff_days(self.__start, dd_contains)
+        return (diff % self.__step) == 0
 
     def __getitem__(self: Self, index: int) -> DecimalDate:
         """
