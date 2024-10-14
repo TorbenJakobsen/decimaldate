@@ -320,6 +320,12 @@ Use the ``make`` command to see options for documentation build using Sphinx_.
 
 When ready update documentation on readthedocs_.
 
+.. image:: docs/source/_static/rtd_banner.png
+   :width: 200
+
+.. image:: docs/source/_static/rtd_build.png
+   :width: 400
+
 It is highly recommended to test the update by uploading to 
 https://test.pypi.org/
 before updating PyPI_. 
@@ -341,7 +347,7 @@ python3
    See Python_.
 
 pip
-   The **p**ackage **i**nstaller for **P**ython. 
+   The package installer for Python. 
    
    Use ``pip`` to install packages from PyPI_ or other indexes.
 
