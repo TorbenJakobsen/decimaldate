@@ -43,9 +43,9 @@
    :alt: Using black formatter
    :target: https://github.com/psf/black
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.2.3.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/TorbenJakobsen/decimaldate/v0.2.4.svg
    :alt: Commits since latest release
-   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.2.3...main
+   :target: https://github.com/TorbenJakobsen/decimaldate/compare/v0.2.4...main
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
    :alt: BSD 3 Clause

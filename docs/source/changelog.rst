@@ -9,6 +9,25 @@
 New Features
 ------------
 
+* None.
+
+Other Changes
+-------------
+
+* None.
+
+Bugfixes
+--------
+
+* None.
+
+======================
+  0.2.4 (2024-10-14)
+======================
+
+New Features
+------------
+
 * Added static method ``DecimalDate.diff_days()``.
 
 Other Changes
