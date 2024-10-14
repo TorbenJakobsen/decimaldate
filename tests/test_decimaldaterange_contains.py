@@ -72,7 +72,7 @@ def test_contains_invalid_type_raises_typeerror() -> None:
         _ = "3" in sut  # type: ignore[operator]
 
 
-def test_getitem_1_7_1() -> None:
+def test_contains_1_7_1() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 1)
     # THEN
@@ -87,7 +87,7 @@ def test_getitem_1_7_1() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_2() -> None:
+def test_contains_1_7_2() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 2)
     # THEN
@@ -102,7 +102,7 @@ def test_getitem_1_7_2() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_3() -> None:
+def test_contains_1_7_3() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 3)
     # THEN
@@ -117,7 +117,7 @@ def test_getitem_1_7_3() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_4() -> None:
+def test_contains_1_7_4() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 4)
     # THEN
@@ -132,7 +132,7 @@ def test_getitem_1_7_4() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_5() -> None:
+def test_contains_1_7_5() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 5)
     # THEN
@@ -147,7 +147,7 @@ def test_getitem_1_7_5() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_6() -> None:
+def test_contains_1_7_6() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 6)
     # THEN
@@ -162,7 +162,7 @@ def test_getitem_1_7_6() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_1_7_7() -> None:
+def test_contains_1_7_7() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_01, dd_10_07, 7)
     # THEN
@@ -177,7 +177,7 @@ def test_getitem_1_7_7() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_1() -> None:
+def test_contains_7_1_1() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -1)
     # THEN
@@ -192,7 +192,7 @@ def test_getitem_7_1_1() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_2() -> None:
+def test_contains_7_1_2() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -2)
     # THEN
@@ -207,7 +207,7 @@ def test_getitem_7_1_2() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_3() -> None:
+def test_contains_7_1_3() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -3)
     # THEN
@@ -222,7 +222,7 @@ def test_getitem_7_1_3() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_4() -> None:
+def test_contains_7_1_4() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -4)
     # THEN
@@ -237,7 +237,7 @@ def test_getitem_7_1_4() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_5() -> None:
+def test_contains_7_1_5() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -5)
     # THEN
@@ -252,7 +252,7 @@ def test_getitem_7_1_5() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_6() -> None:
+def test_contains_7_1_6() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -6)
     # THEN
@@ -267,7 +267,7 @@ def test_getitem_7_1_6() -> None:
     assert dd_10_08 not in sut
 
 
-def test_getitem_7_1_7() -> None:
+def test_contains_7_1_7() -> None:
     # GIVEN
     sut: DecimalDateRange = DecimalDateRange(dd_10_07, dd_10_01, -7)
     # THEN
@@ -280,3 +280,26 @@ def test_getitem_7_1_7() -> None:
     assert dd_10_06 not in sut
     assert dd_10_07 in sut
     assert dd_10_08 not in sut
+
+
+# ---
+
+
+def test_contains_min_seg_pos() -> None:
+    # GIVEN
+    dd: DecimalDate = DecimalDate(2023_12_17)
+    # WHEN
+    _sut = DecimalDateRange(dd, dd.next(), 1)
+    # THEN
+    assert len(_sut) == 1
+    assert dd in _sut
+
+
+def test_contains_min_seg_neg() -> None:
+    # GIVEN
+    dd: DecimalDate = DecimalDate(2023_12_17)
+    # WHEN
+    _sut = DecimalDateRange(dd, dd.previous(), -1)
+    # THEN
+    assert len(_sut) == 1
+    assert dd in _sut
