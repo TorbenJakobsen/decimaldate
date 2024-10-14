@@ -9,12 +9,14 @@
 New Features
 ------------
 
-* None.
+* Added static method ``DecimalDate.diff_days()``.
 
 Other Changes
 -------------
 
-* None.
+* proper calculate ``DecimalDateRange.last()``
+* proper calculate ``DecimalDateRange.length()``
+* Updates to documentation.
 
 Bugfixes
 --------

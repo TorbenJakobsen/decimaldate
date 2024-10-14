@@ -35,8 +35,8 @@ class DecimalDate(object):
 
     Examples::
 
-        DecimalDate()            # today's date
-        DecimalDate(None)        # today's date
+        DecimalDate()              # today's date
+        DecimalDate(None)          # today's date
         DecimalDate(20231225)
         DecimalDate("20230518")
         DecimalDate(date.today())
@@ -101,7 +101,7 @@ class DecimalDate(object):
     @staticmethod
     def __date_as_int(_date: date) -> int:
         """
-        Returns an integer on the form ``yyyymmdd`` from the argument ``datetime``.
+        Returns an integer on the form ``yyyymmdd`` from the argument ``date``.
 
         >>> DecimalDate.__date_as_int(date.today())
         20240906
@@ -159,7 +159,7 @@ class DecimalDate(object):
         :return: end date of year and month.
         :rtype: datetime
         """
-        # Day 28 exists in every month and 4 days later is always next month
+        # The day 28 exists in every month and 4 days later is always next month
         next_month: datetime = dt.replace(day=28) + timedelta(days=4)
         # Subtract day of next month gives last day of original month
         return next_month - timedelta(days=next_month.day)
@@ -835,21 +835,41 @@ class DecimalDate(object):
         """
         Difference in days between two decimal dates.
 
-        Result can be negative.
+        Result can be positive, 0, or negative.
 
-        >>> DecimalDate.
+        No time or TimeZone is considered.
+
+        >>> from decimaldate import DecimalDate
+        >>> dd1 = DecimalDate(2024_03_01)
+        >>> dd2 = DecimalDate(2024_03_07)
+        >>> diff = DecimalDate.diff_days(dd1, dd2)
+        >>> diff
+        6
+        >>> dd1.next(diff) == dd2
+        True
+
+        If the dates are identical the diffenrence is ``0``.
+
+        >>> from decimaldate import DecimalDate
+        >>> dd = DecimalDate(2024_03_01)
+        >>> DecimalDate.diff_days(dd, dd)
+        0
+
         :param arg_left: valid decimal date
         :type arg_left: DecimalDate | DecimalDateInitTypes
         :param arg_right: valid decimal date
         :type arg_right: DecimalDate | DecimalDateInitTypes
         :raises TypeError: if any argument is ``None``.
-        :return: the difference in days.
+        :return: difference in days.
         :rtype: int
         """
         if arg_left is None or arg_right is None:
             raise TypeError("argument is None")
 
-        return (DecimalDate(arg_right).as_date() - DecimalDate(arg_left).as_date()).days
+        dt_right: datetime = DecimalDate(arg_right).as_datetime()
+        dt_left: datetime = DecimalDate(arg_left).as_datetime()
+
+        return (dt_right - dt_left).days
 
 
 #

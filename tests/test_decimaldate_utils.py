@@ -434,7 +434,7 @@ def test_try_instantiate_good_is_ok() -> None:
 
 
 """
-dif_days
+diff_days
 """
 
 
