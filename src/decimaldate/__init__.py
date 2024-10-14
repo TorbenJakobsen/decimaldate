@@ -907,11 +907,11 @@ class DecimalDateRange(object):
         >>> highest_multiple_of(23, 40)
         0
 
-        :param arg: _description_
+        :param arg: number to find the largest number that is a multiple of divider.
         :type arg: int
-        :param div: _description_
+        :param div: divider
         :type div: int
-        :return: _description_
+        :return: largest number that is a multiple of divider.
         :rtype: int
         """
         return (arg // div) * div
@@ -1011,8 +1011,8 @@ class DecimalDateRange(object):
 
     def __init__(
         self: Self,
-        start: DecimalDate | DecimalDateInitTypes,
-        stop: DecimalDate | DecimalDateInitTypes,
+        start_inclusive: DecimalDate | DecimalDateInitTypes,
+        stop_exclusive: DecimalDate | DecimalDateInitTypes,
         step: int = 1,
         /,
     ) -> None:
@@ -1042,9 +1042,9 @@ class DecimalDateRange(object):
         :raises TypeError: If step argument is not instance of ``int``
         :raises ValueError: If step argument is ``0``
         """
-        if start is None:
+        if start_inclusive is None:
             raise ValueError("DecimalDateRange argument start is None.")
-        if stop is None:
+        if stop_exclusive is None:
             raise ValueError("DecimalDateRange argument stop is None.")
         if step is None:
             raise ValueError("DecimalDateRange argument step is None.")
@@ -1086,8 +1086,8 @@ class DecimalDateRange(object):
 
         #
 
-        self.__start = DecimalDate(start)
-        self.__stop = DecimalDate(stop)
+        self.__start = DecimalDate(start_inclusive)
+        self.__stop = DecimalDate(stop_exclusive)
         self.__step = step
 
         if self.__step == 0:
