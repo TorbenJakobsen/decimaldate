@@ -323,6 +323,8 @@ When ready update documentation on readthedocs_.
 .. image:: docs/source/_static/rtd_banner_logo.png
    :width: 200
 
+Remember to have tagged source/release and pushed to GitHub.
+
 .. image:: docs/source/_static/rtd_build.png
    :width: 220
 
