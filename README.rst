@@ -324,7 +324,7 @@ When ready update documentation on readthedocs_.
    :width: 160
 
 .. image:: docs/source/_static/rtd_build.png
-   :width: 320
+   :width: 240
 
 It is highly recommended to test the update by uploading to 
 https://test.pypi.org/
