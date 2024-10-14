@@ -519,3 +519,28 @@ def test_last_october_365() -> None:
     ]
     assert list(_sut)[-1] == dd_10_01
     assert _sut.last() == dd_10_01
+
+
+# ---
+
+
+def test_last_min_seq_pos() -> None:
+    # GIVEN
+    dd: DecimalDate = DecimalDate(2023_12_17)
+    # WHEN
+    _sut = DecimalDateRange(dd, dd.next())
+    it = iter(_sut)
+    # THEN
+    assert len(_sut) == 1
+    assert next(it) == dd
+
+
+def test_last_min_seq_neg() -> None:
+    # GIVEN
+    dd: DecimalDate = DecimalDate(2023_12_17)
+    # WHEN
+    _sut = DecimalDateRange(dd, dd.previous(), -1)
+    it = iter(_sut)
+    # THEN
+    assert len(_sut) == 1
+    assert next(it) == dd

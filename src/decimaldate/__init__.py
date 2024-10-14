@@ -903,17 +903,12 @@ class DecimalDateRange(object):
         step: int,
     ) -> DecimalDate | None:
 
-        # TODO replace naive implementation by using % and //
-
         #
         # start == stop
         #
 
         if start_inclusive == stop_exclusive:
             return None
-
-        _current: DecimalDate = start_inclusive
-        _last: DecimalDate = start_inclusive
 
         #
         # start < stop
@@ -922,10 +917,12 @@ class DecimalDateRange(object):
         if start_inclusive < stop_exclusive:
             if step < 0:
                 return None
-            while _current < stop_exclusive:
-                _last = _current
-                _current = _current.next(step)
-            return _last
+            return start_inclusive.next(
+                DecimalDateRange.__highest_multiple_of(
+                    DecimalDate.diff_days(start_inclusive, stop_exclusive.previous()),
+                    step,
+                )
+            )
 
         #
         # start > stop
@@ -933,10 +930,12 @@ class DecimalDateRange(object):
 
         if step > 0:
             return None
-        while _current > stop_exclusive:
-            _last = _current
-            _current = _current.next(step)
-        return _last
+        return start_inclusive.next(
+            DecimalDateRange.__highest_multiple_of(
+                DecimalDate.diff_days(start_inclusive, stop_exclusive.next()),
+                step,
+            )
+        )
 
     @staticmethod
     def __get_length_of_sequence(
