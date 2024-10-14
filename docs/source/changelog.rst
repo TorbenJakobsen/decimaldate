@@ -14,9 +14,9 @@ New Features
 Other Changes
 -------------
 
-* proper calculate ``DecimalDateRange.last()``
-* proper calculate ``DecimalDateRange.length()``
-* proper calculate ``DecimalDateRange.__contains__()``
+* Proper calculate ``DecimalDateRange.last()``
+* Proper calculate ``DecimalDateRange.length()``
+* Proper calculate ``DecimalDateRange.__contains__()`` (``in``)
 * Updates to documentation.
 
 Bugfixes
