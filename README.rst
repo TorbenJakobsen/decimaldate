@@ -14,6 +14,7 @@
 .. _black: https://black.readthedocs.io/en/stable/index.html
 .. _vscode: https://code.visualstudio.com/
 .. _pip: https://pip.pypa.io/
+.. _reStructuredText: `reStructuredText <https://docutils.sourceforge.io/rst.html>`
 
 ###############
   decimaldate
@@ -94,11 +95,15 @@ No argument or ``None``
        DecimalDate()
        DecimalDate(None)
 
+   Will return similar objects.
+
 ``int``
+    >>> from decimaldate import DecimalDate
     >>> DecimalDate(20240911)
     DecimalDate(20240911)
 
 ``str``
+    >>> from decimaldate import DecimalDate
     >>> DecimalDate("20240911")
     DecimalDate(20240911)
 
@@ -124,14 +129,14 @@ page.
   Introduction
 ================
 
-The source for this ``decimaldate`` project is publicly available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_.
+The source for this ``decimaldate`` project is publicly available on `GitHub <https://github.com/TorbenJakobsen/decimaldate>`_ (*here*).
 
 .. note::
 
    This project and the development of the module ``decimaldate`` is documented here, in *this* ``README.rst`` file.
 
    The Python ``decimaldate`` package itself, and its use, is documented in 
-   the project's ``docs/source`` as reStructuredText to be processed with Sphinx_
+   the project's ``docs/source`` as reStructuredText_ to be processed with Sphinx_
    and made available on readthedocs_ as `decimaldate <https://decimaldate.readthedocs.io/>`_.
 
 =========================
@@ -141,7 +146,7 @@ The source for this ``decimaldate`` project is publicly available on `GitHub <ht
 Use a virtual environment
 -------------------------
 
-| It is optional, but *highly* recommended to create and use a virtual environment.
+| It is optional, but *highly* recommended (and best practice) to create and use a virtual environment.
 | This documentation will assume the use of a virtual environment and ``venv``
   (handled if you use ``make`` and the supplied ``Makefile``).
 
@@ -151,9 +156,10 @@ Use a virtual environment
 
 .. note::
    
-   You can use other virtualization tools as you prefer.
+   | You can use other virtualization tools as you prefer.
+   | You can choose andother name than ``venv``, but the Makefile makes this assumption.
 
-Activate (source) the virtual environment (remember the ``.``).
+Activate (source) the virtual environment (remember the ``.`` activation).
 
 .. code:: bash
 
