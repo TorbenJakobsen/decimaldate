@@ -14,7 +14,7 @@
 .. _black: https://black.readthedocs.io/en/stable/index.html
 .. _vscode: https://code.visualstudio.com/
 .. _pip: https://pip.pypa.io/
-.. _reStructuredText: `reStructuredText <https://docutils.sourceforge.io/rst.html>`
+.. _reStructuredText: https://docutils.sourceforge.io/rst.html
 
 ###############
   decimaldate
@@ -94,8 +94,6 @@ No argument or ``None``
        
        DecimalDate()
        DecimalDate(None)
-
-   Will return similar objects.
 
 ``int``
     >>> from decimaldate import DecimalDate
