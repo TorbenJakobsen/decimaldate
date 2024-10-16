@@ -360,7 +360,7 @@ pip
    
    Use ``pip`` to install packages from PyPI_ or other indexes.
 
-   See _pip.
+   See pip_.
 
 flake8
    A Python linting tool for style guide enforcement.
