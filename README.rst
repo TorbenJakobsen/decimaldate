@@ -155,7 +155,7 @@ Use a virtual environment
 .. note::
    
    | You can use other virtualization tools as you prefer.
-   | You can choose andother name than ``venv``, but the Makefile makes this assumption.
+   | You can choose another name than ``venv``, but the Makefile makes this assumption.
 
 Activate (source) the virtual environment (remember the ``.`` activation).
 
@@ -247,7 +247,7 @@ To see the HTML report, open the default location: ``htmlcov/index.html`` in a b
 Documentation
 ~~~~~~~~~~~~~
 
-Activate the virtual enrironment and run Sphinx_ (similar to how readthedocs_ builds).
+Activate the virtual environment and run Sphinx_ (similar to how readthedocs_ builds).
 
 .. code:: bash
 
@@ -296,18 +296,21 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
 Comments
 --------
    
-These commands are available as ``make`` targets in the included ``Makefile``.
+The earlier mentioned commands are available as ``make`` targets in the included ``Makefile``.
 
 .. code:: bash
 
    make setup
 
-will create the virtual environment and install the dependencies.
+will create the virtual environment and install dependencies.
 
-.. note:: 
+The chosen version of Python for ``make`` targets in the ``Makefile`` is 3.11,
+which must be present on the development environment.
+The choice for the development environment to stay at 3.11 is made to minimize the risk of breaking code and keep backward compatibility. 
 
-   The chosen version of Python for ``make`` targets in the ``Makefile`` is 3.11,
-   which must be present on the development environment.
+Additionally the creation of documentation using Sphinx_ currently have a dependency on packages not released for 3.12 or later. 
+If you are not interested in building documentation (by leaving that solely to readthedocs_) you can update the ``Makefile`` to any Python version >= 3.11.
+The module has been built and unit tested with: 3.11, 3.12, and 3.13.
 
 =================
   Documentation
@@ -315,7 +318,7 @@ will create the virtual environment and install the dependencies.
 
 To build the documentation go to 
 the ``docs`` directory and work with 
-the reStructuredText (``.rst``) files and Sphinx_.
+the reStructuredText_ (``.rst``) files and Sphinx_.
 
 Use the ``make`` command to see options for documentation build using Sphinx_.
 
