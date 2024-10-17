@@ -1373,7 +1373,17 @@ class DecimalDateRange(object):
         return self.last() is None
 
     @staticmethod
-    def range_month_from_year_and_month(year: int, month: int) -> DecimalDateRange:
+    def range_month_of_year_and_month(year: int, month: int) -> DecimalDateRange:
+        """
+        A Decimal date range starting with the first day of the month and ends with the last day of the month.
+
+        :param year: 'year' of the range
+        :type year: int
+        :param month: 'month' of the range
+        :type month: int
+        :return: a new ``DecimalDateRange`` including start end end of argument year and month
+        :rtype: DecimalDateRange
+        """
         # The first day of this month
         start_inclusive: DecimalDate = DecimalDate.from_ymd(int(year), int(month), 1)
 
@@ -1386,11 +1396,18 @@ class DecimalDateRange(object):
         return DecimalDateRange(start_inclusive, stop_exclusive, step)
 
     @staticmethod
-    def range_month_from_decimal_date(
+    def range_month_of_decimal_date(
         dd: DecimalDate | DecimalDateInitTypes | None,
     ) -> DecimalDateRange:
-        """ """
+        """
+        A Decimal date range starting with the first day of the month and ends with the last day of the month.
+
+        :param dd: if no argument or ``None`` then use today's date
+        :type dd: DecimalDate | DecimalDateInitTypes | None
+        :return: a new ``DecimalDateRange`` including start end end of argument decimal date
+        :rtype: DecimalDateRange
+        """
         _dd = DecimalDate(dd)
         year: int = _dd.year()
         month: int = _dd.month()
-        return DecimalDateRange.range_month_from_year_and_month(year, month)
+        return DecimalDateRange.range_month_of_year_and_month(year, month)

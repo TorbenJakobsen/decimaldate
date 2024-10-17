@@ -11,7 +11,7 @@ range_month_from_decimal_date
 
 def test_range_month_from_decimal_date_may_month() -> None:
     # WHEN
-    sut: DecimalDateRange = DecimalDateRange.range_month_from_decimal_date(2024_05_18)
+    sut: DecimalDateRange = DecimalDateRange.range_month_of_decimal_date(2024_05_18)
     list_sut = list(sut)
     # THEN
     assert len(sut) == 31  # May has 31 days
@@ -23,9 +23,7 @@ def test_range_month_from_decimal_date_february_not_leap_year() -> None:
     # GIVEN
     valentines_day = 2023_02_14
     # WHEN
-    sut: DecimalDateRange = DecimalDateRange.range_month_from_decimal_date(
-        valentines_day
-    )
+    sut: DecimalDateRange = DecimalDateRange.range_month_of_decimal_date(valentines_day)
     list_sut = list(sut)
     # THEN
     assert len(sut) == 28
@@ -37,9 +35,7 @@ def test_range_month_from_decimal_date_february_leap_year() -> None:
     # GIVEN
     valentines_day = 2024_02_14
     # WHEN
-    sut: DecimalDateRange = DecimalDateRange.range_month_from_decimal_date(
-        valentines_day
-    )
+    sut: DecimalDateRange = DecimalDateRange.range_month_of_decimal_date(valentines_day)
     list_sut = list(sut)
     # THEN
     assert len(sut) == 29
