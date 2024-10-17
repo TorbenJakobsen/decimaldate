@@ -871,6 +871,11 @@ class DecimalDate(object):
 
         return (dt_right - dt_left).days
 
+    @staticmethod
+    def from_ymd(year: int, month: int, day: int) -> DecimalDate:
+        ymd: int = DecimalDate.__ymd_as_int(int(year), int(month), int(day))
+        return DecimalDate(ymd)
+
 
 #
 # DecimalDateRange
@@ -1360,3 +1365,26 @@ class DecimalDateRange(object):
 
     def has_empty_sequence(self: Self) -> bool:
         return self.last() is None
+
+    @staticmethod
+    def range_month_from_year_and_month(year: int, month: int) -> DecimalDateRange:
+        # The first day of this month
+        start_inclusive: DecimalDate = DecimalDate.from_ymd(int(year), int(month), 1)
+
+        # The first day of following month - range will end by including last day of this month
+        stop_exclusive: DecimalDate = start_inclusive.end_of_month().next()
+
+        # Every day between start and stop
+        step: int = 1
+
+        return DecimalDateRange(start_inclusive, stop_exclusive, step)
+
+    @staticmethod
+    def range_month_from_decimal_date(
+        dd: DecimalDate | DecimalDateInitTypes | None,
+    ) -> DecimalDateRange:
+        """ """
+        _dd = DecimalDate(dd)
+        year: int = _dd.year()
+        month: int = _dd.month()
+        return DecimalDateRange.range_month_from_year_and_month(year, month)
