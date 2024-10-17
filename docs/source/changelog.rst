@@ -22,6 +22,27 @@ Bugfixes
 * None.
 
 ======================
+  0.3.0 (2024-10-17)
+======================
+
+New Features
+------------
+
+* Added static method ``DecimalDate.from_ymd()``.
+* Added static method ``DecimalDateRange.range_month_of_year_and_month()``.
+* Added static method ``DecimalDateRange.range_month_of_decimal_date()``.
+
+Other Changes
+-------------
+
+* Updates to documentation.
+
+Bugfixes
+--------
+
+* None.
+
+======================
   0.2.4 (2024-10-14)
 ======================
 

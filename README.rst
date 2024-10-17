@@ -434,5 +434,4 @@ rstcheck
   Outstanding
 ===============
 
-- ``DecimalDateRange.month(year, month)``
 - ``DecimalDate.randrange(start, stop [, step])``

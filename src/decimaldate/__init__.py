@@ -1373,7 +1373,7 @@ class DecimalDateRange(object):
     @staticmethod
     def range_month_of_year_and_month(year: int, month: int) -> DecimalDateRange:
         """
-        A Decimal date range starting with the first day of the month and ends with the last day of the month.
+        A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
 
         >>> from decimaldate import DecimalDateRange
         >>> DecimalDateRange.range_month_of_year_and_month(2024, 2)
@@ -1402,7 +1402,7 @@ class DecimalDateRange(object):
         dd: DecimalDate | DecimalDateInitTypes | None = None,
     ) -> DecimalDateRange:
         """
-        A Decimal date range starting with the first day of the month and ends with the last day of the month.
+        A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
 
         >>> from decimaldate import DecimalDateRange
         >>> DecimalDateRange.range_month_of_decimal_date(2024_05_18)

@@ -422,6 +422,11 @@ Class Methods
     >>> DecimalDate.diff_days(dd, dd)
     0
 
+``from_ymd``
+    A new ``DecimalDate`` from arguments: year, month, and day.
+
+    >>> DecimalDate.from_ymd(2021,2,14)
+    DecimalDate(20210214)
 
 ====================
   DecimalDateRange
@@ -566,3 +571,26 @@ Instance Methods
     >>> ddr = DecimalDateRange(2024_01_01, 2023_01_01, -14)
     >>> ddr.has_empty_sequence()
     False
+
+
+``range_month_of_year_and_month``
+    A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> DecimalDateRange.range_month_of_year_and_month(2024, 2)
+    DecimalDateRange(20240201, 20240301, 1)
+
+    .. note:: 
+
+        The end date of a range is exclusive, so will be the first day of next month.
+
+``range_month_of_decimal_date``
+    A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
+
+    >>> from decimaldate import DecimalDateRange
+    >>> DecimalDateRange.range_month_of_decimal_date(2024_05_18)
+    DecimalDateRange(20240501, 20240601, 1)
+
+    .. note:: 
+
+        The end date of a range is exclusive, so will be the first day of next month.

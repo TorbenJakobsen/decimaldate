@@ -472,3 +472,23 @@ def test_diff_days_right_is_none_raise_type_error() -> None:
     dd_right: DecimalDate | None = None
     with pytest.raises(TypeError):
         _ = DecimalDate.diff_days(dd_left, dd_right)  # type: ignore[arg-type]
+
+
+"""
+from_ymd
+"""
+
+
+def test_from_ymd() -> None:
+    # GIVEN
+    dd: DecimalDate = DecimalDate(2021_02_14)
+    # WHEN
+    year = dd.year()
+    month = dd.month()
+    day = dd.day()
+    sut = DecimalDate.from_ymd(year, month, day)
+    # THEN
+    assert year == 2021
+    assert month == 2
+    assert day == 14
+    assert sut == dd
