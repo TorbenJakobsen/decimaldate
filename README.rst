@@ -244,8 +244,8 @@ To see the HTML report, open the default location: ``htmlcov/index.html`` in a b
    # macOS
    open htmlcov/index.html
 
-Documentation
-~~~~~~~~~~~~~
+Building the Documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Activate the virtual environment and run Sphinx_ (similar to how readthedocs_ builds).
 
