@@ -464,11 +464,11 @@ def test_diff_days_left_is_none_raise_type_error() -> None:
     dd_left: DecimalDate | None = None
     dd_right: DecimalDate | None = DecimalDate(2024_03_01)
     with pytest.raises(TypeError):
-        _ = DecimalDate.diff_days(dd_left, dd_right)
+        _ = DecimalDate.diff_days(dd_left, dd_right)  # type: ignore[arg-type]
 
 
 def test_diff_days_right_is_none_raise_type_error() -> None:
     dd_left: DecimalDate | None = DecimalDate(2024_03_01)
     dd_right: DecimalDate | None = None
     with pytest.raises(TypeError):
-        _ = DecimalDate.diff_days(dd_left, dd_right)
+        _ = DecimalDate.diff_days(dd_left, dd_right)  # type: ignore[arg-type]

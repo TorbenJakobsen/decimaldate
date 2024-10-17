@@ -21,7 +21,7 @@ __highest_multiple_of
     ],
 )
 def test_highest_multiple_of(arg, div, expected) -> None:
-    assert DecimalDateRange._DecimalDateRange__highest_multiple_of(arg, div) == expected
+    assert DecimalDateRange._DecimalDateRange__highest_multiple_of(arg, div) == expected  # type: ignore[attr-defined]
 
 
 """
@@ -34,7 +34,7 @@ dd_stop: DecimalDate = DecimalDate(2024_05_07)
 
 def test_get_length_of_sequence_step_0_raises_value_error() -> None:
     with pytest.raises(ValueError):
-        _ = DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        _ = DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_start,
             dd_stop,
             0,
@@ -43,7 +43,7 @@ def test_get_length_of_sequence_step_0_raises_value_error() -> None:
 
 def test_get_length_of_sequence_ident_is_0() -> None:
     assert (
-        DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_start,
             dd_start,
             1,
@@ -54,7 +54,7 @@ def test_get_length_of_sequence_ident_is_0() -> None:
 
 def test_get_length_of_sequence_direction_good_neg() -> None:
     assert (
-        DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_stop,
             dd_start,
             -1,
@@ -65,7 +65,7 @@ def test_get_length_of_sequence_direction_good_neg() -> None:
 
 def test_get_length_of_sequence_direction_good_pos() -> None:
     assert (
-        DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_start,
             dd_stop,
             1,
@@ -76,7 +76,7 @@ def test_get_length_of_sequence_direction_good_pos() -> None:
 
 def test_get_length_of_sequence_direction_bad_neg_is_0() -> None:
     assert (
-        DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_stop,
             dd_start,
             1,
@@ -87,7 +87,7 @@ def test_get_length_of_sequence_direction_bad_neg_is_0() -> None:
 
 def test_get_length_of_sequence_direction_bad_pos_is_0() -> None:
     assert (
-        DecimalDateRange._DecimalDateRange__get_length_of_sequence(
+        DecimalDateRange._DecimalDateRange__get_length_of_sequence(  # type: ignore[attr-defined]
             dd_start,
             dd_stop,
             -1,
@@ -103,7 +103,7 @@ __get_last_in_sequence
 
 def test_get_last_in_sequence_step_0_raises_value_error() -> None:
     with pytest.raises(ValueError):
-        _ = DecimalDateRange._DecimalDateRange__get_last_in_sequence(
+        _ = DecimalDateRange._DecimalDateRange__get_last_in_sequence(  # type: ignore[attr-defined]
             dd_start,
             dd_stop,
             0,

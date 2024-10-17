@@ -1248,9 +1248,6 @@ class DecimalDateRange(object):
         if index == 0:
             return self.__start
 
-        if index == -1:
-            return self.__last
-
         if index > 0:
             if self.__length <= index:
                 raise IndexError(
@@ -1259,13 +1256,14 @@ class DecimalDateRange(object):
 
             return self.__start.next(index * self.__step)
 
-        if index < -1:
+        if index < 0:
             if index < -self.__length:
                 raise IndexError(
                     f"DecimalDateRange object index {index} out of range: [-{self.__length}..0[."
                 )
 
-            return self.__last.next((1 + index) * self.__step)
+            return self.__last.next((1 + index) * self.__step)  # type: ignore[union-attr]
+            # self.__last is not None (-> empty sequence) so it is safe to ignore mypy error
 
         # To make `mypy` not complain about missing return statement -> exclude from coverage
         raise RuntimeError("Failure to compare index argument")  # pragma: no cover
