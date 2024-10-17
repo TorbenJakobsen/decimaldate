@@ -1072,8 +1072,6 @@ class DecimalDateRange(object):
         start (*inclusive*) to end (*exclusive*).
 
         A value of ``1`` will return every date in the decimal date range.
-
-        *Currently only a value of ``1``is implemented*.
         """
 
         self.__last: DecimalDate | None
