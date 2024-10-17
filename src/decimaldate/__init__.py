@@ -928,6 +928,10 @@ class DecimalDateRange(object):
         step: int,
     ) -> DecimalDate | None:
 
+        # sanity check
+        if step == 0:
+            raise ValueError("argument step 0 is not valid.")
+
         #
         # start == stop
         #
@@ -968,6 +972,10 @@ class DecimalDateRange(object):
         stop_exclusive: DecimalDate,
         step: int,
     ) -> int:
+
+        # sanity check
+        if step == 0:
+            raise ValueError("argument step 0 is not valid.")
 
         #
         # start == stop
