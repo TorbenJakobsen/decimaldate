@@ -94,3 +94,17 @@ def test_get_length_of_sequence_direction_bad_pos_is_0() -> None:
         )
         == 0
     )
+
+
+"""
+__get_last_in_sequence
+"""
+
+
+def test_get_last_in_sequence_step_0_raises_value_error() -> None:
+    with pytest.raises(ValueError):
+        _ = DecimalDateRange._DecimalDateRange__get_last_in_sequence(
+            dd_start,
+            dd_stop,
+            0,
+        )
