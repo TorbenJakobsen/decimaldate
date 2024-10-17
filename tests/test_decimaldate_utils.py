@@ -458,3 +458,17 @@ def test_diff_days_next() -> None:
     diff: int = DecimalDate.diff_days(dd1, dd7)
     # THEN
     assert dd1.next(diff) == dd7
+
+
+def test_diff_days_left_is_none_raise_type_error() -> None:
+    dd_left: DecimalDate | None = None
+    dd_right: DecimalDate | None = DecimalDate(2024_03_01)
+    with pytest.raises(TypeError):
+        _ = DecimalDate.diff_days(dd_left, dd_right)
+
+
+def test_diff_days_right_is_none_raise_type_error() -> None:
+    dd_left: DecimalDate | None = DecimalDate(2024_03_01)
+    dd_right: DecimalDate | None = None
+    with pytest.raises(TypeError):
+        _ = DecimalDate.diff_days(dd_left, dd_right)

@@ -848,7 +848,7 @@ class DecimalDate(object):
         >>> dd1.next(diff) == dd2
         True
 
-        If the dates are identical the diffenrence is ``0``.
+        If the dates are identical the difference is ``0``.
 
         >>> from decimaldate import DecimalDate
         >>> dd = DecimalDate(2024_03_01)
