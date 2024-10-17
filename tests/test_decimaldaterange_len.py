@@ -1,5 +1,3 @@
-import pytest
-
 from decimaldate import DecimalDate, DecimalDateRange
 
 ###
