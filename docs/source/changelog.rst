@@ -22,6 +22,25 @@ Bugfixes
 * None.
 
 ======================
+  0.3.1 (2024-10-21)
+======================
+
+New Features
+------------
+
+* Added static method ``DecimalDate.randrange()``.
+
+Other Changes
+-------------
+
+* Updates to documentation.
+
+Bugfixes
+--------
+
+* None.
+
+======================
   0.3.0 (2024-10-17)
 ======================
 
