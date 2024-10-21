@@ -3,7 +3,7 @@ build:
     coverage:
       tests:
         override:
-          - command: 'make test'
+          - command: '$(COVERAGE) run -m pytest tests'
             coverage:
               file: '.coverage'
               config_file: '.coveragerc'
