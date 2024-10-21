@@ -78,7 +78,7 @@
 
 .. |scrutinizer-code-quality| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/quality-score.png?b=main
    :alt: Scrutinizer code quality
-   :target https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
+   :target: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
 
 .. end-badges
 

@@ -5,7 +5,10 @@ build:
   dependencies:
     before:
       - 'sudo apt-get install -y make'
-      - 'pip install -r requirements/development.txt'
+      - 'python3 -m pip install --upgrade pip setuptools'
+      - 'python3 -m pip install -r requirements/development.txt'
+      - 'python3 -m build'
+      - 'python3 -m pip install --upgrade -e .'
   nodes:
     coverage:
       tests:
