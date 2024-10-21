@@ -1,10 +1,19 @@
+---
 build:
-  nodes:
-    coverage:
-      tests:
-        override:
-          - command: 'coverage run -m pytest tests'
-            coverage:
-              file: '.coverage'
-              config_file: '.coveragerc'
-              format: 'py-cc'
+  environment:
+    python: 3.11.10
+  requirements:
+    before:
+      - 'python -m pip install -r requirements/development.txt'
+  coverage:
+    tests:
+      override:
+        - command: 'coverage run -m pytest tests'
+          coverage:
+            file: '.coverage'
+            config_file: '.coveragerc'
+            format: 'py-cc'
+checks:
+  python:
+    imports_wildcard_import: true
+...

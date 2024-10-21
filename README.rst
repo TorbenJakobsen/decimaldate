@@ -73,8 +73,12 @@
    :target: https://pepy.tech/project/decimaldate
 
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
-    :alt: Supported implementations
-    :target: https://pypi.org/project/decimaldate
+   :alt: Supported implementations
+   :target: https://pypi.org/project/decimaldate
+
+.. |scrutinizer-code-quality| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/quality-score.png?b=main
+   :alt: Scrutinizer code quality
+   :target https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
 
 .. end-badges
 
