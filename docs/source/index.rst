@@ -12,15 +12,15 @@
     * - docs
       - |docs|
     * - code
-      - |code-style| |commits-since|
+      - |code-style| |commits-since| |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| 
     * - package
-      - |wheel| |supported-versions| |supported-implementations| 
+      - |wheel| |supported-versions| |supported-implementations|
     * - downloads
       - |downloads-total| |downloads-monthly| |downloads-weekly|
 
 .. |docs| image:: https://readthedocs.org/projects/decimaldate/badge/?version=latest
-    :alt: Documentation Status
-    :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+   :target: https://decimaldate.readthedocs.io/en/latest/?badge=latest
 
 .. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :alt: Using black formatter
@@ -35,12 +35,12 @@
    :target: https://opensource.org/licenses/BSD-3-Clause
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/decimaldate.svg
-    :alt: PyPI Wheel
-    :target: https://pypi.org/project/decimaldate
+   :alt: PyPI Wheel
+   :target: https://pypi.org/project/decimaldate
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/decimaldate.svg
-    :alt: Supported versions
-    :target: https://pypi.org/project/decimaldate
+   :alt: Supported versions
+   :target: https://pypi.org/project/decimaldate
 
 .. |downloads-total| image:: https://static.pepy.tech/badge/decimaldate
    :alt: Total downloads counter
@@ -55,8 +55,20 @@
    :target: https://pepy.tech/project/decimaldate
 
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/decimaldate.svg
-    :alt: Supported implementations
-    :target: https://pypi.org/project/decimaldate
+   :alt: Supported implementations
+   :target: https://pypi.org/project/decimaldate
+
+.. |scrutinizer-code-quality| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/quality-score.png?b=main
+   :alt: Scrutinizer code quality
+   :target: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
+
+.. |scrutinizer-coverage| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/coverage.png?b=main
+   :alt: Scrutinizer coverage
+   :target: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
+
+.. |scrutinizer-build| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/build.png?b=main
+   :alt: Scrutinizer build
+   :target: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
 
 .. end-badges
 
