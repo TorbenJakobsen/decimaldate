@@ -379,7 +379,7 @@ Class Methods
 ``try_instantiate()``
     A new instance of ``DecimalDate`` if successful; otherwise ``None``.
 
-    If no argument is given then uses today's date.\\
+    If no argument is given then uses today's date.
 
     .. note:: 
         No errors will be raised.
@@ -427,6 +427,30 @@ Class Methods
 
     >>> DecimalDate.from_ymd(2021,2,14)
     DecimalDate(20210214)
+
+
+``randrange``
+    A new ``DecimalDate`` instance randomly selected from ``range(start, stop, step)``.
+
+    .. note:: 
+
+        | Similar to ``random.randrange``.
+        | See https://docs.python.org/3/library/random.html#random.randrange.
+
+    .. warning:: 
+
+        As the method internally uses the ``random`` module (https://docs.python.org/3/library/random.html),
+        the same warning applies:
+
+        The pseudo-random generators of this module should not be used for security purposes.
+
+    >>> from decimaldate import DecimalDate
+    >>> DecimalDate.randrange(2024_01_01, 2024_01_02, 1)
+    DecimalDate(20240101)
+
+    if step is 0 then raises ``ValueError``.
+
+    if start/stop and step goes in "opposite directions" then raises ``ValueError``.
 
 ====================
   DecimalDateRange
@@ -582,7 +606,7 @@ Instance Methods
 
     .. note:: 
 
-        The end date of a range is exclusive, so will be the first day of next month.
+        The end date of a range is exclusive, so will be the first day of *next* month.
 
 ``range_month_of_decimal_date``
     A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
@@ -593,4 +617,4 @@ Instance Methods
 
     .. note:: 
 
-        The end date of a range is exclusive, so will be the first day of next month.
+        The end date of a range is exclusive, so will be the first day of *next* month.

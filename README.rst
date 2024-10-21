@@ -434,4 +434,4 @@ rstcheck
   Outstanding
 ===============
 
-- ``DecimalDate.randrange(start, stop [, step])``
+- None.

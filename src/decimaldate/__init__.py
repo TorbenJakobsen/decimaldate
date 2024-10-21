@@ -905,20 +905,20 @@ class DecimalDate(object):
 
         As the method internally uses https://docs.python.org/3/library/random.html,
         the same warning applies:\\
-        *The pseudo-random generators of this module should not be used for security purposes. For security or cryptographic uses, see the secrets module.*
+        *The pseudo-random generators of this module should not be used for security purposes.*
 
         >>> from decimaldate import DecimalDate
-        >>> DecimalDate(2024_01_01, 2024_01_02)
+        >>> DecimalDate.randrange(2024_01_01, 2024_01_02)
         DecimalDate(20240101)
 
         :param start_inclusive: range start (inclusive)
         :type start_inclusive: DecimalDate | DecimalDateInitTypes
         :param stop_exclusive: range stop (exclusive)
         :type stop_exclusive: DecimalDate | DecimalDateInitTypes
-        :param step: difference between objects in range, defaults to 1
+        :param step: difference between objects in range, defaults to ``1``
         :type step: int, optional
         :raises TypeError: if ``step`` is not an integer
-        :raises ValueError: if ``step`` is 0
+        :raises ValueError: if ``step`` is ``0``
         :raises ValueError: if start date equals stop date
         :raises ValueError: if "direction" of arguments and ``step`` are not matching
         :return: randomly selected element from range
