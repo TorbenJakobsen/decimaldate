@@ -767,10 +767,16 @@ class DecimalDate(object):
         2023.05.05
         2023.05.06
 
+        Similar to https://docs.python.org/3.8/library/functions.html#func-range.
+
         :param start_inclusive: Sequence start (inclusive).
         :type start_inclusive: DecimalDate | int | str | datetime
         :param stop_exclusive: Sequence stop (exclusive).
         :type stop_exclusive: DecimalDate | int | str | datetime
+        :param step: difference between objects in range, defaults to 1
+        :type step: int, optional
+        :return: _description_
+        :rtype: DecimalDateRange
         """
         return DecimalDateRange(start_inclusive, stop_exclusive, step)
 
@@ -901,13 +907,21 @@ class DecimalDate(object):
         the same warning applies:\\
         *The pseudo-random generators of this module should not be used for security purposes. For security or cryptographic uses, see the secrets module.*
 
-        :param start_inclusive: _description_
+        >>> from decimaldate import DecimalDate
+        >>> DecimalDate(2024_01_01, 2024_01_02)
+        DecimalDate(20240101)
+
+        :param start_inclusive: range start (inclusive)
         :type start_inclusive: DecimalDate | DecimalDateInitTypes
-        :param stop_exclusive: _description_
+        :param stop_exclusive: range stop (exclusive)
         :type stop_exclusive: DecimalDate | DecimalDateInitTypes
-        :param step: _description_, defaults to 1
+        :param step: difference between objects in range, defaults to 1
         :type step: int, optional
-        :return: _description_
+        :raises TypeError: if ``step`` is not an integer
+        :raises ValueError: if ``step`` is 0
+        :raises ValueError: if start date equals stop date
+        :raises ValueError: if "direction" of arguments and ``step`` are not matching
+        :return: randomly selected element from range
         :rtype: DecimalDate
         """
         if not isinstance(step, int):
@@ -924,14 +938,14 @@ class DecimalDate(object):
         # start_inclusive == stop_exclusive
         #
 
-        if start_inclusive == stop_exclusive:
+        if dd_start == dd_stop:
             raise ValueError(EMPTY_RANGE)
 
         #
         # start_inclusive < stop_exclusive
         #
 
-        if start_inclusive < stop_exclusive:
+        if dd_start < dd_stop:
             if step < 0:
                 raise ValueError(EMPTY_RANGE)
 
