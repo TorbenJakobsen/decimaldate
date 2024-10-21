@@ -801,7 +801,7 @@ class DecimalDate(object):
 
         The iterator will continue until it reaches beyond valid ``decimal.date``values;
         eg. less than 1-01-01 (``datetime.MINYEAR``) or greater than 9999-12-31 (``datetime.MAXYEAR``)
-        and then throw ``OverflowError``.
+        and then raise ``OverflowError``.
 
         To get the length of the sequence use ``len(dd)`` or ``dd.length()``.
 
