@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 from collections.abc import Generator
 from datetime import date, datetime, timedelta
 from typing import Any, Literal, NoReturn, Self, TypeAlias
@@ -748,8 +749,8 @@ class DecimalDate(object):
 
     @staticmethod
     def range(
-        start: DecimalDate | DecimalDateInitTypes,
-        stop: DecimalDate | DecimalDateInitTypes,
+        start_inclusive: DecimalDate | DecimalDateInitTypes,
+        stop_exclusive: DecimalDate | DecimalDateInitTypes,
         step: int = 1,
         /,
     ) -> DecimalDateRange:
@@ -766,12 +767,12 @@ class DecimalDate(object):
         2023.05.05
         2023.05.06
 
-        :param start: Sequence start (inclusive).
-        :type start: DecimalDate | int | str | datetime
-        :param stop: Sequence stop (exclusive).
-        :type stop: DecimalDate | int | str | datetime
+        :param start_inclusive: Sequence start (inclusive).
+        :type start_inclusive: DecimalDate | int | str | datetime
+        :param stop_exclusive: Sequence stop (exclusive).
+        :type stop_exclusive: DecimalDate | int | str | datetime
         """
-        return DecimalDateRange(start, stop, step)
+        return DecimalDateRange(start_inclusive, stop_exclusive, step)
 
     @classmethod
     def count(
@@ -875,6 +876,75 @@ class DecimalDate(object):
     def from_ymd(year: int, month: int, day: int) -> DecimalDate:
         ymd: int = DecimalDate.__ymd_as_int(int(year), int(month), int(day))
         return DecimalDate(ymd)
+
+    @staticmethod
+    def __randrange(
+        start_inclusive: DecimalDate,
+        stop_exclusive: DecimalDate,
+        step: int,
+    ) -> DecimalDate:
+        diff_days: int = DecimalDate.diff_days(start_inclusive, stop_exclusive)
+        rnd_day: int = random.randrange(0, diff_days, step)
+        return start_inclusive.next(rnd_day)
+
+    @staticmethod
+    def randrange(
+        start_inclusive: DecimalDate | DecimalDateInitTypes,
+        stop_exclusive: DecimalDate | DecimalDateInitTypes,
+        step: int = 1,
+        /,
+    ) -> DecimalDate:
+        """
+        Return a randomly selected element from range(start, stop, step).
+
+        As the method internally uses https://docs.python.org/3/library/random.html,
+        the same warning applies:\\
+        *The pseudo-random generators of this module should not be used for security purposes. For security or cryptographic uses, see the secrets module.*
+
+        :param start_inclusive: _description_
+        :type start_inclusive: DecimalDate | DecimalDateInitTypes
+        :param stop_exclusive: _description_
+        :type stop_exclusive: DecimalDate | DecimalDateInitTypes
+        :param step: _description_, defaults to 1
+        :type step: int, optional
+        :return: _description_
+        :rtype: DecimalDate
+        """
+        if not isinstance(step, int):
+            raise TypeError("randrange step argument is not an `int`.")
+        if step == 0:
+            raise ValueError("randrange step argument is 0.")
+
+        dd_start: DecimalDate = DecimalDate(start_inclusive)
+        dd_stop: DecimalDate = DecimalDate(stop_exclusive)
+
+        EMPTY_RANGE: str = "randrange empty range"
+
+        #
+        # start_inclusive == stop_exclusive
+        #
+
+        if start_inclusive == stop_exclusive:
+            raise ValueError(EMPTY_RANGE)
+
+        #
+        # start_inclusive < stop_exclusive
+        #
+
+        if start_inclusive < stop_exclusive:
+            if step < 0:
+                raise ValueError(EMPTY_RANGE)
+
+            return DecimalDate.__randrange(dd_start, dd_stop, step)
+
+        #
+        # start_inclusive > stop_exclusive
+        #
+
+        if step > 0:
+            raise ValueError(EMPTY_RANGE)
+
+        return DecimalDate.__randrange(dd_start, dd_stop, step)
 
 
 #
