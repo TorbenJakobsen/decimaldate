@@ -30,9 +30,9 @@
     * - docs
       - |docs|
     * - code
-      - |code-style| |commits-since|
+      - |code-style| |commits-since| |scrutinizer-code-quality| 
     * - package
-      - |wheel| |supported-versions| |supported-implementations| 
+      - |wheel| |supported-versions| |supported-implementations|
     * - downloads
       - |downloads-total| |downloads-monthly| |downloads-weekly|
 

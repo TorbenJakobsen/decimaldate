@@ -2,6 +2,18 @@
 build:
   environment:
     python: 3.11.10
+  dependencies:
+    before:
+      - 'sudo apt-get install -y make'
+      - 'pip install -r requirements/development.txt'
+  nodes:
+    coverage:
+      tests:
+        override:
+          - command: 'coverage run -m pytest tests'
+            coverage:
+              file: '.coverage'
+              format: 'py-cc'
 checks:
   python:
     imports_wildcard_import: true
