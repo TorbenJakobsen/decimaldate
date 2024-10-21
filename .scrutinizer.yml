@@ -20,3 +20,4 @@ build:
 checks:
   python:
     imports_wildcard_import: true
+...
