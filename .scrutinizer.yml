@@ -2,9 +2,6 @@
 build:
   environment:
     python: 3.11.10
-  requirements:
-    before:
-      - 'python3 -m pip install -r requirements/development.txt'
 checks:
   python:
     imports_wildcard_import: true
