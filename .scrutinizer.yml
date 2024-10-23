@@ -1,15 +1,19 @@
 ---
 build:
   environment:
-    python: 3.11.10
+    python: 3.11
   dependencies:
     before:
       - 'sudo apt-get install -y make'
       - 'python3 -m pip install --upgrade pip setuptools'
-      - 'python3 -m pip install -r requirements/development.txt'
+      - 'python3 -m pip install -r requirements/scrutinizer.txt'
       - 'python3 -m build'
       - 'python3 -m pip install --upgrade -e .'
   nodes:
+    analysis:
+      tests:
+        override:
+          - py-scrutinizer-run
     coverage:
       tests:
         override:
@@ -19,4 +23,6 @@ build:
               format: 'py-cc'
 checks:
   python:
+    code_rating: true
+    duplicate_code: true
     imports_wildcard_import: true
