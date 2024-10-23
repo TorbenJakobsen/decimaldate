@@ -1,7 +1,7 @@
 ---
 build:
   environment:
-    python: 3.11
+    python: 3.11.10
   dependencies:
     before:
       - 'sudo apt-get install -y make'
