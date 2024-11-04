@@ -87,9 +87,15 @@ github_action_lint:
 	flake8 src tests
 
 .PHONY: github_action_test
-github_action_test:
+github_action_test: github_action_build
 	pytest
 
 .PHONY: github_action_format
 github_action_format:
 	python3 -m black src/decimaldate/*.py tests/*.py
+
+.PHONY: github_action_build
+github_action_build:
+	rm -f dist/*
+	python3 -m build
+	python3 -m pip install --upgrade -e .
