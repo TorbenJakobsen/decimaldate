@@ -71,3 +71,7 @@ rstcheck: venv
 .PHONY: upload
 upload: venv
 	$(PYTHON) -m twine upload --verbose --repository pypi dist/*
+
+.PHONY: format
+format: venv
+	$(PYTHON) -m black src/decimaldate/*.py tests/*.py

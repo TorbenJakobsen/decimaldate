@@ -1,6 +1,7 @@
 build
 pytest
 twine
+black
 setuptools
 coverage
 flake8

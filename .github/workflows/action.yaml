@@ -1,4 +1,4 @@
-name: Test Multiple Python Versions
+name: Test multiple Python versions
 on: [push]
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          make install
+          make setup
       - name: Lint with pylint
         run: |
           make lint
