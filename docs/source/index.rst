@@ -12,7 +12,8 @@
     * - docs
       - |docs|
     * - code
-      - |code-style| |commits-since| |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| |github-test-multiple| 
+      - | |code-style| |commits-since| |github-test-multiple| 
+        | |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| 
     * - package
       - |wheel| |supported-versions| |supported-implementations|
     * - downloads
