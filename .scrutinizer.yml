@@ -26,3 +26,6 @@ checks:
     code_rating: true
     duplicate_code: true
     imports_wildcard_import: true
+    typecheck_maybe_no_member: true
+    classes_valid_slots: true
+    basic_missing_reversed_argument: true
