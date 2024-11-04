@@ -30,7 +30,7 @@ setup: clean venv build
 .PHONY: clean
 clean:
 	# Clean __pycache__ dirs - abuses list comprehension by using "side effect" of `rmtree`
-	python3 -Bc "import pathlib; import shutil; [shutil.rmtree(p) for p in pathlib.Path('.').rglob('__pycache__')]"
+	$(PYTHON) -Bc "import pathlib; import shutil; [shutil.rmtree(p) for p in pathlib.Path('.').rglob('__pycache__')]"
 	rm -rf venv
 
 .PHONY: test
@@ -74,4 +74,9 @@ upload: venv
 
 .PHONY: format
 format: venv
-	$(PYTHON) -m black src/decimaldate/*.py tests/*.py
+	$(PYTHON) -m black src/decimaldate/*.py tests/*.py     
+
+.PHONY: github_action_setup
+github_action_setup:
+	python3 -m pip install --upgrade pip setuptools
+	python3 -m pip install -r requirements/development.txt
