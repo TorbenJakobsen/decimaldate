@@ -74,9 +74,22 @@ upload: venv
 
 .PHONY: format
 format: venv
-	$(PYTHON) -m black src/decimaldate/*.py tests/*.py     
+	$(PYTHON) -m black src/decimaldate/*.py tests/*.py
+
 
 .PHONY: github_action_setup
 github_action_setup:
 	python3 -m pip install --upgrade pip setuptools
 	python3 -m pip install -r requirements/development.txt
+
+.PHONY: github_action_lint
+github_action_lint:
+	flake8 src tests
+
+.PHONY: github_action_test
+github_action_test:
+	pytest
+
+.PHONY: github_action_format
+github_action_format:
+	python3 -m black src/decimaldate/*.py tests/*.py

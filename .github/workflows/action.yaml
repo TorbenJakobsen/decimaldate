@@ -17,10 +17,10 @@ jobs:
           make github_action_setup
       - name: Lint with pylint
         run: |
-          make lint
+          make github_action_lint
       - name: Test with pytest
         run: |
-          make test
+          make github_action_test
       - name: Format code with Python Black
         run: |
-          make format
+          make github_action_format
