@@ -13,7 +13,7 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
     * - docs
       - |docs|
     * - code
-      - |code-style| |commits-since| |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| 
+      - |code-style| |commits-since| |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| |github-test-multiple| 
     * - package
       - |wheel| |supported-versions| |supported-implementations|
     * - downloads
@@ -70,6 +70,10 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
 .. |scrutinizer-build| image:: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/badges/build.png?b=main
    :alt: Scrutinizer build
    :target: https://scrutinizer-ci.com/g/TorbenJakobsen/decimaldate/?branch=main
+
+.. |github-test-multiple| image:: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml/badge.svg
+   :alt: Test multiple Python versions
+   :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
 
 .. end-badges
 
