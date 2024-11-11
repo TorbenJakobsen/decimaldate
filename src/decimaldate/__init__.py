@@ -255,7 +255,10 @@ class DecimalDate(object):
         """ Internal instance value of the decimal date as a ``str`` on the form ``"yyyymmdd"``. """
 
         self.__dd_datetime: datetime
-        """ Internal instance value of the decimal date as a ``datetime.datetime``. """
+        """ Internal instance value of the decimal date as a ``datetime.datetime``.
+
+        A ``datetime.datetime`` object is immutable.
+        """
 
         self.__year: int
         """ Internal instance value of the year (1-9999). """
@@ -287,7 +290,7 @@ class DecimalDate(object):
     # Comparisons
     #
 
-    __UNSUPPORTED_OPERAND_TYPE: Literal["Unsupported operand type."] = (
+    __UNSUPPORTED_OPERAND_TYPE_MESSAGE: Literal["Unsupported operand type."] = (
         "Unsupported operand type."
     )
 
@@ -304,7 +307,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int == other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     def __ne__(self: Self, other: object) -> bool:
         """
@@ -319,7 +322,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int != other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     def __gt__(self: Self, other: object) -> bool:
         """
@@ -334,7 +337,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int > other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     def __ge__(self: Self, other: object) -> bool:
         """
@@ -349,7 +352,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int >= other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     def __lt__(self: Self, other: object) -> bool:
         """
@@ -364,7 +367,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int < other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     def __le__(self: Self, other: object) -> bool:
         """
@@ -379,7 +382,7 @@ class DecimalDate(object):
         if isinstance(other, DecimalDate):
             return self.__dd_int <= other.__dd_int
         else:
-            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE)
+            raise TypeError(DecimalDate.__UNSUPPORTED_OPERAND_TYPE_MESSAGE)
 
     #
     # repr, str, int
@@ -678,6 +681,9 @@ class DecimalDate(object):
         :rtype: date
         """
         return self.__dd_datetime.date()
+        # https://docs.python.org/3/library/datetime.html
+        # "Objects of these types are immutable."
+        # So are safe to return as reference instead of instantiating a new object.
 
     def as_datetime(self: Self) -> datetime:
         """
@@ -687,6 +693,9 @@ class DecimalDate(object):
         :rtype: datetime
         """
         return self.__dd_datetime
+        # https://docs.python.org/3/library/datetime.html
+        # "Objects of these types are immutable."
+        # So are safe to return as reference instead of instantiating a new object.
 
     #
     #
