@@ -152,7 +152,8 @@ As an example loop over all Tuesdays in the month of Valentine's Day 2024.
 >>>     for dd in DecimalDateRange.range_month_of_decimal_date(2024_02_14)
 >>>     if dd.weekday() == TUESDAY
 >>> ]:
->>>     print(repr(dd))DecimalDate(20240206)
+>>>     print(repr(dd))
+DecimalDate(20240206)
 DecimalDate(20240213)
 DecimalDate(20240220)
 DecimalDate(20240227)
