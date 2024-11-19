@@ -182,3 +182,23 @@ See the :doc:`usage <./usage>` page.
 ======================================
 
 See the :doc:`usage <./usage>` page.
+
+===========
+  Example
+===========
+
+Loop over all Tuesdays in the month of Valentine's Day 2024.
+
+>>> from decimaldate import DecimalDateRange
+>>> 
+>>> TUESDAY = 1
+>>> 
+>>> for dd in [
+>>>     dd
+>>>     for dd in DecimalDateRange.range_month_of_decimal_date(20240214)
+>>>     if dd.weekday() == TUESDAY
+>>> ]:
+>>>     print(repr(dd))DecimalDate(20240206)
+DecimalDate(20240213)
+DecimalDate(20240220)
+DecimalDate(20240227)
