@@ -611,10 +611,23 @@ Instance Methods
 ``range_month_of_decimal_date``
     A Decimal date range starting with the first day of the month, and ends (inclusive) with the last day of the month.
 
+    .. note:: 
+
+        The end date of a range is exclusive, so will be the first day of *next* month.
+
     >>> from decimaldate import DecimalDateRange
     >>> DecimalDateRange.range_month_of_decimal_date(2024_05_18)
     DecimalDateRange(20240501, 20240601, 1)
 
-    .. note:: 
-
-        The end date of a range is exclusive, so will be the first day of *next* month.
+    >>> from decimaldate import DecimalDateRange
+    >>> TUESDAY = 1
+    >>> for dd in [
+    >>>     dd
+    >>>     for dd in DecimalDateRange.range_month_of_decimal_date(2024_02_14)
+    >>>     if dd.weekday() == TUESDAY
+    >>> ]:
+    >>>     print(repr(dd))
+    DecimalDate(20240206)
+    DecimalDate(20240213)
+    DecimalDate(20240220)
+    DecimalDate(20240227)
