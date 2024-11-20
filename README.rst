@@ -112,7 +112,7 @@ No argument or ``None``
        DecimalDate()
        DecimalDate(None)
 
-   are identical.
+   are equivalent.
 
 ``int``
     >>> from decimaldate import DecimalDate
