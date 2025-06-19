@@ -93,6 +93,11 @@
    :alt: Test multiple Python versions
    :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
 
+.. |ossf| image:: https://api.scorecard.dev/projects/github.com/TorbenJakobsen/decimaldate/badge
+   :alt: OpenSSF
+   :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
+
+
 .. end-badges
 
 =========
