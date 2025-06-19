@@ -110,7 +110,6 @@ Creation
 --------
 
 No argument or ``None``
-
     Will use today's date:
         
     .. code:: python
@@ -326,7 +325,6 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
 .. note::
 
    If you see: ::
-
       400 The description failed to render for 'text/x-rst'.
       See https://pypi.org/help/#description-content-type for more information.
    
