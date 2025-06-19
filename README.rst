@@ -325,9 +325,9 @@ See `Packaging Python Projects <https://packaging.python.org/en/latest/tutorials
 .. note::
 
    If you see: ::
-
-   | 400 The description failed to render for 'text/x-rst'.
-   | See https://pypi.org/help/#description-content-type for more information.
+      
+      400 The description failed to render for 'text/x-rst'.
+      See https://pypi.org/help/#description-content-type for more information.
    
    You may have put Sphinx_ specifics into the plain reStructuredText that PyPI_ wants.
 
