@@ -32,6 +32,7 @@
     * - code
       - | |code-style| |commits-since| |github-test-multiple| 
         | |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| 
+        | |ossf| 
     * - package
       - |wheel| |supported-versions| |supported-implementations|
     * - downloads
@@ -96,7 +97,6 @@
 .. |ossf| image:: https://api.scorecard.dev/projects/github.com/TorbenJakobsen/decimaldate/badge
    :alt: OpenSSF
    :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
-
 
 .. end-badges
 
