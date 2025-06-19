@@ -96,7 +96,7 @@
 
 .. |ossf| image:: https://api.scorecard.dev/projects/github.com/TorbenJakobsen/decimaldate/badge
    :alt: OpenSSF
-   :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
+   :target: https://scorecard.dev/viewer/?uri=github.com/TorbenJakobsen/decimaldate
 
 .. end-badges
 
