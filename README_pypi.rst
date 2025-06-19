@@ -15,6 +15,7 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
     * - code
       - | |code-style| |commits-since| |github-test-multiple| 
         | |scrutinizer-code-quality| |scrutinizer-coverage| |scrutinizer-build| 
+        | |ossf| 
     * - package
       - |wheel| |supported-versions| |supported-implementations|
     * - downloads
@@ -75,6 +76,10 @@ A Python class to handle decimal dates on the form ``yyyymmdd``.
 .. |github-test-multiple| image:: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml/badge.svg
    :alt: Test multiple Python versions
    :target: https://github.com/TorbenJakobsen/decimaldate/actions/workflows/action.yaml
+
+.. |ossf| image:: https://api.scorecard.dev/projects/github.com/TorbenJakobsen/decimaldate/badge
+   :alt: OpenSSF
+   :target: https://scorecard.dev/viewer/?uri=github.com/TorbenJakobsen/decimaldate
 
 .. end-badges
 
