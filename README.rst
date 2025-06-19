@@ -110,9 +110,9 @@ Creation
 --------
 
 No argument or ``None``
-    Will use today's date:
+   Will use today's date:
         
-    .. code:: python
+   .. code:: python
        
        DecimalDate()
        DecimalDate(None)
@@ -120,19 +120,19 @@ No argument or ``None``
    are equivalent.
 
 ``int``
-    >>> from decimaldate import DecimalDate
-    >>> DecimalDate(20240911)
-    DecimalDate(20240911)
+   >>> from decimaldate import DecimalDate
+   >>> DecimalDate(20240911)
+   DecimalDate(20240911)
 
 ``str``
-    >>> from decimaldate import DecimalDate
-    >>> DecimalDate("20240911")
-    DecimalDate(20240911)
+   >>> from decimaldate import DecimalDate
+   >>> DecimalDate("20240911")
+   DecimalDate(20240911)
 
 ``decimaldate``
-    >>> from datetime import datetime
-    >>> DecimalDate(datetime.today()) == DecimalDate.today()
-    True
+   >>> from datetime import datetime
+   >>> DecimalDate(datetime.today()) == DecimalDate.today()
+   True
 
 Functionality
 -------------
@@ -310,6 +310,7 @@ If you use ``make build`` the ``dist`` directory will be emptied before building
 .. note:: 
    
    You will need ``twine`` installed; which is part of the development requirements file.
+   And the virtual environment activated.
 
 .. code:: bash
 
