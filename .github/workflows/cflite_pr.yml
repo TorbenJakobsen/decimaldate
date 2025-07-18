@@ -1,11 +1,8 @@
 name: ClusterFuzzLite PR fuzzing
 on:
-  - pull_request
-  - push
-  - workflow_dispatch
-  - workflow_call
-      paths:
-        - '**'
+  pull_request:
+    paths:
+      - '**'
 permissions: read-all
 jobs:
   PR:
